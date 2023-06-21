@@ -8,6 +8,15 @@
 
 
 require 'open-uri'
+User.destroy_all
+Album.destroy_all
+Artist.destroy_all
+Collab.destroy_all
+Playlisted.destroy_all
+Playlisted.destroy_all
+Playlist.destroy_all
+Song.destroy_all
+
 User.create(username: 'userdemo', email: 'userdemo', birthday: 19900101, password: 'userdemo')
 
 Playlist.create(title: 'My First Playlist', description: "I'm so excited", user_id: 1)
