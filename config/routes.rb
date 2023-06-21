@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   root 'static_pages#root'
   #config/routes.rb
-  get '*path', to: "static_pages#frontend_index"
+  get '*path', to: "static_pages#root"
 end
 
 
