@@ -69,4 +69,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_controller.include_all_helpers = false
+  config.debug_exception_response_format = :default
 end
