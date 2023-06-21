@@ -11,8 +11,8 @@
 .modal-focus {
     background: #272727;
     position: fixed;
-    top: calc(50% - 192px); // vertical midpoint minus half of the div height
-    left: calc(50% - 238px); // horizontal midpoint minus half of the div width
+    top: calc(50% - 192px); /* vertical midpoint minus half of the div height */
+    left: calc(50% - 238px); /* horizontal midpoint minus half of the div width */
     z-index: 3;
     width: 475px;
     height: 385px;

@@ -7,7 +7,7 @@
 }
 
 
-// PlaylistHeader
+/* PlaylistHeader */
 .playlist-header {
     background: #211a36ed;
     display: flex;
@@ -63,7 +63,7 @@
 }
 
 
-// PlaylistNav
+/* PlaylistNav */
 .playlist-nav, .album-nav {
     display: flex;
     background: #23201be6;
@@ -118,7 +118,7 @@ button.playlist-dropdown-button:hover {
 }
 
 
-// PlaylistSongIndex
+/* PlaylistSongIndex */
 .song-index {
     padding: 24px;
     min-height: calc(100vh - (85px + 260px + 48px + 118px));
