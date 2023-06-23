@@ -5,7 +5,7 @@ ruby '2.6.0'
 gem 'rubygems-update', '3.0.6'
 gem "aws-sdk-s3", require: false
 
-
+gem 'net-http'
 gem 'jquery-rails'  
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

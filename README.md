@@ -15,3 +15,35 @@
 * Users can add Liked songs to their library.
 * Users can add songs to a play queue.
 * Users can view lyrics of the song currently playing.
+
+
+
+## Install Instructions
+
+### Install Ruby
+```
+brew install rbenv
+rbenv install 2.5.1
+rbenv global 2.5.1
+$ Check the Ruby version
+ruby -v
+```
+
+### Install Bundler
+```
+gem install bundler
+```
+
+### Install Gem bundle
+```
+bundle install
+npm install
+```
+
+### Run rails server
+```
+rails s
+bundle exec rails bundle install
+gem install rails
+npm audit fix (if needed)
+```
