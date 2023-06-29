@@ -1,4 +1,3 @@
-// AlbumShow
 .album-show {
     background: transparent;
     width: 100%;
@@ -7,10 +6,8 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
-// AlbumHeader
 .album-header {
     background: #211a36ed;
     display: flex;
@@ -63,5 +60,5 @@
 }   
 
 
-// AlbumMenuBar sources PlaylistNav styles
+/* AlbumNav sources PlaylistNav styles */
 

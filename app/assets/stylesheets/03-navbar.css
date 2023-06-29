@@ -96,7 +96,6 @@
 .nav-links {
     display: flex;
     place-items: center;
-    // justify-content: space-evenly;
     align-items: center;
     width: 200px;
     background-color: purple;

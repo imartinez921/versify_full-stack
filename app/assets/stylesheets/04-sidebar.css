@@ -34,12 +34,10 @@ nav.sidebar {
     padding-top: 5px;
     width: 50px;
     font-size: 25px;
-    // padding-right: 10px;
 }
 div.icon {
     width: 50px;
     font-size: 25px;
-    // background-color: violet;
     text-align: center;
 }
 
@@ -56,7 +54,7 @@ div.icon {
     height: 11px;
 }
 
-// sidebar nav buttons
+/* sidebar nav buttons */
 button.sidebar-nav:first-child {
     display: flex;
     flex-direction: row;
@@ -93,7 +91,7 @@ button.sidebar-nav {
     text-overflow: ellipsis;
 }
 
-// button children of sidebar nav (playlists)
+/* button children of sidebar nav (playlists) */
 button.sidebar {
     display: block;
     text-align: left;

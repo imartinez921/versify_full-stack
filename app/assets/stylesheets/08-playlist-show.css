@@ -9,8 +9,6 @@
     flex-direction: column;
 }
 
-
-// PlaylistHeader
 .playlist-header {
     background: #211a36ed;
     flex: 0 0 auto;
@@ -90,15 +88,13 @@
 
 
 // PlaylistNav
-.playlist-nav, .album-menu {
+.playlist-nav, .album-nav {
     display: flex;
     background: #23201be6;
     width: auto;
     align-items: center;
     padding: 25px 35px;
     gap: 25px;
-    flex: 0 0 auto;
-    height: 118px;
 }
 
 #playlist-play-button {
@@ -117,22 +113,15 @@
 }
 
 #playlist-dropdown-dots, #artist-dropdown-dots {
-    position: relative;
     font-size: 30px;
     color: rgba(247, 245, 242, 0.5);
 }
 
 .playlist-dropdown {
-    font-size: 15px;
-    z-index: 2;
-    width: 150px;
-    height: auto;
-    padding: 3px;
-    background-color: #282828;
-    position: relative;
-    color: white;
-    border-radius: 4px;
-    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3), 0 6px 8px rgba(0, 0, 0, 0.2);
+    left: 440px;
+    top: 365px;
+    align-items: flex-start;
+    min-width: 140px;
 }
 
 .playlist-dropdown-button {
@@ -145,7 +134,6 @@
     background: transparent;
     border: none;
     text-align: left;
-    z-index: 2;
 }
 
 button.playlist-dropdown-button:hover {
