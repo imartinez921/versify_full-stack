@@ -13,39 +13,17 @@ import { openPlaylistNavDropdown,
 
 import PlaylistShow from "./playlist_show";
 
-const mapStateToProps = ({
-    ui, entities: { currentItem, playlists, songs} // from state
-    }, { params, history, currentUser, // from ownProps
-}) => {
-    return {
-        currentPlaylist: currentItem,
-        params: params,
-        currentUser: currentUser,
-        history: history,
-        playlists: playlists,
-        playlistSongs: songs,
-        currentUser: currentUser,
-        playlistNavDropdownState: ui.playlistNavDropdown,
-        playlistEditModalState: ui.playlistEditModal,
-        source: "playlist",
-        songCardDropdownItems: [
-            {
-                title: "Remove from this playlist",
-            },
-            {
-                title: "Add to playlist",
-                submenu: [
-                    [
-                        { 
-                            title: "Create new playlist"
-                        },
-                        ...playlists,
-                    // Enclose array of playlists in an array since dropdown uses recursive .map function on items prop
-                    ]
-                ],
-            },
-        ],
-    };
+const mapStateToProps = (state, ownProps) => {
+    return ({
+        currentPlaylist: state.entities.currentItem,
+        params: ownProps.params,
+        history: ownProps.history,
+        playlists: state.entities.playlists,
+        playlistSongs: state.entities.songs,
+        currentUser: ownProps.currentUser,
+        playlistNavDropdownState: state.ui.playlistNavDropdown,
+        playlistEditModalState: state.ui.playlistEditModal,
+    })
 }
 
 const mapDispatchToProps = (dispatch) => ({

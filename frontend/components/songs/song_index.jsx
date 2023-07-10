@@ -1,24 +1,20 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import SongCard from "./song_card";
 import SongCardDropdownContainer from "./song_card_dropdown_container";
 
 
 const SongIndex = ({
-    currentUser,
+    source,
     playlists,
     songs,
     history,
     params,
-    source,
-    songCardDropdownItems,
 }) => {
     
     // Set local states for SongCardDropdownState and selectedSong
     const [songCardDropdownState, setSongCardDropdownState] = useState({ isOpen: false });
     const [selectedSong, setSelectedSong] = useState(null);
-    // Set local state to remember which SongCard was clicked
-    const [dropdownMenuPointer, setDropdownMenuPointer] = useState(null);
     
     // Updater functions for local states
     const updateSongCardDropdownState = (newState) => {
@@ -27,41 +23,35 @@ const SongIndex = ({
     const updateSelectedSong = (newState) => {
         setSelectedSong(newState);
     };
-    const updateDropdownMenuPointer = (newState) => {
-        setDropdownMenuPointer(newState);
-    };
     
-    // Dropdowns must be closed and null selectedSong when SongIndex is first rendered
     useEffect( () => {
-        setSongCardDropdownState({ isOpen: false })
+        setSongCardDropdownState({ isOpen: false }) // upon first mount
         return () => {
             setSelectedSong(null);
             setSongCardDropdownState({ isOpen: false });
         }
     }, [params]);
 
-    const emptyPlaylist = (
-        <div className="song-index song-index-empty">
-            <h3>Add some songs to your playlist!</h3>
-        </div>
-    )
-
-    // Relocate SongCardDropdown depending on location of SongCard
-    const [dropdownPosition, setDropdownPosition] = useState({left: null, top: null});
-
-    // Updater functions for local states
-    const updateDropdownPosition = (newState) => {
-        setDropdownPosition(newState);
+    let songCardDropdownItems;
+    if (source === "playlist") {
+        songCardDropdownItems = [
+            {
+                title: "Remove from this playlist"
+            }, 
+            {
+                title: "Add to playlist",
+                submenu: [playlists],
+            },
+        ]
+    } else if (source === "album") {
+        songCardDropdownItems = [
+            {
+                title: "Add to playlist",
+                submenu: [playlists], 
+                // Enclose array of playlists in an array since dropdown uses recursive .map function on items prop
+            }
+        ]
     };
-
-    let x;
-    let y;
-    const placeSongCardDropdown = (e) => {
-        const clickedEleBounds = e.target.getBoundingClientRect();
-        x = clickedEleBounds.left; // Place dropdown at bottom-left of SongCard
-        y = clickedEleBounds.top;
-        setDropdownPosition({left: x, top: y});
-    }
 
     const songIndex = (
         <div className={`song-index`+" " +source}>
@@ -72,9 +62,12 @@ const SongIndex = ({
                 <div className="song-index-heading-title">
                     Title
                 </div>
-                <div className="song-index-heading-album">
-                {source === "playlist" ? "Album" : null}
-                </div>
+                {source === "playlist" ? (
+                    <div className="song-index-heading-album">
+                        Album
+                    </div>
+                    ) : null
+                }
                 <div className="song-index-heading-liked">
                     &#128153;
                 </div>
@@ -93,12 +86,8 @@ const SongIndex = ({
                         history={history}
                         index={index}
                         songCardDropdownState={songCardDropdownState}
-                        placeSongCardDropdown={placeSongCardDropdown}
                         updateSongCardDropdownState={updateSongCardDropdownState}
                         updateSelectedSong={updateSelectedSong}
-                        updateDropdownMenuPointer={updateDropdownMenuPointer}
-                        dropdownPosition={dropdownPosition}
-                        dropdownMenuPointer={dropdownMenuPointer}
                     />
                 }))
                 : null
@@ -106,23 +95,26 @@ const SongIndex = ({
         </div>    
     )
 
-    const depthLevel = 0;
+    const emptyPlaylist = (
+        <div className="song-index song-index-empty">
+            <h3>Add some songs to your playlist!</h3>
+        </div>
+    )
+
+    // const depthLevel = 0;
     return <>
         {songs.length > 0 ? songIndex : emptyPlaylist}
-        {songCardDropdownState.isOpen && <SongCardDropdownContainer 
-                currentUser={currentUser}
-                source={source}
+        {/* {songCardDropdownState.isOpen && <SongCardDropdownContainer 
+                source={source} 
+                selectedSong={selectedSong} 
                 history={history}
-                selectedSong={selectedSong}
+                params={params}
                 songCardDropdownState={songCardDropdownState}
                 updateSongCardDropdownState={updateSongCardDropdownState}
-                updateDropdownPosition={updateDropdownPosition}
                 items={songCardDropdownItems}
                 depthLevel={depthLevel}
-                dropdownPosition={dropdownPosition}
-                dropdownMenuPointer={dropdownMenuPointer}
             />
-        }
+        } */}
     </>
 }
 

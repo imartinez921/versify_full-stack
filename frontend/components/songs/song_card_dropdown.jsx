@@ -1,37 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import SongCardSubmenu from "./song_card_submenu";
-import SongCardDropdownItem from "./song_card_dropdown_item";
 
 
 const SongCardDropdown = ({
-    currentItem,
-    playlists,
-    currentUser,
     source,
-    history,
     selectedSong,
+    history,
+    params,
     updateSongCardDropdownState,
-    updateDropdownPosition,
     items,
     depthLevel,
-    dropdownPosition,
     removePlaylisted,
     createNewPlaylisted,
-    createPlaylist,
-    displayPlaylist,
-}) => {
+ }) => {
 
     // Set local state for SongCardSubmenu
-    let dropdownRef = useRef();
-    const [submenuState, setSubmenuState] = useState({ isOpen: false });
+     const [submenuState, setSubmenuState] = useState({ isOpen: false });
+     let dropdownRef = useRef();
 
     // Add event listeners when menu is open; remove when menu is closed
     useEffect(() => {
         const handler = (event) => {
-            if (
-                submenuState.isOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)
-            ) {
+            if (submenuState.isOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 updateSongCardDropdownState({ isOpen: false });
                 setSubmenuState({ isOpen: false });
             }
@@ -42,88 +33,81 @@ const SongCardDropdown = ({
             // Cleanup the event listener when component unmounts
             document.removeEventListener("mousedown", handler);
             document.removeEventListener("touchstart", handler);
-        };
+            };
     }, [submenuState]);
 
-    // Relocate dropdown when SongCard changes
-    useEffect(() => {
-    }, [dropdownPosition]);
-
-    const toggleSubmenuAndPlaceDropdown = (e) => {
+    const keepParentMenuOpen = (e) => {
+        e.stopPropagation();
+    };
+    
+    // let { x, y };
+    const toggleSubmenu = (e) => {
         e.preventDefault();
+        keepParentMenuOpen(e);
+        const result = e.target.getBoundingClientRect();
+        console.log(result);
+        console.log(selectedSong);
         setSubmenuState({ isOpen: !submenuState.isOpen });
     };
 
-    let depthStyling;
-    if (depthLevel > 0) {
-        depthStyling = {
-            maxHeight: '250px',
-            overflowY: 'scroll',
-            width: '250px',
+    const runSongActions = (e) => {
+        if (source === "playlist") {
+            switch (e.target.innerText) {
+                case "Remove from this playlist":
+                    updateSongCardDropdownState( {isOpen: false });
+                    return removePlaylisted(selectedSong.playlistedId)
+                case "Add to playlist":
+                    setSubmenuState({ isOpen: true });
+                default: // Otherwise, it's a playlist
+                    updateSongCardDropdownState( {isOpen: false });
+                    return createNewPlaylisted(selectedSong.id, playlistId)
+            }
         }
+
+
     }
 
+    console.log("depthLevel in SongCardDropdown", depthLevel)
+    console.log("ITEMS in dropdown", items)
     return (
-        <div 
-            // id="song-card-dropdown"
-            className="song-card-dropdown dropdown-item"
-            data-dropdown
-            ref={dropdownRef}
-            style={{
-                left: `${dropdownPosition.left}px`,
-                top: `${dropdownPosition.top}px`,
-                ...depthStyling
-            }}
-        >
-            {items.map((item, index) =>
+        <div className="song-card-dropdown" data-dropdown ref={dropdownRef}> 
+            {items.map( (item, index) => (
                 item.submenu ? (
-                    // If a submenu exists, create button for submenu title and pass submenu to SongCardSubmenu
-                    <>
-                        <button
-                            className="song-card-dropdown-item"
-                            key={`${selectedSong.playlistedId}+${depthLevel}+${item.title}+"btn"`}
-                            onClick={toggleSubmenuAndPlaceDropdown}
+                // If a submenu exists, create button for submenu title and pass submenu to SongCardSubmenu
+                    <> 
+                        <button className="song-card-dropdown-item"
+                            key={`${index}+${item.title}+"subm"`}
+                            onClick={toggleSubmenu}
                         >
-                            {item.title}{" "}
-                            <span key={`${selectedSong.playlistedId}`}>
-                                &raquo;
-                            </span>
+                            {item.title}{' '}
+                            {/* {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />} */}
+                            <span>&raquo;</span>
                         </button>
                         <SongCardSubmenu
-                            key={`${selectedSong.playlistedId}+${depthLevel}+${item.title}+"subm"`}
-                            source={source}
-                            history={history}
-                            currentUser={currentUser}
-                            selectedSong={selectedSong}
+                            key={`${index}+"subm"+${depthLevel}+${item.title}`}
                             submenus={item.submenu}
                             submenuState={submenuState}
                             depthLevel={depthLevel}
-                            dropdownPosition={dropdownPosition}
                             updateSongCardDropdownState={updateSongCardDropdownState}
                         />
                     </>
-                ) : (
-                    <SongCardDropdownItem // Else, create just a button
-                        key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
-                        currentItem={currentItem}
-                        playlists={playlists}
-                        history={history}
-                        currentUser={currentUser}
-                        index={index-1} // Since the first item is "Create new playlist"
-                        selectedSong={selectedSong}
-                        updateSongCardDropdownState={updateSongCardDropdownState}
-                        item={item}
-                        depthLevel={depthLevel}
-                        dropdownPosition={dropdownPosition}
-                        removePlaylisted={removePlaylisted}
-                        createNewPlaylisted={createNewPlaylisted}
-                        createPlaylist={createPlaylist}
-                        displayPlaylist={displayPlaylist}
-                    />
+                ) : ( // Else, create just a button
+                    <>
+                        <button className="song-card-dropdown-item"
+                            key={`${index}+${item.title}+"no-subm"`}
+                            type="button"
+                            onClick={runSongActions}
+                            // ref={depthLevel > 0 ? el => playlistRefs.current.push([el, index]) : null}
+
+                        >
+                            {item.title}{' '}
+                            {console.log("BUTTON THANG", item.title, "- index", index, "- depth level", depthLevel)}
+                        </button>
+                    </>)
                 )
             )}
         </div>
-    );
-};
+    )
+}
 
 export default SongCardDropdown;
