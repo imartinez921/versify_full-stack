@@ -54,8 +54,7 @@ const SongIndex = ({
         setDropdownPosition(newState);
     };
 
-    let x;
-    let y;
+    let x, y;
     const placeSongCardDropdown = (e) => {
         const clickedEleBounds = e.target.getBoundingClientRect();
         x = clickedEleBounds.left; // Place dropdown at bottom-left of SongCard
