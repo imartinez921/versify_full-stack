@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import SongCard from "./song_card";
 import SongCardDropdownContainer from "./song_card_dropdown_container";
+import DropdownBackground from "../nav_bar/dropdown_background";
 
 
 const SongIndex = ({
@@ -106,22 +107,30 @@ const SongIndex = ({
     )
 
     const depthLevel = 0;
-    return <>
-        {songs.length > 0 ? songIndex : emptyPlaylist}
-        {songCardDropdownState.isOpen && <SongCardDropdownContainer 
-                currentUser={currentUser}
-                history={history}
-                selectedSong={selectedSong}
-                songCardDropdownState={songCardDropdownState}
-                updateSongCardDropdownState={updateSongCardDropdownState}
-                updateDropdownPosition={updateDropdownPosition}
-                items={songCardDropdownItems}
-                depthLevel={depthLevel}
-                dropdownPosition={dropdownPosition}
-                dropdownMenuPointer={dropdownMenuPointer}
-            />
-        }
-    </>
+    return (
+        <>
+            {songs.length > 0 ? songIndex : emptyPlaylist}
+            {songCardDropdownState.isOpen && (
+                <DropdownBackground
+                    updateDropdownState={updateSongCardDropdownState}
+                />
+            )}
+            {songCardDropdownState.isOpen && (
+                <SongCardDropdownContainer
+                    currentUser={currentUser}
+                    history={history}
+                    selectedSong={selectedSong}
+                    songCardDropdownState={songCardDropdownState}
+                    updateSongCardDropdownState={updateSongCardDropdownState}
+                    updateDropdownPosition={updateDropdownPosition}
+                    items={songCardDropdownItems}
+                    depthLevel={depthLevel}
+                    dropdownPosition={dropdownPosition}
+                    dropdownMenuPointer={dropdownMenuPointer}
+                />
+            )}
+        </>
+    );
 }
 
 export default SongIndex;
