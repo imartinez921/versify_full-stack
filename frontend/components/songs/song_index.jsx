@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
+import { freezeScroll, permitScroll } from "../../modules/dropdown_functions";
 import SongCard from "./song_card";
 import SongCardDropdownContainer from "./song_card_dropdown_container";
 import DropdownBackground from "../nav_bar/dropdown_background";
@@ -105,6 +106,12 @@ const SongIndex = ({
             }
         </div>    
     )
+
+    if (songCardDropdownState.isOpen) {
+        freezeScroll('playlist-show');
+    } else {
+        permitScroll('playlist-show');
+    }
 
     const depthLevel = 0;
     return (
