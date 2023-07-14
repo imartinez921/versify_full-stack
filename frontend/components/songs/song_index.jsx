@@ -40,6 +40,28 @@ const SongIndex = ({
         }
     }, [params]);
 
+    // Add event listeners when SongCardDropdown is open; remove when menu is closed
+    useEffect(() => {
+        const handler = (event) => {
+            // Create a reference for the initial div created by SongCardDropdown
+            const dropdown = document.querySelector("div.song-card-dropdown");
+            if (
+                songCardDropdownState.isOpen &&
+                !dropdown.contains(event.target)
+            ) {
+                // Closing local state will also close all divs created by (therefore within) recursive SongCardDropdown
+                updateSongCardDropdownState({ isOpen: false });
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        document.addEventListener("touchstart", handler);
+        return () => {
+            // Cleanup the event listener when component unmounts
+            document.removeEventListener("mousedown", handler);
+            document.removeEventListener("touchstart", handler);
+        };
+    }, [songCardDropdownState]);
+
     const emptyPlaylist = (
         <div className="song-index song-index-empty">
             <h3>Add some songs to your playlist!</h3>

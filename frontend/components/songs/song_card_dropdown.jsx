@@ -22,27 +22,6 @@ const SongCardDropdown = ({
     let dropdownRef = useRef();
     const [submenuState, setSubmenuState] = useState({ isOpen: false });
 
-    // Add event listeners when menu is open; remove when menu is closed
-    useEffect(() => {
-        const handler = (event) => {
-            if (
-                submenuState.isOpen &&
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
-            ) {
-                updateSongCardDropdownState({ isOpen: false });
-                setSubmenuState({ isOpen: false });
-            }
-        };
-        document.addEventListener("mousedown", handler);
-        document.addEventListener("touchstart", handler);
-        return () => {
-            // Cleanup the event listener when component unmounts
-            document.removeEventListener("mousedown", handler);
-            document.removeEventListener("touchstart", handler);
-        };
-    }, [submenuState]);
-
     const toggleSubmenuAndPlaceDropdown = (e) => {
         e.preventDefault();
         setSubmenuState({ isOpen: !submenuState.isOpen });
