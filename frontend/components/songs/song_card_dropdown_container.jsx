@@ -25,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
         currentUser: ownProps.currentUser,
         history: ownProps.history,
         selectedSong: ownProps.selectedSong,
+        songCardDropdownState: ownProps.songCardDropdownState,
         updateSongCardDropdownState: ownProps.updateSongCardDropdownState,
         updateDropdownPosition: ownProps.updateDropdownPosition,
         items: ownProps.items, // already contains current playlists from SongIndex

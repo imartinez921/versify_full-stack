@@ -5,6 +5,7 @@ const SongCardSubmenu = ({
     history,
     currentUser,
     selectedSong,
+    songCardDropdownState,
     submenus,
     submenuState,
     depthLevel,
@@ -28,6 +29,7 @@ const SongCardSubmenu = ({
                         history={history}
                         currentUser={currentUser}
                         selectedSong={selectedSong}
+                        songCardDropdownState={songCardDropdownState}
                         items={submenu}
                         depthLevel={depthLevel}
                         dropdownPosition={dropdownPosition}

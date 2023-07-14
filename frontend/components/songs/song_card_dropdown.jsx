@@ -9,6 +9,7 @@ const SongCardDropdown = ({
     currentUser,
     history,
     selectedSong,
+    songCardDropdownState,
     updateSongCardDropdownState,
     items,
     depthLevel,
@@ -26,7 +27,7 @@ const SongCardDropdown = ({
     useEffect(() => {
         const handler = (event) => {
             if (
-                submenuState.isOpen &&
+                songCardDropdownState.isOpen &&
                 dropdownRef.current &&
                 !dropdownRef.current.contains(event.target)
             ) {
@@ -41,7 +42,7 @@ const SongCardDropdown = ({
             document.removeEventListener("mousedown", handler);
             document.removeEventListener("touchstart", handler);
         };
-    }, [submenuState]);
+    }, [songCardDropdownState]);
 
     const toggleSubmenuAndPlaceDropdown = (e) => {
         e.preventDefault();
@@ -61,7 +62,7 @@ const SongCardDropdown = ({
         <div
             className="song-card-dropdown dropdown-item"
             data-dropdown
-            ref={dropdownRef}
+            ref={dropdownRef} // Note that I didn't change the position of the ref in both commits
             style={{
                 left: `${dropdownPosition.left}px`,
                 top: `${dropdownPosition.top}px`,
@@ -87,6 +88,7 @@ const SongCardDropdown = ({
                             history={history}
                             currentUser={currentUser}
                             selectedSong={selectedSong}
+                            songCardDropdownState={songCardDropdownState}
                             submenus={item.submenu}
                             submenuState={submenuState}
                             depthLevel={depthLevel}
