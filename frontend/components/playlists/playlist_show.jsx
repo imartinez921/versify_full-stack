@@ -28,7 +28,9 @@ const PlaylistShow = ({
     }, [urlParams]);
 
     const playlistShow = title ? (
-        <div className="playlist-show">
+        <div 
+            id="playlist-show"
+            className="playlist-show">
             <div className="playlist-header">
                 <PlaylistHeader
                     title={title}
