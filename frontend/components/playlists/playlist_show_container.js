@@ -1,26 +1,22 @@
 import { connect } from "react-redux";
-import {
-    displayPlaylist,
+import { displayPlaylist,
     fetchPlaylists,
     editPlaylist,
     destroyPlaylist,
     clearCurrent,
 } from "../../actions/playlist_actions";
-import {
-    openPlaylistNavDropdown,
+import { openPlaylistNavDropdown,
     closePlaylistNavDropdown,
     openPlaylistEditModal,
     closePlaylistEditModal,
-} from "../../actions/ui_actions";
+ } from "../../actions/ui_actions";
 
 import PlaylistShow from "./playlist_show";
 
-const mapStateToProps = (
-    // from state
-    { ui, entities: { currentItem, playlists, songs } },
-    // from ownProps
-    { params, history, currentUser }
-) => {
+const mapStateToProps = ({
+    ui, entities: { currentItem, playlists, songs} // from state
+    }, { params, history, currentUser, // from ownProps
+}) => {
     return {
         currentPlaylist: currentItem,
         urlParams: params,
@@ -40,30 +36,28 @@ const mapStateToProps = (
                 title: "Add to playlist",
                 submenu: [
                     [
-                        {
-                            title: "Create new playlist",
+                        { 
+                            title: "Create new playlist"
                         },
                         ...playlists,
-                        // Enclose array of playlists in an array since
-                        // dropdown uses recursive .map function on items prop
-                    ],
+                    // Enclose array of playlists in an array since dropdown uses recursive .map function on items prop
+                    ]
                 ],
             },
         ],
     };
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
-    displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
-    fetchPlaylists: (playlistId) => dispatch(fetchPlaylists(playlistId)),
-    editPlaylist: (playlist, playlistId) =>
-        dispatch(editPlaylist(playlist, playlistId)),
-    destroyPlaylist: (playlistId) => dispatch(destroyPlaylist(playlistId)),
-    clearCurrent: () => dispatch(clearCurrent()),
-    openPlaylistNavDropdown: () => dispatch(openPlaylistNavDropdown()),
-    closePlaylistNavDropdown: () => dispatch(closePlaylistNavDropdown()),
-    openPlaylistEditModal: () => dispatch(openPlaylistEditModal()),
-    closePlaylistEditModal: () => dispatch(closePlaylistEditModal()),
-});
+    displayPlaylist: (playlistId) => dispatch( displayPlaylist(playlistId) ),
+    fetchPlaylists: (playlistId) => dispatch( fetchPlaylists(playlistId) ),
+    editPlaylist: (playlist, playlistId) => dispatch( editPlaylist(playlist, playlistId) ),
+    destroyPlaylist: (playlistId) => dispatch( destroyPlaylist(playlistId) ),
+    clearCurrent: () => dispatch( clearCurrent() ),
+    openPlaylistNavDropdown: () => dispatch( openPlaylistNavDropdown() ),
+    closePlaylistNavDropdown: () => dispatch( closePlaylistNavDropdown() ),
+    openPlaylistEditModal: () => dispatch( openPlaylistEditModal() ),
+    closePlaylistEditModal: () => dispatch( closePlaylistEditModal() ),
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistShow);
