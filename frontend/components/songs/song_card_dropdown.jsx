@@ -109,7 +109,7 @@ const SongCardDropdown = forwardRef(
                             playlists={playlists}
                             history={history}
                             currentUser={currentUser}
-                            index={index - 1} // Since the first item is "Create new playlist"
+                            selectedIndex={index - 1} // Since the first item is "Create new playlist"
                             selectedSong={selectedSong}
                             updateSongCardDropdownState={
                                 updateSongCardDropdownState
