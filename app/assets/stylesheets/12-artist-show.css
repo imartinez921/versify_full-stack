@@ -46,8 +46,8 @@
     max-height: 105pt;
 }
 
-// ArtistMenuBar
-.artist-menu {
+/* // ArtistPageMenuBar */
+.artist-nav {
     flex: 0 0 auto;
     display: flex;
     background: #1a1816e6;
@@ -89,7 +89,7 @@
 }
 
 
-// AlbumIndex
+/* // AlbumIndex */
 .album-index {
     flex: 1 0 auto;
     background: black;

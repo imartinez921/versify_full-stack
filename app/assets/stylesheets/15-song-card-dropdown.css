@@ -10,10 +10,10 @@
     color: white;
     border-radius: 4px;
     box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3), 0 6px 8px rgba(0, 0, 0, 0.2);
-// for testing purposes only
-    // left: 300px;
+/* // for testing purposes only */
+    /* // left: 300px;
     // top: 300px;
-}
+} */
 
 button.song-card-dropdown-item { /* copy of .playlist-dropdown-button */
     width: 100%;
@@ -35,8 +35,8 @@ button.song-card-dropdown-item:hover {
 
 .dropdown-submenu {
     display: none;
-    // // top: 500px; // for testing purposes only
-    // // left: 100px;
+    /* // // top: 500px; // for testing purposes only
+    // // left: 100px; */
 }
 
 
