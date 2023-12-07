@@ -35,10 +35,11 @@ export const createPlaylist = (defaultPlaylist) => (dispatch) => {
 };
 
 export const displayPlaylist = (playlistId) => (dispatch) => {
+    debugger
     return showPlaylist(playlistId).then(
         (playlist) => dispatch(receiveCurrentPlaylist(playlist)),
-        (err) => dispatch(receivePlaylistErrors(err.responseJSON))
-    );
+        // (err) => dispatch(receivePlaylistErrors(err.responseJSON))
+        (err) => console.log(err))
     // err => (console.log(err)) )
 };
 
