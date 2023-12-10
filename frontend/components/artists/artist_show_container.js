@@ -31,8 +31,8 @@ const mapDispatchToProps = (dispatch) => ({
 	displayArtist: (artistId) => dispatch(displayArtist(artistId)),
 	displayAlbum: (albumId) => dispatch(displayAlbum(albumId)),
 	toTogglePlay: () => dispatch(toTogglePlay()),
-	toQueueArtist: (queueObj) => dispatch(toQueueArtist(queueObj)),
-	toPlayArtist: (queueObj) => dispatch(toPlayArtist(queueObj)),
+	toQueueArtist: (objToQueue) => dispatch(toQueueArtist(objToQueue)),
+	toPlayArtist: (objToQueue) => dispatch(toPlayArtist(objToQueue)),
 	toPushPlay: () => dispatch(toPushPlay()),
 	clearCurrent: () => dispatch(clearCurrent()),
 });
