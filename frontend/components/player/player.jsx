@@ -93,7 +93,6 @@ const Player = ({ tracks, isPlaying, toTogglePlay }) => {
 				track={currentTrack}
 				trackProgress={trackProgress}
 				isPlaying={isPlaying}
-				hasQueue={tracks.length > 0}
 				updateTrackProgress={updateTrackProgress}
 			/>
 			<PlayingControls
