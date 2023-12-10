@@ -36,7 +36,6 @@ const ArtistShow = ({
 	}, [urlParams]); // Will run whenever urlParams.id changes, otherwise ArtistShow doesn't re-render
 
 	const artistShowRef = useRef();
-
 	const artistShow = (
 		<>
 			<div
