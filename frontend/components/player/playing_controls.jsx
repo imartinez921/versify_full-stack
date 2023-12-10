@@ -17,7 +17,8 @@ const PlayingControls = ({
 }) => {
 	return (
 		<div className="playing-controls">
-			<BiShuffle
+			{/* <BiShuffle/ */}
+			<div
 				className="player__grey-icon repeat-shuffle-icon"
 				aria-label="Shuffle"
 				onClick={toggleShuffle}
@@ -45,7 +46,8 @@ const PlayingControls = ({
 				aria-label="Next"
 				onClick={toNextTrack}
 			/>
-			<BsRepeat // TODO: implement repeat functionality
+			{/* <BsRepeat // TODO: implement repeat functionality */}
+			<div
 				className="player__grey-icon repeat-shuffle-icon"
 				aria-label="Repeat"
 			/>
