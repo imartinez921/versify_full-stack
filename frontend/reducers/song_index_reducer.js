@@ -11,7 +11,7 @@ const songIndexReducer = (songsState = [], action) => {
     Object.freeze(songsState);
     switch (action.type) {
         case RECEIVE_CURRENT_PLAYLIST:
-            return action.songs;
+            return action.playlistSongs;
         case RECEIVE_CURRENT_ARTIST:
             return {
 				allSongs: action.allSongs,

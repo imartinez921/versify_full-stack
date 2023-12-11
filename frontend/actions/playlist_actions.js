@@ -76,7 +76,7 @@ const receiveCurrentPlaylist = (playlistObj) => {
     return {
         type: RECEIVE_CURRENT_PLAYLIST,
         playlist: playlistObj.playlist,
-        songs: playlistObj.songs,
+        playlistSongs: playlistObj.songs,
     };
 };
 
