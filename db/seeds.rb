@@ -44,7 +44,12 @@ artist_photos = [
 # Seed artists in the database with corresponding image url
 # Then create Artist instances and attach their artist photo
 (0... artists.length).each do |i|
-    Artist.create(name: artists[i], photo_url: artist_photos[i])
+    Artist.create(
+        name: artists[i], 
+        photo_url: artist_photos[i],
+        num_listeners: (rand * 50000000).floor
+        
+    )
 end
 
 albums = [
