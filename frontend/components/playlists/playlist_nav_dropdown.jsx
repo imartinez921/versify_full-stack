@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import PlaylistEditModal from "./playlist_edit_modal";
 
 const PlaylistNavDropdown = ({
+    objToQueue,
     history,
     currentPlaylist,
-    playlistSongs,
-    urlParams,
     playlistNavDropdownState,
     playlistEditModalState,
     closePlaylistNavDropdown,
@@ -32,13 +31,7 @@ const PlaylistNavDropdown = ({
 			window.removeEventListener("click", closePlaylistNavDropdown);
 		};
 	}, []);
-    console.log("URLPARAMS", urlParams)
-	const objToQueue = {
-		playlistSongs,
-		sourceType: "playlist",
-		extractedUrlParams: urlParams.id,
-	}; // provides linkback to view currently playing
-	// TODO: Implement queue view
+
 
 	const keepDropdownOpen = (event) => {
 		event.stopPropagation();
