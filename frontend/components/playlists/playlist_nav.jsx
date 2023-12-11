@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import PlaylistNavDropdown from "./playlist_nav_dropdown";
 
 import { RxDotsHorizontal } from "react-icons/rx";
@@ -6,6 +6,7 @@ import { GrPlayFill } from "react-icons/gr";
 
 const PlaylistNav = ({
     currentPlaylist,
+    playlistSongs,
     history,
     playlistNavDropdownState,
     playlistEditModalState,

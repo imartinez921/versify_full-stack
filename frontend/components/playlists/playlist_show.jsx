@@ -44,6 +44,7 @@ const PlaylistShow = ({
 			<div className="playlist-nav">
 				<PlaylistNav
 					currentPlaylist={currentPlaylist}
+					playlistSongs={playlistSongs}
 					history={history}
 					{...props}
 				/>
