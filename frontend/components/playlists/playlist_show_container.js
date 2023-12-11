@@ -17,7 +17,7 @@ import PlaylistShow from "./playlist_show";
 
 const mapStateToProps = (
     // from state
-    { ui, entities: { currentItem, playlists, songs } },
+    { ui, entities: { currentItem, playlists, songs, nowPlaying } },
     // from ownProps
     { params, history, currentUser }
 ) => {

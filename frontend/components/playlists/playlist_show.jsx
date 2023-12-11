@@ -7,11 +7,11 @@ import PlaylistArt from "./playlist-art";
 
 const PlaylistShow = ({
 	currentPlaylist,
+	playlists,
+	playlistSongs,
 	urlParams,
 	currentUser,
 	history,
-	playlists,
-	playlistSongs,
 	source,
 	songCardDropdownItems,
 	displayPlaylist,
