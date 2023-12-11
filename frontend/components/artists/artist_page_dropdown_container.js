@@ -36,7 +36,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	toQueueArtist: (queueObj) => dispatch(toQueueArtist(queueObj)),
+	toQueueArtist: (objToQueue) => dispatch(toQueueArtist(objToQueue)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {forwardRef: true})(ArtistPageDropdown);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+	forwardRef: true,
+})(ArtistPageDropdown);

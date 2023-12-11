@@ -4,8 +4,8 @@ const NowPlayingInfo = ({
 	audioRef,
 	track,
 	trackProgress,
+	length, // Refreshes component whenever queue changes
 	isPlaying,
-	hasQueue,
 	updateTrackProgress,
 }) => {
 	if (!track) {
@@ -22,7 +22,7 @@ const NowPlayingInfo = ({
 	}, [isPlaying]);
 	return (
 		<div className="now-playing">
-			{trackProgress > 0 || (hasQueue && trackProgress === 0) ? (
+			{!!track.title ? (
 				<>
 					<div
 						className="now-playing-art"

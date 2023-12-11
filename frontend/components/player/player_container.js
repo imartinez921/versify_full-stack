@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 		path: ownProps.path,
 		history: ownProps.history,
 		tracks: state.entities.nowPlaying.queue,
+		length: state.entities.nowPlaying.queue.length,
 		isPlaying: state.entities.nowPlaying.isPlaying,
 	};
 };

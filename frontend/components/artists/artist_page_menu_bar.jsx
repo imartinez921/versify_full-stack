@@ -11,7 +11,7 @@ const ArtistPageMenuBar = ({
 	artistShowRef,
 	allSongs,
 	isPlaying,
-	queueSource,
+	currentQueueSource,
 	toTogglePlay,
 	toQueueArtist,
 	toPlayArtist,
@@ -35,7 +35,7 @@ const ArtistPageMenuBar = ({
 		}
 	}
 
-	const queueObj = {
+	const objToQueue = {
 		allSongs,
 		sourceType: "artist",
 		extractedUrlParams: urlParams.id,
@@ -45,19 +45,20 @@ const ArtistPageMenuBar = ({
 	const handleButtonClick = (e) => {
 		e.preventDefault();
 		if (
-			queueObj.sourceType === queueSource.sourceType &&
-			queueObj.extractedUrlParams === queueSource.extractedUrlParams
+			!!currentQueueSource &&
+			objToQueue.sourceType === currentQueueSource.sourceType &&
+			objToQueue.extractedUrlParams === currentQueueSource.extractedUrlParams
 		) {
 			toTogglePlay();
 		} else {
-			toPlayArtist(queueObj);
+			toPlayArtist(objToQueue);
 			toPushPlay();
 		}
 	};
 
 	const handleAddToQueue = (e) => {
 		e.preventDefault();
-		toQueueArtist(queueObj);
+		toQueueArtist(objToQueue);
 		setArtistPageDropdownState({ isOpen: false });
 	};
 
@@ -67,9 +68,9 @@ const ArtistPageMenuBar = ({
 		<>
 			<div id="artist-play-button" onClick={handleButtonClick}>
 				{isPlaying &&
-				queueObj.sourceType === queueSource.sourceType &&
-				queueObj.extractedUrlParams ===
-					queueSource.extractedUrlParams ? (
+				objToQueue.sourceType === currentQueueSource.sourceType &&
+				objToQueue.extractedUrlParams ===
+					currentQueueSource.extractedUrlParams ? (
 					<MdOutlinePauseCircleFilled />
 				) : (
 					<MdOutlinePlayCircleFilled />
