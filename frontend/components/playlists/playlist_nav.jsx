@@ -4,6 +4,7 @@ import PlaylistNavDropdown from "./playlist_nav_dropdown";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { GrPlayFill } from "react-icons/gr";
 
+// Dropdown functionality using Redux actions
 const PlaylistNav = ({
     currentPlaylist,
     playlistSongs,

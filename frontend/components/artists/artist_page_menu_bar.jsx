@@ -7,6 +7,7 @@ import {
 	MdOutlinePauseCircleFilled,
 } from "react-icons/md";
 
+// Dropdown functionality using local states and useRefs
 const ArtistPageMenuBar = ({
 	artistShowRef,
 	allSongs,
