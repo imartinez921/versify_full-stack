@@ -54,7 +54,6 @@ const PlaylistShow = ({
 				playlists={playlists}
 				songs={playlistSongs}
 				history={history}
-				urlParams={urlParams}
 				source={source}
 				songCardDropdownItems={songCardDropdownItems}
 				currentViewRef={playlistShowRef}
