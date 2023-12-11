@@ -45,6 +45,7 @@ const PlaylistShow = ({
 				<PlaylistNav
 					currentPlaylist={currentPlaylist}
 					playlistSongs={playlistSongs}
+					urlParams={urlParams}
 					history={history}
 					{...props}
 				/>

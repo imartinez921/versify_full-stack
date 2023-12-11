@@ -8,12 +8,17 @@ import { GrPlayFill } from "react-icons/gr";
 const PlaylistNav = ({
     currentPlaylist,
     playlistSongs,
+    urlParams,
     history,
     playlistNavDropdownState,
     playlistEditModalState,
     fetchPlaylists,
     editPlaylist,
     destroyPlaylist,
+    toTogglePlay,
+    toQueuePlaylist,
+    toPlayPlaylist,
+    toPushPlay,
     openPlaylistNavDropdown,
     closePlaylistNavDropdown,
     openPlaylistEditModal,
@@ -39,32 +44,35 @@ const PlaylistNav = ({
     };
 
     return (
-        <>
-            <div id="playlist-play-button">
-                <GrPlayFill />
-            </div>
-            <div
-                id="playlist-dropdown-dots"
-                onClick={togglePlaylistNavDropdown}
-            >
-                <RxDotsHorizontal />
-            </div>
-            {playlistNavDropdownState.isOpen ? (
-                <PlaylistNavDropdown
-                    currentPlaylist={currentPlaylist}
-                    playlistNavDropdownState={playlistNavDropdownState}
-                    playlistEditModalState={playlistEditModalState}
-                    closePlaylistNavDropdown={closePlaylistNavDropdown}
-                    openPlaylistEditModal={openPlaylistEditModal}
-                    closePlaylistEditModal={closePlaylistEditModal}
-                    fetchPlaylists={fetchPlaylists}
-                    editPlaylist={editPlaylist}
-                    destroyPlaylist={destroyPlaylist}
-                    history={history}
-                />
-            ) : null}
-        </>
-    );
+		<>
+			<div id="playlist-play-button">
+				<GrPlayFill />
+			</div>
+			<div
+				id="playlist-dropdown-dots"
+				onClick={togglePlaylistNavDropdown}
+			>
+				<RxDotsHorizontal />
+			</div>
+			{playlistNavDropdownState.isOpen ? (
+				<PlaylistNavDropdown
+					history={history}
+					currentPlaylist={currentPlaylist}
+					playlistSongs={playlistSongs}
+                    urlParams={urlParams}
+					playlistNavDropdownState={playlistNavDropdownState}
+					playlistEditModalState={playlistEditModalState}
+					closePlaylistNavDropdown={closePlaylistNavDropdown}
+					openPlaylistEditModal={openPlaylistEditModal}
+					closePlaylistEditModal={closePlaylistEditModal}
+					fetchPlaylists={fetchPlaylists}
+					editPlaylist={editPlaylist}
+					destroyPlaylist={destroyPlaylist}
+					toQueuePlaylist={toQueuePlaylist}
+				/>
+			) : null}
+		</>
+	);
 };
 
 export default PlaylistNav;

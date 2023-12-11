@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import PlaylistEditModal from "./playlist_edit_modal";
 
 const PlaylistNavDropdown = ({
+    history,
     currentPlaylist,
+    playlistSongs,
+    urlParams,
     playlistNavDropdownState,
     playlistEditModalState,
     closePlaylistNavDropdown,
@@ -11,55 +14,76 @@ const PlaylistNavDropdown = ({
     fetchPlaylists,
     editPlaylist,
     destroyPlaylist,
-    history,
+    toQueuePlaylist,
 }) => {
+	useEffect(() => {
+		setTimeout(() => {
+			if (
+				playlistNavDropdownState.isOpen &&
+				!playlistEditModalState.isOpen
+			) {
+				window.addEventListener("click", closePlaylistNavDropdown);
+			}
+		}, 0);
+		// if (playlistNavDropdownState.isOpen) window.addEventListener('click', closePlaylistNavDropdown);
 
-    useEffect( () => {
-        setTimeout( () => {
-            if (playlistNavDropdownState.isOpen && !playlistEditModalState.isOpen) {
-                window.addEventListener('click', closePlaylistNavDropdown);
-            } 
-        }, 0)
-        // if (playlistNavDropdownState.isOpen) window.addEventListener('click', closePlaylistNavDropdown);
-        
-        return () => {
-            closePlaylistNavDropdown();
-            window.removeEventListener('click', closePlaylistNavDropdown)
-        }
-    }, [])
+		return () => {
+			closePlaylistNavDropdown();
+			window.removeEventListener("click", closePlaylistNavDropdown);
+		};
+	}, []);
+    console.log("URLPARAMS", urlParams)
+	const objToQueue = {
+		playlistSongs,
+		sourceType: "playlist",
+		extractedUrlParams: urlParams.id,
+	}; // provides linkback to view currently playing
+	// TODO: Implement queue view
 
+	const keepDropdownOpen = (event) => {
+		event.stopPropagation();
+		// prevents re-rendering of parent and keeps menu open
 
-    const keepDropdownOpen = (event) => {
-        event.stopPropagation();
-        // prevents re-rendering of parent and keeps menu open
+		switch (event.target.innerText) {
+			case "Edit details":
+				openPlaylistEditModal();
+				return console.log("OPEN EDIT MODAL");
+			case "Delete":
+				destroyPlaylist(currentPlaylist.id).then(fetchPlaylists());
+				return history.push("/home");
+			case "Add to queue":
+				toQueuePlaylist(objToQueue);
+                return closePlaylistNavDropdown();
+			default:
+				null;
+		}
+	};
 
-        switch (event.target.innerText){
-            case "Edit details":
-                openPlaylistEditModal();
-                return console.log('OPEN EDIT MODAL');
-            case "Delete":
-                destroyPlaylist(currentPlaylist.id)
-                    .then(fetchPlaylists())
-                return history.push('/home')
-            default: null;
-        }
-    }
-
-    return (
-        <>
-            <div className="dropdown-item playlist-dropdown" onClick={keepDropdownOpen}>
-                <button className="playlist-dropdown-button">Edit details</button>
-                <button className="playlist-dropdown-button">Delete </button>
-            </div>
-            {playlistEditModalState.isOpen && <PlaylistEditModal
-                playlistEditModalState={playlistEditModalState}
-                closePlaylistNavDropdown={closePlaylistNavDropdown}
-                closePlaylistEditModal={closePlaylistEditModal}
-                currentPlaylist={currentPlaylist}
-                editPlaylist={editPlaylist}
-            />}
-        </>
-    )
+	return (
+		<>
+			<div
+				className="dropdown-item playlist-dropdown"
+				onClick={keepDropdownOpen}
+			>
+				<button className="playlist-dropdown-button">
+					Edit details
+				</button>
+				<button className="playlist-dropdown-button">Delete </button>
+				<button className="playlist-dropdown-button">
+					Add to queue
+				</button>
+			</div>
+			{playlistEditModalState.isOpen && (
+				<PlaylistEditModal
+					playlistEditModalState={playlistEditModalState}
+					closePlaylistNavDropdown={closePlaylistNavDropdown}
+					closePlaylistEditModal={closePlaylistEditModal}
+					currentPlaylist={currentPlaylist}
+					editPlaylist={editPlaylist}
+				/>
+			)}
+		</>
+	);
 }
 
 export default PlaylistNavDropdown;
