@@ -56,7 +56,6 @@ export const toPlayArtist = (objToQueue) => (dispatch) => {
 };
 
 export const toQueuePlaylist = (objToQueue) => (dispatch) => {
-	debugger
 	return dispatch(queuePlaylist(objToQueue));
 };
 

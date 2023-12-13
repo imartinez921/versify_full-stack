@@ -47,7 +47,6 @@ const nowPlayingReducer = (
 			return newPlayState;
 		case PLAY_ARTIST:
 		case PLAY_PLAYLIST:
-			debugger
 			newPlayState.queue = action.songs; // Replace the entire queue
 			newPlayState.queueSources=[]; // Reset queueSources for new queue
 			for (let i = 0; i < action.songs.length; i++) {
