@@ -17,13 +17,13 @@ import {
     closePlaylistNavDropdown,
     openPlaylistEditModal,
     closePlaylistEditModal,
-} from "../../actions/ui_actions";
+} from "../../actions/ux_actions";
 
 import PlaylistShow from "./playlist_show";
 
 const mapStateToProps = (
     // from state
-    { ui, entities: { currentItem, playlists, songs, nowPlaying } },
+    { ux, entities: { currentItem, playlists, songs, nowPlaying } },
     // from ownProps
     { params, history, currentUser }
 ) => {
@@ -33,8 +33,8 @@ const mapStateToProps = (
         playlistSongs: songs,
         isPlaying: nowPlaying.isPlaying,
         currentQueueSource: nowPlaying.queueSources[0],
-        playlistNavDropdownState: ui.playlistNavDropdown,
-        playlistEditModalState: ui.playlistEditModal,
+        playlistNavDropdownState: ux.playlistNavDropdown,
+        playlistEditModalState: ux.playlistEditModal,
         urlParams: params,
         currentUser: currentUser,
         history: history,
