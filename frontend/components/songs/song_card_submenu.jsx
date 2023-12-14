@@ -2,7 +2,6 @@ import React from "react";
 import SongCardDropdownContainer from "./song_card_dropdown_container";
 
 const SongCardSubmenu = ({
-    history,
     currentUser,
     selectedSong,
     songCardDropdownState,
@@ -26,7 +25,6 @@ const SongCardSubmenu = ({
                 return (
                     <SongCardDropdownContainer
                         key={`${index}+${depthLevel}+"subm"`}
-                        history={history}
                         currentUser={currentUser}
                         selectedSong={selectedSong}
                         songCardDropdownState={songCardDropdownState}

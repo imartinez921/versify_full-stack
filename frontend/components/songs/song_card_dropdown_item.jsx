@@ -4,7 +4,6 @@ const SongCardDropdownItem = ({
     currentItem,
     playlists,
     currentUser,
-    history,
     selectedIndex,
     selectedSong,
     updateSongCardDropdownState,
