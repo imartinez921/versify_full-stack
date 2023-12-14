@@ -14,12 +14,15 @@ const currentItemReducer = (currItemState = {}, action) => {
     switch (action.type) {
         case RECEIVE_CURRENT_PLAYLIST:
             let currPlaylist = action.playlist;
+            currPlaylist['source'] = "playlist";
             return currPlaylist;
         case RECEIVE_CURRENT_ARTIST:
             let currArtist = action.artist;
+            currArtist['source'] = "artist";
             return currArtist;
         case RECEIVE_CURRENT_ALBUM:
             let currAlbum = action.album;
+            currAlbum['source'] = "album";
             return currAlbum;
         case RESET_CURRENT:
             return {};
