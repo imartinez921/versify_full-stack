@@ -95,8 +95,7 @@ class SessionForm extends React.Component {
         const formText = this.props.formText;
 
         const demoLogin = (
-            <button className="session-button" 
-                id="demo-button" 
+            <button className="session-button demo-button"
                 onClick= {this.handleSubmitDemo}
                 >
                 {demoText}

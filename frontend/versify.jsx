@@ -5,8 +5,6 @@ import configureStore from './store/store';
 
 // TESTING START
 
-import { playToggle,
-} from "./actions/now_playing_actions";
 import { postPlaylisted,
 } from "./util/playlisteds_util";
 
@@ -37,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //TESTING
   window.store = store;
-  window.playToggle = playToggle;
   window.postPlaylisted = postPlaylisted;
 
 

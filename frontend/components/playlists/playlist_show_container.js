@@ -7,30 +7,37 @@ import {
     clearCurrent,
 } from "../../actions/playlist_actions";
 import {
+    toTogglePlay,
+    toQueuePlaylist,
+    toPlayPlaylist,
+    toPushPlay,
+} from "../../actions/now_playing_actions";
+import {
     openPlaylistNavDropdown,
     closePlaylistNavDropdown,
     openPlaylistEditModal,
     closePlaylistEditModal,
-} from "../../actions/ui_actions";
+} from "../../actions/ux_actions";
 
 import PlaylistShow from "./playlist_show";
 
 const mapStateToProps = (
     // from state
-    { ui, entities: { currentItem, playlists, songs } },
+    { ux, entities: { currentItem, playlists, songs, nowPlaying } },
     // from ownProps
     { params, history, currentUser }
 ) => {
     return {
         currentPlaylist: currentItem,
+        playlists: playlists,
+        playlistSongs: songs,
+        isPlaying: nowPlaying.isPlaying,
+        currentQueueSource: nowPlaying.queueSources[0],
+        playlistNavDropdownState: ux.playlistNavDropdown,
+        playlistEditModalState: ux.playlistEditModal,
         urlParams: params,
         currentUser: currentUser,
         history: history,
-        playlists: playlists,
-        playlistSongs: songs,
-        currentUser: currentUser,
-        playlistNavDropdownState: ui.playlistNavDropdown,
-        playlistEditModalState: ui.playlistEditModal,
         source: "playlist",
         songCardDropdownItems: [
             {
@@ -54,16 +61,20 @@ const mapStateToProps = (
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
-    fetchPlaylists: (playlistId) => dispatch(fetchPlaylists(playlistId)),
-    editPlaylist: (playlist, playlistId) =>
-        dispatch(editPlaylist(playlist, playlistId)),
-    destroyPlaylist: (playlistId) => dispatch(destroyPlaylist(playlistId)),
-    clearCurrent: () => dispatch(clearCurrent()),
-    openPlaylistNavDropdown: () => dispatch(openPlaylistNavDropdown()),
-    closePlaylistNavDropdown: () => dispatch(closePlaylistNavDropdown()),
-    openPlaylistEditModal: () => dispatch(openPlaylistEditModal()),
-    closePlaylistEditModal: () => dispatch(closePlaylistEditModal()),
+	displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
+	fetchPlaylists: (playlistId) => dispatch(fetchPlaylists(playlistId)),
+	editPlaylist: (playlist, playlistId) =>
+		dispatch(editPlaylist(playlist, playlistId)),
+	destroyPlaylist: (playlistId) => dispatch(destroyPlaylist(playlistId)),
+	clearCurrent: () => dispatch(clearCurrent()),
+	toTogglePlay: () => dispatch(toTogglePlay()),
+	toQueuePlaylist: (objToQueue) => dispatch(toQueuePlaylist(objToQueue)),
+	toPlayPlaylist: (objToQueue) => dispatch(toPlayPlaylist(objToQueue)),
+	toPushPlay: () => dispatch(toPushPlay()),
+	openPlaylistNavDropdown: () => dispatch(openPlaylistNavDropdown()),
+	closePlaylistNavDropdown: () => dispatch(closePlaylistNavDropdown()),
+	openPlaylistEditModal: () => dispatch(openPlaylistEditModal()),
+	closePlaylistEditModal: () => dispatch(closePlaylistEditModal()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistShow);

@@ -11,7 +11,7 @@ const PlaylistArt = ({ children }) => {
 			: pluckFourUniqueUrls;
 	if (artworkMap.length === 0)
 		artworkMap = [
-			"https://versify-dev.s3.amazonaws.com/images/ui/blank-art.png",
+			"https://versify-dev.s3.amazonaws.com/images/ux/blank-art.png",
 		];
 
 	const uniqueArtGrid = artworkMap.map((artUrl, idx) => {

@@ -7,11 +7,11 @@ import PlaylistArt from "./playlist-art";
 
 const PlaylistShow = ({
 	currentPlaylist,
+	playlists,
+	playlistSongs,
 	urlParams,
 	currentUser,
 	history,
-	playlists,
-	playlistSongs,
 	source,
 	songCardDropdownItems,
 	displayPlaylist,
@@ -44,6 +44,8 @@ const PlaylistShow = ({
 			<div className="playlist-nav">
 				<PlaylistNav
 					currentPlaylist={currentPlaylist}
+					playlistSongs={playlistSongs}
+					urlParams={urlParams}
 					history={history}
 					{...props}
 				/>
@@ -53,7 +55,6 @@ const PlaylistShow = ({
 				playlists={playlists}
 				songs={playlistSongs}
 				history={history}
-				urlParams={urlParams}
 				source={source}
 				songCardDropdownItems={songCardDropdownItems}
 				currentViewRef={playlistShowRef}
