@@ -16,8 +16,8 @@ const SongCardSubmenu = ({
     const dropdownClass = depthLevel > 0 ? "dropdown-submenu" : "";
 
     return (
-        <ul
-            className={`song-card-dropdown ${dropdownClass} ${
+        <div
+            className={`${dropdownClass} ${
                 submenuState.isOpen ? "show" : ""
             }`}
             data-dropdown
@@ -39,7 +39,7 @@ const SongCardSubmenu = ({
                     />
                 );
             })}
-        </ul>
+        </div>
     );
 };
 
