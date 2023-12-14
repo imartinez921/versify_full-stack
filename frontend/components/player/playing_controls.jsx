@@ -8,13 +8,31 @@ import { BsRepeat, BsRepeat1, BsPauseCircle } from "react-icons/bs";
 import { useEffect } from "react";
 
 const PlayingControls = ({
+	hasQueue,
+	objToQueue,
 	isPlaying,
-	trackProgress,
+	toPlayView,
 	togglePlay,
+	toPushPlay,
 	toPrevTrack,
 	toNextTrack,
 	toggleShuffle,
 }) => {
+
+	const handleClick = (e) => {
+		e.preventDefault();
+		if (objToQueue.sourceType === "artist") {
+			// Accounts for unique currentItem slice of state when ArtistShow view
+			objToQueue.viewSongs = objToQueue.viewSongs.allSongs;
+		}
+		if (!hasQueue) {
+			toPlayView(objToQueue);
+			toPushPlay();
+		} else {
+			togglePlay();
+		}
+	};
+
 	return (
 		<div className="playing-controls">
 			{/* <BiShuffle/ */}
@@ -38,7 +56,7 @@ const PlayingControls = ({
 				<MdOutlinePlayCircleFilled
 					className="player__white-icon"
 					aria-label="Play"
-					onClick={togglePlay}
+					onClick={handleClick}
 				/>
 			)}
 			<BiSkipNext

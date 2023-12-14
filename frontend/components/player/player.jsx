@@ -2,7 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import NowPlayingInfo from "./now_playing_info";
 import PlayingControls from "./playing_controls";
 
-const Player = ({ tracks, isPlaying, toTogglePlay }) => {
+const Player = ({
+	pathname,
+	tracks,
+	songs,
+	isPlaying,
+	hasQueue,
+	toPlayView,
+	toTogglePlay,
+	toPushPlay,
+}) => {
 	// Set local states
 	const [trackIndex, setTrackIndex] = useState(0);
 	const [trackProgress, setTrackProgress] = useState(0); // progress bar
@@ -43,7 +52,7 @@ const Player = ({ tracks, isPlaying, toTogglePlay }) => {
 		}
 		return () => {
 			audioRef.current.removeEventListener("loadeddata", tryPlay);
-		}
+		};
 	}, [isPlaying]);
 
 	// Set up behavior when changing tracks
@@ -86,6 +95,14 @@ const Player = ({ tracks, isPlaying, toTogglePlay }) => {
 		}
 	};
 
+	const sourceType = pathname.split("/")[1];
+	const extractedUrlParams = pathname.split("/")[2];
+	const objToQueue = {
+		viewSongs: songs,
+		sourceType,
+		extractedUrlParams,
+	}; // provides linkback to view currently playing
+
 	return (
 		<div className="player-container">
 			<NowPlayingInfo
@@ -96,8 +113,12 @@ const Player = ({ tracks, isPlaying, toTogglePlay }) => {
 				updateTrackProgress={updateTrackProgress}
 			/>
 			<PlayingControls
+				hasQueue={hasQueue}
+				objToQueue={objToQueue}
 				isPlaying={isPlaying}
+				toPlayView={toPlayView}
 				togglePlay={toTogglePlay}
+				toPushPlay={toPushPlay}
 				toPrevTrack={toPrevTrack}
 				toNextTrack={toNextTrack}
 				toggleShuffle={toggleShuffle}

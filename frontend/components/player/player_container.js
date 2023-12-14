@@ -1,26 +1,31 @@
 import { connect } from "react-redux";
 import Player from "./player";
 
-import { toTogglePlay } from "../../actions/now_playing_actions";
+import {
+	toPlayView,
+	toTogglePlay,
+	toPushPlay,
+} from "../../actions/now_playing_actions";
 
 const mapStateToProps = (state, ownProps) => {
 	return {
 		currentUser: state.entities.users[state.session.id],
 		errors: state.entities.errors,
+		tracks: state.entities.nowPlaying.queue,
+		songs: state.entities.songs, // songs of the current view
+		isPlaying: state.entities.nowPlaying.isPlaying,
+		hasQueue: state.entities.nowPlaying.queue.length > 0,
 		// matchObj is a prop passed down by AuthRoute
 		// matchObj = {params, path, url} as keys
-		params: ownProps.params,
-		path: ownProps.path,
-		history: ownProps.history,
-		tracks: state.entities.nowPlaying.queue,
-		length: state.entities.nowPlaying.queue.length,
-		isPlaying: state.entities.nowPlaying.isPlaying,
+		pathname: ownProps.history.location.pathname,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => ({
 	clearPlaylistErrors: () => dispatch(clearPlaylistErrors()),
+	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
 	toTogglePlay: () => dispatch(toTogglePlay()),
+	toPushPlay: () => dispatch(toPushPlay()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);
