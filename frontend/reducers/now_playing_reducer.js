@@ -4,6 +4,7 @@ import {
 	QUEUE_PLAYLIST,
 	PLAY_PLAYLIST,
 	PUSH_PLAY,
+	PLAY_VIEW,
 } from "../actions/now_playing_actions";
 import { TOGGLE_PLAY } from "../actions/now_playing_actions";
 
@@ -21,7 +22,7 @@ const nowPlayingReducer = (
 		queue: [...playState.queue],
 		queueSources: [...playState.queueSources],
 	}
-	// Rectifies issues with shallow copies where nested objs kept the same refs
+	// Above rectifies issues with shallow copies where nested objs kept the same refs
 	switch (action.type) {
 		case TOGGLE_PLAY:
 			if (newPlayState.queue?.length > 0)
@@ -47,15 +48,16 @@ const nowPlayingReducer = (
 			return newPlayState;
 		case PLAY_ARTIST:
 		case PLAY_PLAYLIST:
+		case PLAY_VIEW:
 			newPlayState.queue = action.songs; // Replace the entire queue
 			newPlayState.queueSources=[]; // Reset queueSources for new queue
 			for (let i = 0; i < action.songs.length; i++) {
-				newPlayState.queueSources = newPlayState.queueSources.concat([
+				newPlayState.queueSources.push(
 					{
 						sourceType: action.sourceType,
 						extractedUrlParams: action.extractedUrlParams,
 					},
-				]);
+				);
 			}
 			console.log("NEW QUEUE", newPlayState.queue);
 			return newPlayState;
