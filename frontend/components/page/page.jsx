@@ -12,7 +12,6 @@ const Page = ({
 	currentUser,
 	errors,
 	clearPlaylistErrors,
-	tracks,
 }) => {
 	return (
 		<div className="page-container">
