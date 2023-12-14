@@ -18,7 +18,6 @@ const PlayingControls = ({
 	toNextTrack,
 	toggleShuffle,
 }) => {
-	console.log(objToQueue);
 
 	const handleClick = (e) => {
 		e.preventDefault();
