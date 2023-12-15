@@ -8,7 +8,7 @@ import {
 	createPlaylist,
 	displayPlaylist,
 } from "../../actions/playlist_actions";
-import { toQueueAlbum,
+import { toQueueView,
     toPlayAlbum,
 } from "../../actions/now_playing_actions";
 import AlbumNavDropdown from "./album_nav_dropdown";
@@ -21,6 +21,8 @@ const mapStateToProps = (state, ownProps) => {
 		ref: ownProps.ref,
         songs: state.entities.songs,
 		playlists: state.entities.playlists,
+        selectedSong: state.entities.songs,
+        currentItem: state.entities.currentItem,
 		currentUser: ownProps.currentUser,
 		albumNavDropdownState: ownProps.albumNavDropdownState,
 		updateAlbumNavDropdownState: ownProps.updateAlbumNavDropdownState,
@@ -37,7 +39,7 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(createNewPlaylisted(songId, playlistId)),
 	createPlaylist: (playlist) => dispatch(createPlaylist(playlist)),
 	displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
-    toQueueAlbum: (objToQueue) => dispatch(toQueueAlbum(objToQueue)),
+    toQueueView: (objToQueue) => dispatch(toQueueView(objToQueue)),
     toPlayAlbum: (objToQueue) => dispatch(toPlayAlbum(objToQueue)),
 });
 
