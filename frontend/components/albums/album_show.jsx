@@ -33,7 +33,7 @@ const AlbumShow = ({
 				<AlbumHeader album={currentAlbum} history={history} />
 			</div>
 			<div className="album-nav">
-				<AlbumNav playlists={playlists} />
+				<AlbumNav tracks={tracks} playlists={playlists} history={history} />
 			</div>
 			<SongIndex
 				currentUser={currentUser}
