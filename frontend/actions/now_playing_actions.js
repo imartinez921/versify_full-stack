@@ -7,6 +7,7 @@ export const PLAY_PLAYLIST = "PLAY_PLAYLIST";
 export const QUEUE_ALBUM = "QUEUE_ALBUM";
 export const PLAY_ALBUM = "PLAY_ALBUM";
 export const PLAY_VIEW = "PLAY_VIEW";
+export const QUEUE_VIEW = "QUEUE_VIEW";
 
 const togglePlay = () => ({
 	type: TOGGLE_PLAY,
@@ -36,6 +37,14 @@ const queueAlbum = (objToQueue) => ({
 	//{albumSongs:arr, sourceType:str, extractedUrlParams:numStr}
 	type: QUEUE_ALBUM,
 	songs: objToQueue.albumSongs,
+	sourceType: objToQueue.sourceType,
+	extractedUrlParams: objToQueue.extractedUrlParams,
+});
+
+const queueView = (objToQueue) => ({
+	//{viewSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	type: QUEUE_VIEW,
+	songs: objToQueue.viewSongs,
 	sourceType: objToQueue.sourceType,
 	extractedUrlParams: objToQueue.extractedUrlParams,
 });
@@ -101,6 +110,10 @@ export const toPlayAlbum = (objToQueue) => (dispatch) => {
 
 export const toPlayView = (objToQueue) => (dispatch) => {
 	return dispatch(playView(objToQueue));
+};
+
+export const toQueueView = (objToQueue) => (dispatch) => {
+	return dispatch(queueView(objToQueue));
 };
 
 export const toPushPlay = () => (dispatch) => dispatch(pushPlay());
