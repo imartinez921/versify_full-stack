@@ -6,7 +6,7 @@ import AlbumNavDropdownContainer from "./album_nav_dropdown_container";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { GrPlayFill } from "react-icons/gr";
 
-const AlbumNav = ({ playlists }) => {
+const AlbumNav = ({ tracks, playlists, history }) => {
 	// const toggleAlbumNavDropdown = (event) => {
 	//     event.preventDefault();
 	//     playlistNavDropdownState.isOpen ? closePlaylistNavDropdown() : openPlaylistNavDropdown();
@@ -18,15 +18,13 @@ const AlbumNav = ({ playlists }) => {
 	});
 
 	// Updater functions for local states
-    const updateAlbumNavDropdownState = (newState) => {
-        setAlbumNavDropdownState(newState);
-    }
+	const updateAlbumNavDropdownState = (newState) => {
+		setAlbumNavDropdownState(newState);
+	};
 
 	const toggleAlbumNavDropdown = (e) => {
 		e.preventDefault();
-		if (!albumNavDropdownState.isOpen) {
-			updateAlbumNavDropdownState({ isOpen: true });
-		}
+		setAlbumNavDropdownState({isOpen: !albumNavDropdownState.isOpen});
 	};
 
 	const albumNavDropdownItems = [
@@ -48,6 +46,17 @@ const AlbumNav = ({ playlists }) => {
 		},
 	];
 
+	const pathname = history.location.pathname;
+	const sourceType = pathname.split("/")[1];
+	const extractedUrlParams = pathname.split("/")[2];
+	const objToQueue = {
+		viewSongs: tracks,
+		sourceType,
+		extractedUrlParams,
+	}; // provides linkback to view currently playing
+
+	const albumNavRef = useRef();
+
 	return (
 		<>
 			<div id="playlist-play-button">
@@ -57,8 +66,10 @@ const AlbumNav = ({ playlists }) => {
 				<RxDotsHorizontal />
 			</div>
 			<AlbumNavDropdownContainer
+				ref={albumNavRef}
 				albumNavDropdownState={albumNavDropdownState}
-                items={albumNavDropdownItems}
+				items={albumNavDropdownItems}
+				updateAlbumNavDropdownState={updateAlbumNavDropdownState}
 			/>
 		</>
 	);
