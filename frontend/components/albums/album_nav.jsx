@@ -34,14 +34,12 @@ const AlbumNav = ({ tracks, playlists, history }) => {
 		{
 			title: "Add to playlist",
 			submenu: [
-				[
 					{
 						title: "Create new playlist",
 					},
 					...playlists,
 					// Enclose array of playlists in an array since
 					// dropdown uses recursive .map function on items prop
-				],
 			],
 		},
 	];

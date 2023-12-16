@@ -31,6 +31,9 @@ const AlbumNavDropdown = forwardRef(
 		const [albumNavSubmenuState, setAlbumNavSubmenuState] = useState({
 			isOpen: false,
 		});
+        const updateAlbumNavSubmenuState = (newState) => {
+            setAlbumNavSubmenuState(newState);
+        };
 
 		// Add event listeners when menu is open; remove when menu is closed
 		useEffect(() => {
@@ -99,9 +102,10 @@ const AlbumNavDropdown = forwardRef(
 								submenuState={albumNavSubmenuState}
 								depthLevel={depthLevel}
 								// dropdownPosition={dropdownPosition}
-								updateSongCardDropdownState={
+								updateAlbumNavDropdownState={
 									updateAlbumNavDropdownState
 								}
+                                updateAlbumNavSubmenuState={updateAlbumNavSubmenuState}
 								removePlaylisted={removePlaylisted}
 								createNewPlaylisted={createNewPlaylisted}
 								createPlaylist={createPlaylist}

@@ -12,6 +12,7 @@ const AlbumNavSubmenu = ({
 	submenuState,
 	depthLevel,
 	updateAlbumNavDropdownState,
+	updateAlbumNavSubmenuState,
 	removePlaylisted,
 	createNewPlaylisted,
 	createPlaylist,
@@ -32,7 +33,7 @@ const AlbumNavSubmenu = ({
 				!ref?.current?.contains(event.target)
 			) {
 				updateAlbumNavDropdownState({ isOpen: false });
-				console.log(submenuState);
+				updateAlbumNavSubmenuState({ isOpen: false });
 			}
 		};
 		document.addEventListener("mousedown", whenMenuIsOpen);
@@ -46,14 +47,13 @@ const AlbumNavSubmenu = ({
 
 	return (
 		<div
-			className={`album-nav-dropdown album-nav-submenu dropdown-submenu ${dropdownClass} ${
+			className={`song-card-dropdown album-nav-dropdown album-nav-submenu dropdown-submenu ${dropdownClass} ${
 				submenuState.isOpen ? "show" : ""
 			}`}
 			ref={ref}
 			data-dropdown
 		>
 			{submenu.map((item, index) => {
-				debugger
 				return (
 					<SongCardDropdownItem // Else, create just a button
 						key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
