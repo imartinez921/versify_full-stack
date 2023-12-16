@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
+import AlbumLinkContainer from "../albums/album_link_container";
+import ArtistLinkContainer from "../artists/artist_link_container";
 
 const NowPlayingInfo = ({
 	audioRef,
 	track,
 	trackProgress,
+	pathname,
+	history,
 	length, // Refreshes component whenever queue changes
 	isPlaying,
 	updateTrackProgress,
@@ -31,9 +35,22 @@ const NowPlayingInfo = ({
 						{albumImageUrl && <img src={albumImageUrl} />}
 					</div>
 					<div className="now-playing-info">
-						<div className="now-playing-title">{title}</div>
+						<div className="now-playing-title">
+							<AlbumLinkContainer
+								album={{
+									id: track.albumId,
+									name: title ,
+								}}
+								currentAlbum={null}
+								history={history}
+							/>
+						</div>
 						<div className="now-playing-artist">
-							{songArtist.name}
+							<ArtistLinkContainer
+								artist={songArtist}
+								currentArtist={null}
+								history={history}
+							/>
 						</div>
 					</div>
 					<div className="now-playing-buttons"></div>

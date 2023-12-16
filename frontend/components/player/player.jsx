@@ -3,9 +3,10 @@ import NowPlayingInfo from "./now_playing_info";
 import PlayingControls from "./playing_controls";
 
 const Player = ({
-	pathname,
 	tracks,
 	songs,
+	pathname,
+	history,
 	isPlaying,
 	hasQueue,
 	toPlayView,
@@ -109,6 +110,8 @@ const Player = ({
 				audioRef={audioRef}
 				track={currentTrack}
 				trackProgress={trackProgress}
+				pathname={pathname}
+				history={history}
 				isPlaying={isPlaying}
 				updateTrackProgress={updateTrackProgress}
 			/>

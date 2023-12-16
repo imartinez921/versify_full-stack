@@ -6,9 +6,6 @@ const AlbumLink = ({
     history,
 }) => {
 
-console.log("album", album)
-console.log("currentAlbum", currentAlbum)
-
     const { id,
         name,
     } = album;

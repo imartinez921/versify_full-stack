@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
 		// matchObj is a prop passed down by AuthRoute
 		// matchObj = {params, path, url} as keys
 		pathname: ownProps.history.location.pathname,
+		history: ownProps.history,
 	};
 };
 
