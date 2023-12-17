@@ -30,13 +30,6 @@ const PlaylistNav = ({
 	closePlaylistEditModal,
 }) => {
 	useEffect(() => {
-		// UseEffect takes 2 args, a callback function and an array of dependencies
-		// that will trigger a re-render.
-		// setTimeout takes 2 args, an anonymous function and # of milliseconds.
-		// It turns the updating callback function into an async function which will
-		// wait until all the synchronous code has run before executing.
-		// It will allow the Component to load before running updater function again.
-		// Otherwise the eventListener will come on and then come off immediately.
 		if (!playlistNavDropdownState.isOpen)
 			window.removeEventListener("click", closePlaylistNavDropdown);
 	}, [playlistNavDropdownState]);
