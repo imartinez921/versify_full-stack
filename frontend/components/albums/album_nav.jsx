@@ -44,13 +44,9 @@ const AlbumNav = ({ tracks, playlists, history }) => {
 		},
 	];
 
-	const pathname = history.location.pathname;
-	const sourceType = pathname.split("/")[1];
-	const extractedUrlParams = pathname.split("/")[2];
 	const objToQueue = {
 		viewSongs: tracks,
-		sourceType,
-		extractedUrlParams,
+		sourcedFrom: history.location.pathname,
 	}; // provides linkback to view currently playing
 
 	const albumNavRef = useRef();

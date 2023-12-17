@@ -13,7 +13,6 @@ const ArtistShow = ({
 	isPlaying,
 	currentQueueSource,
 	urlParams,
-	path,
 	currentUser,
 	history,
 	displayArtist,
@@ -59,7 +58,6 @@ const ArtistShow = ({
 							toPlayArtist={toPlayArtist}
 							toPushPlay={toPushPlay}
 							history={history}
-							urlParams={urlParams}
 						/>
 					</div>
 					{albums?.length > 0 && (

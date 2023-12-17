@@ -19,9 +19,8 @@ const mapStateToProps = (state, ownProps) => {
 		allSongs: state.entities.songs.allSongs,
 		collabSongs: state.entities.songs.collabSongs,
 		isPlaying: state.entities.nowPlaying.isPlaying,
-		currentQueueSource: state.entities.nowPlaying.queueSources[0], // = {sourceType:, urlParams:}
+		currentQueueSource: state.entities.nowPlaying.queueSources[0],
 		urlParams: ownProps.params,
-		path: ownProps.path,
 		currentUser: ownProps.currentUser,
 		history: ownProps.history,
 	};

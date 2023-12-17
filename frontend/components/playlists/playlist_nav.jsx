@@ -50,15 +50,14 @@ const PlaylistNav = ({
 
 	const objToQueue = {
 		playlistSongs,
-		sourceType: "playlist",
-		extractedUrlParams: urlParams.id,
+		sourcedFrom: history.location.pathname,
 	}; // provides linkback to view currently playing
 	// TODO: Implement queue view
 
 	const handleButtonClick = (e) => {
 		e.preventDefault();
-        console.log("CURRENT", currentQueueSource)
-        console.log("OBJ", objToQueue)
+		console.log("CURRENT", currentQueueSource);
+		console.log("OBJ", objToQueue);
 		if (
 			!!currentQueueSource &&
 			objToQueue.sourceType === currentQueueSource.sourceType &&

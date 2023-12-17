@@ -6,7 +6,6 @@ const NowPlayingInfo = ({
 	audioRef,
 	track,
 	trackProgress,
-	pathname,
 	history,
 	length, // Refreshes component whenever queue changes
 	isPlaying,

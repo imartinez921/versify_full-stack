@@ -18,68 +18,60 @@ const pushPlay = () => ({
 });
 
 const queueArtist = (objToQueue) => ({
-	//{allSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{allSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: QUEUE_ARTIST,
 	songs: objToQueue.allSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 });
 
 const queuePlaylist = (objToQueue) => ({
-	//{playlistSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{playlistSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: QUEUE_PLAYLIST,
 	songs: objToQueue.playlistSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 });
 
 const queueAlbum = (objToQueue) => ({
-	//{albumSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{albumSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: QUEUE_ALBUM,
 	songs: objToQueue.albumSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 });
 
 const queueView = (objToQueue) => ({
-	//{viewSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{viewSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: QUEUE_VIEW,
 	songs: objToQueue.viewSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 });
 
 const playArtist = (objToQueue) => ({
-	//{allSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{allSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: PLAY_ARTIST,
 	songs: objToQueue.allSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 });
 
 const playPlaylist = (objToQueue) => ({
-	//{playlistSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{playlistSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: PLAY_PLAYLIST,
 	songs: objToQueue.playlistSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 });
 
 const playAlbum = (objToQueue) => ({
-	//{albumSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{albumSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: PLAY_ALBUM,
 	songs: objToQueue.albumSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 });
 
 const playView = (objToQueue) => {
 	return {
-	//{viewSongs:arr, sourceType:str, extractedUrlParams:numStr}
+	//{viewSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
 	type: PLAY_VIEW,
 	songs: objToQueue.viewSongs,
-	sourceType: objToQueue.sourceType,
-	extractedUrlParams: objToQueue.extractedUrlParams,
+	sourcedFrom: objToQueue.sourcedFrom,
 }};
 
 export const toTogglePlay = () => (dispatch) => dispatch(togglePlay());
