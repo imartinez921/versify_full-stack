@@ -1,7 +1,5 @@
 import { connect } from "react-redux";
 
-import { isInViewport } from "../../modules/dropdown_functions";
-
 import {
     removePlaylisted,
     createNewPlaylisted,
@@ -24,7 +22,6 @@ const mapStateToProps = (state, ownProps) => {
         currentItem: state.entities.currentItem,
         playlists: state.entities.playlists,
         currentUser: ownProps.currentUser,
-        history: ownProps.history,
         selectedSong: ownProps.selectedSong,
         songCardDropdownState: ownProps.songCardDropdownState,
         updateSongCardDropdownState: ownProps.updateSongCardDropdownState,

@@ -3,9 +3,9 @@ import NowPlayingInfo from "./now_playing_info";
 import PlayingControls from "./playing_controls";
 
 const Player = ({
-	pathname,
 	tracks,
 	songs,
+	history,
 	isPlaying,
 	hasQueue,
 	toPlayView,
@@ -95,12 +95,9 @@ const Player = ({
 		}
 	};
 
-	const sourceType = pathname.split("/")[1];
-	const extractedUrlParams = pathname.split("/")[2];
 	const objToQueue = {
 		viewSongs: songs,
-		sourceType,
-		extractedUrlParams,
+		sourcedFrom: history.location.pathname,
 	}; // provides linkback to view currently playing
 
 	return (
@@ -109,6 +106,7 @@ const Player = ({
 				audioRef={audioRef}
 				track={currentTrack}
 				trackProgress={trackProgress}
+				history={history}
 				isPlaying={isPlaying}
 				updateTrackProgress={updateTrackProgress}
 			/>

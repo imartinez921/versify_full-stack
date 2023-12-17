@@ -9,7 +9,6 @@ const SongCardDropdown = forwardRef(
             currentItem,
             playlists,
             currentUser,
-            history,
             selectedSong,
             songCardDropdownState,
             updateSongCardDropdownState,
@@ -87,7 +86,6 @@ const SongCardDropdown = forwardRef(
                                 </span>
                             </button>
                             <SongCardSubmenu
-                                history={history}
                                 currentUser={currentUser}
                                 selectedSong={selectedSong}
                                 songCardDropdownState={songCardDropdownState}
@@ -105,7 +103,6 @@ const SongCardDropdown = forwardRef(
                             key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
                             currentItem={currentItem}
                             playlists={playlists}
-                            history={history}
                             currentUser={currentUser}
                             selectedIndex={index - 1} // Since the first item is "Create new playlist"
                             selectedSong={selectedSong}

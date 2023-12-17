@@ -18,7 +18,6 @@ const ArtistPageMenuBar = ({
 	toPlayArtist,
 	toPushPlay,
 	history,
-	urlParams,
 }) => {
 	const [artistPageDropdownState, setArtistPageDropdownState] = useState({
 		isOpen: false,
@@ -38,8 +37,7 @@ const ArtistPageMenuBar = ({
 
 	const objToQueue = {
 		allSongs,
-		sourceType: "artist",
-		extractedUrlParams: urlParams.id,
+		sourcedFrom: history.location.pathname,
 	}; // provides linkback to view currently playing
 	// TODO: Implement queue view
 
@@ -47,8 +45,7 @@ const ArtistPageMenuBar = ({
 		e.preventDefault();
 		if (
 			!!currentQueueSource &&
-			objToQueue.sourceType === currentQueueSource.sourceType &&
-			objToQueue.extractedUrlParams === currentQueueSource.extractedUrlParams
+			objToQueue.sourcedFrom === currentQueueSource.sourcedFrom
 		) {
 			toTogglePlay();
 		} else {
@@ -69,7 +66,7 @@ const ArtistPageMenuBar = ({
 		<>
 			<div id="artist-play-button" onClick={handleButtonClick}>
 				{isPlaying &&
-				objToQueue.sourceType === currentQueueSource.sourceType &&
+				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom &&
 				objToQueue.extractedUrlParams ===
 					currentQueueSource.extractedUrlParams ? (
 					<MdOutlinePauseCircleFilled />

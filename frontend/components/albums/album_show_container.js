@@ -17,6 +17,7 @@ const mapStateToProps = (
 	return {
 		currentAlbum: currentItem,
 		tracks: songs,
+		playlists: playlists,
 		urlParams: params,
 		history: history,
 		currentUser: currentUser,

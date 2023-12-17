@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 		hasQueue: state.entities.nowPlaying.queue.length > 0,
 		// matchObj is a prop passed down by AuthRoute
 		// matchObj = {params, path, url} as keys
-		pathname: ownProps.history.location.pathname,
+		history: ownProps.history,
 	};
 };
 

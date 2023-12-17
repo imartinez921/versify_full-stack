@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import { RxDotsHorizontal } from "react-icons/rx";
 import ArtistLinkContainer from "../artists/artist_link_container";
+import AlbumLinkContainer from "../albums/album_link_container";
 
 const SongCard = ({
     source,
@@ -92,7 +93,16 @@ const SongCard = ({
                 </div>
             </div>
             <div className="song-card-album">
-                {source === "playlist" ? `${album}` : null}
+                {source === "playlist" ? 
+                    <AlbumLinkContainer
+                        album={{
+                            id: albumId,
+                            name: album,
+                        }}
+                        currentAlbum={null}
+                        history={history}
+                    />
+                    : null}
             </div>
             <div className="song-card-liked">&hearts;</div>
             <div className="song-card-duration">

@@ -1,24 +1,24 @@
 import React from "react";
 
-const ArtistLink = ({
-    artist,
-    currentArtist,
+const AlbumLink = ({
+    album,
+    currentAlbum,
     history,
 }) => {
 
     const { id,
         name,
-    } = artist;
+    } = album;
 
     const handleClick = (e) => {
         e.preventDefault();
-        return history.push(`/artist/${id}`);
+        return history.push(`/album/${id}`);
     }
 
-    if (currentArtist === null) {
+    if (currentAlbum === null) {
         return <a onClick={handleClick} className="artist-link">{name}</a>
     } else {
-        if (name === currentArtist.name) {
+        if (name === currentAlbum.name) {
             return <span>{name}</span>
         } else {
             return <a onClick={handleClick} className="artist-link">{name}</a>
@@ -26,4 +26,4 @@ const ArtistLink = ({
     }
 }
 
-export default ArtistLink;
+export default AlbumLink;

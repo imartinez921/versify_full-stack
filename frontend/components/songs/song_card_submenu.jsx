@@ -2,7 +2,6 @@ import React from "react";
 import SongCardDropdownContainer from "./song_card_dropdown_container";
 
 const SongCardSubmenu = ({
-    history,
     currentUser,
     selectedSong,
     songCardDropdownState,
@@ -16,8 +15,8 @@ const SongCardSubmenu = ({
     const dropdownClass = depthLevel > 0 ? "dropdown-submenu" : "";
 
     return (
-        <ul
-            className={`song-card-dropdown ${dropdownClass} ${
+        <div
+            className={`${dropdownClass} ${
                 submenuState.isOpen ? "show" : ""
             }`}
             data-dropdown
@@ -26,7 +25,6 @@ const SongCardSubmenu = ({
                 return (
                     <SongCardDropdownContainer
                         key={`${index}+${depthLevel}+"subm"`}
-                        history={history}
                         currentUser={currentUser}
                         selectedSong={selectedSong}
                         songCardDropdownState={songCardDropdownState}
@@ -39,7 +37,7 @@ const SongCardSubmenu = ({
                     />
                 );
             })}
-        </ul>
+        </div>
     );
 };
 

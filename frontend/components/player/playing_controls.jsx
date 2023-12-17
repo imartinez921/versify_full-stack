@@ -21,7 +21,7 @@ const PlayingControls = ({
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		if (objToQueue.sourceType === "artist") {
+		if (objToQueue.sourcedFrom.split("/")[1] === "artist") {
 			// Accounts for unique currentItem slice of state when ArtistShow view
 			objToQueue.viewSongs = objToQueue.viewSongs.allSongs;
 		}

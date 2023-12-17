@@ -38,8 +38,7 @@ const nowPlayingReducer = (
 			// Track the origin view of each song in the queue
 			for (let i = 0; i < action.songs.length; i++) {
 				newPlayState.queueSources.push({
-					sourceType: action.sourceType,
-					extractedUrlParams: action.extractedUrlParams,
+					sourcedFrom: action.sourcedFrom,
 				});
 			}
 			// TODO: Consider separate key to hold current track
@@ -54,8 +53,7 @@ const nowPlayingReducer = (
 			for (let i = 0; i < action.songs.length; i++) {
 				newPlayState.queueSources.push(
 					{
-						sourceType: action.sourceType,
-						extractedUrlParams: action.extractedUrlParams,
+						sourcedFrom: action.sourcedFrom,
 					},
 				);
 			}
