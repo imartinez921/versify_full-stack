@@ -45,9 +45,7 @@ const ArtistPageMenuBar = ({
 		e.preventDefault();
 		if (
 			!!currentQueueSource &&
-			objToQueue.sourceType === currentQueueSource.sourceType &&
-			objToQueue.extractedUrlParams ===
-				currentQueueSource.extractedUrlParams
+			objToQueue.sourcedFrom === currentQueueSource.sourcedFrom
 		) {
 			toTogglePlay();
 		} else {
@@ -68,7 +66,7 @@ const ArtistPageMenuBar = ({
 		<>
 			<div id="artist-play-button" onClick={handleButtonClick}>
 				{isPlaying &&
-				objToQueue.sourceType === currentQueueSource.sourceType &&
+				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom &&
 				objToQueue.extractedUrlParams ===
 					currentQueueSource.extractedUrlParams ? (
 					<MdOutlinePauseCircleFilled />
