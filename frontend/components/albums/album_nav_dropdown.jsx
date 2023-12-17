@@ -3,41 +3,37 @@ import React, { useState, useEffect, forwardRef } from "react";
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
 import AlbumNavSubmenu from "./album_nav_submenu";
 
-
 const AlbumNavDropdown = forwardRef(
 	(
 		{
 			songs,
 			playlists,
-            selectedSong,
-            currentItem,
+			selectedSong,
+			currentItem,
 			currentUser,
 			albumNavDropdownState,
 			updateAlbumNavDropdownState,
 			items,
 			depthLevel,
-            submenuState,
 			removePlaylisted,
 			createNewPlaylisted,
 			createPlaylist,
 			displayPlaylist,
-            toQueueView,
-            toPlayAlbum,
+			toQueueView,
+			toPlayAlbum,
 		},
 		ref
 	) => {
-
-        // Set local state for albumNavSubmenu
+		// Set local state for albumNavSubmenu
 		const [albumNavSubmenuState, setAlbumNavSubmenuState] = useState({
 			isOpen: false,
 		});
-        const updateAlbumNavSubmenuState = (newState) => {
-            setAlbumNavSubmenuState(newState);
-        };
+		const updateAlbumNavSubmenuState = (newState) => {
+			setAlbumNavSubmenuState(newState);
+		};
 
 		// Add event listeners when menu is open; remove when menu is closed
 		useEffect(() => {
-            console.log("albumNavDropdownState", albumNavDropdownState);
 			const whenMenuIsOpen = (event) => {
 				if (
 					albumNavDropdownState.isOpen &&
@@ -45,8 +41,6 @@ const AlbumNavDropdown = forwardRef(
 					!ref?.current?.contains(event.target)
 				) {
 					updateAlbumNavDropdownState({ isOpen: false });
-                    console.log(albumNavDropdownState)
-
 				}
 			};
 			document.addEventListener("mousedown", whenMenuIsOpen);
@@ -58,11 +52,11 @@ const AlbumNavDropdown = forwardRef(
 			};
 		}, [albumNavDropdownState]);
 
-        const toggleSubmenuAndPlaceDropdown = (e) => {
-            e.preventDefault();
-            setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
-            console.log("albumNavSubmenuState", albumNavSubmenuState)
-        };
+		const toggleSubmenuAndPlaceDropdown = (e) => {
+			e.preventDefault();
+			setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
+			console.log("albumNavSubmenuState", albumNavSubmenuState);
+		};
 
 		return (
 			<div
@@ -105,7 +99,9 @@ const AlbumNavDropdown = forwardRef(
 								updateAlbumNavDropdownState={
 									updateAlbumNavDropdownState
 								}
-                                updateAlbumNavSubmenuState={updateAlbumNavSubmenuState}
+								updateAlbumNavSubmenuState={
+									updateAlbumNavSubmenuState
+								}
 								removePlaylisted={removePlaylisted}
 								createNewPlaylisted={createNewPlaylisted}
 								createPlaylist={createPlaylist}

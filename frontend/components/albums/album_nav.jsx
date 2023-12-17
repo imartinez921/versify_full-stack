@@ -7,11 +7,6 @@ import { RxDotsHorizontal } from "react-icons/rx";
 import { GrPlayFill } from "react-icons/gr";
 
 const AlbumNav = ({ tracks, playlists, history }) => {
-	// const toggleAlbumNavDropdown = (event) => {
-	//     event.preventDefault();
-	//     playlistNavDropdownState.isOpen ? closePlaylistNavDropdown() : openPlaylistNavDropdown();
-	// }
-
 	// Set local states for AlbumNavDropdownState
 	const [albumNavDropdownState, setAlbumNavDropdownState] = useState({
 		isOpen: false,
@@ -24,7 +19,7 @@ const AlbumNav = ({ tracks, playlists, history }) => {
 
 	const toggleAlbumNavDropdown = (e) => {
 		e.preventDefault();
-		setAlbumNavDropdownState({isOpen: !albumNavDropdownState.isOpen});
+		setAlbumNavDropdownState({ isOpen: !albumNavDropdownState.isOpen });
 	};
 
 	const albumNavDropdownItems = [
@@ -34,12 +29,12 @@ const AlbumNav = ({ tracks, playlists, history }) => {
 		{
 			title: "Add to playlist",
 			submenu: [
-					{
-						title: "Create new playlist",
-					},
-					...playlists,
-					// Enclose array of playlists in an array since
-					// dropdown uses recursive .map function on items prop
+				{
+					title: "Create new playlist",
+				},
+				...playlists,
+				// Enclose array of playlists in an array since
+				// dropdown uses recursive .map function on items prop
 			],
 		},
 	];
