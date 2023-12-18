@@ -13,8 +13,6 @@ import { toQueueView, toPlayAlbum } from "../../actions/now_playing_actions";
 import AlbumNavDropdown from "./album_nav_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
-	// Relocate each instance of recursive SongCardDrodpown
-	if (ownProps.depthLevel === 1) nextLeft -= 100; //submenu div is wider
 	return {
 		ref: ownProps.ref,
 		history: ownProps.history,
