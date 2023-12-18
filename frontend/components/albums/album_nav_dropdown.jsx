@@ -3,41 +3,39 @@ import React, { useState, useEffect, forwardRef } from "react";
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
 import AlbumNavSubmenu from "./album_nav_submenu";
 
-
 const AlbumNavDropdown = forwardRef(
 	(
 		{
+			history,
 			songs,
 			playlists,
-            selectedSong,
-            currentItem,
+			selectedSong,
+			currentItem,
 			currentUser,
 			albumNavDropdownState,
 			updateAlbumNavDropdownState,
 			items,
 			depthLevel,
-            submenuState,
 			removePlaylisted,
 			createNewPlaylisted,
 			createPlaylist,
 			displayPlaylist,
-            toQueueView,
-            toPlayAlbum,
+			toQueueView,
+			toPlayAlbum,
+            fetchPlaylists,
 		},
 		ref
 	) => {
-
-        // Set local state for albumNavSubmenu
+		// Set local state for albumNavSubmenu
 		const [albumNavSubmenuState, setAlbumNavSubmenuState] = useState({
 			isOpen: false,
 		});
-        const updateAlbumNavSubmenuState = (newState) => {
-            setAlbumNavSubmenuState(newState);
-        };
+		const updateAlbumNavSubmenuState = (newState) => {
+			setAlbumNavSubmenuState(newState);
+		};
 
 		// Add event listeners when menu is open; remove when menu is closed
 		useEffect(() => {
-            console.log("albumNavDropdownState", albumNavDropdownState);
 			const whenMenuIsOpen = (event) => {
 				if (
 					albumNavDropdownState.isOpen &&
@@ -45,8 +43,6 @@ const AlbumNavDropdown = forwardRef(
 					!ref?.current?.contains(event.target)
 				) {
 					updateAlbumNavDropdownState({ isOpen: false });
-                    console.log(albumNavDropdownState)
-
 				}
 			};
 			document.addEventListener("mousedown", whenMenuIsOpen);
@@ -58,12 +54,11 @@ const AlbumNavDropdown = forwardRef(
 			};
 		}, [albumNavDropdownState]);
 
-        const toggleSubmenuAndPlaceDropdown = (e) => {
-            e.preventDefault();
-            setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
-            console.log("albumNavSubmenuState", albumNavSubmenuState)
-        };
-
+		const toggleSubmenuAndPlaceDropdown = (e) => {
+			e.preventDefault();
+			setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
+		};
+        
 		return (
 			<div
 				className={`album-nav-dropdown dropdown-submenu ${
@@ -93,6 +88,7 @@ const AlbumNavDropdown = forwardRef(
 								</span>
 							</button>
 							<AlbumNavSubmenu
+								history={history}
 								songs={songs}
 								playlists={playlists}
 								selectedSong={selectedSong}
@@ -100,25 +96,29 @@ const AlbumNavDropdown = forwardRef(
 								currentUser={currentUser}
 								submenu={item.submenu}
 								submenuState={albumNavSubmenuState}
-								depthLevel={depthLevel}
+								depthLevel={depthLevel+=1}
 								// dropdownPosition={dropdownPosition}
 								updateAlbumNavDropdownState={
 									updateAlbumNavDropdownState
 								}
-                                updateAlbumNavSubmenuState={updateAlbumNavSubmenuState}
+								updateAlbumNavSubmenuState={
+									updateAlbumNavSubmenuState
+								}
 								removePlaylisted={removePlaylisted}
 								createNewPlaylisted={createNewPlaylisted}
 								createPlaylist={createPlaylist}
 								displayPlaylist={displayPlaylist}
+                                fetchPlaylists={fetchPlaylists}
 								toQueueView={toQueueView}
 							/>
 						</React.Fragment>
 					) : (
 						<SongCardDropdownItem // Else, create just a button
 							key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
+							history={history}
 							currentItem={currentItem}
-							playlists={playlists}
 							currentUser={currentUser}
+							playlists={playlists}
 							selectedIndex={index - 1} // Since the first item is "Create new playlist"
 							selectedSong={selectedSong}
 							updateSongCardDropdownState={
@@ -131,6 +131,7 @@ const AlbumNavDropdown = forwardRef(
 							createNewPlaylisted={createNewPlaylisted}
 							createPlaylist={createPlaylist}
 							displayPlaylist={displayPlaylist}
+                            fetchPlaylists={fetchPlaylists}
 							toQueueView={toQueueView}
 						/>
 					)

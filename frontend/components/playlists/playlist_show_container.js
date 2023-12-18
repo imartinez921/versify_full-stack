@@ -1,63 +1,66 @@
 import { connect } from "react-redux";
 import {
-    displayPlaylist,
-    fetchPlaylists,
-    editPlaylist,
-    destroyPlaylist,
-    clearCurrent,
+	displayPlaylist,
+	fetchPlaylists,
+	editPlaylist,
+	destroyPlaylist,
+	clearCurrent,
 } from "../../actions/playlist_actions";
 import {
-    toTogglePlay,
-    toQueuePlaylist,
-    toPlayPlaylist,
-    toPushPlay,
+	toTogglePlay,
+	toQueuePlaylist,
+	toPlayPlaylist,
+	toPushPlay,
 } from "../../actions/now_playing_actions";
 import {
-    openPlaylistNavDropdown,
-    closePlaylistNavDropdown,
-    openPlaylistEditModal,
-    closePlaylistEditModal,
+	openPlaylistNavDropdown,
+	closePlaylistNavDropdown,
+	openPlaylistEditModal,
+	closePlaylistEditModal,
 } from "../../actions/ux_actions";
 
 import PlaylistShow from "./playlist_show";
 
 const mapStateToProps = (
-    // from state
-    { ux, entities: { currentItem, playlists, songs, nowPlaying } },
-    // from ownProps
-    { params, history, currentUser }
+	// from state
+	{ ux, entities: { currentItem, playlists, songs, nowPlaying } },
+	// from ownProps
+	{ params, history, currentUser }
 ) => {
-    return {
-        currentPlaylist: currentItem,
-        playlists: playlists,
-        playlistSongs: songs,
-        isPlaying: nowPlaying.isPlaying,
-        currentQueueSource: nowPlaying.queueSources[0],
-        playlistNavDropdownState: ux.playlistNavDropdown,
-        playlistEditModalState: ux.playlistEditModal,
-        urlParams: params,
-        currentUser: currentUser,
-        history: history,
-        source: "playlist",
-        songCardDropdownItems: [
-            {
-                title: "Remove from this playlist",
-            },
-            {
-                title: "Add to playlist",
-                submenu: [
-                    [
-                        {
-                            title: "Create new playlist",
-                        },
-                        ...playlists,
-                        // Enclose array of playlists in an array since
-                        // dropdown uses recursive .map function on items prop
-                    ],
-                ],
-            },
-        ],
-    };
+	return {
+		currentPlaylist: currentItem,
+		playlists: playlists,
+		playlistSongs: songs,
+		isPlaying: nowPlaying.isPlaying,
+		currentQueueSource: nowPlaying.queueSources[0],
+		playlistNavDropdownState: ux.playlistNavDropdown,
+		playlistEditModalState: ux.playlistEditModal,
+		urlParams: params,
+		currentUser: currentUser,
+		history: history,
+		source: "playlist",
+		songCardDropdownItems: [
+			{
+				title: "Add to queue",
+			},
+			{
+				title: "Remove from this playlist",
+			},
+			{
+				title: "Add to playlist",
+				submenu: [
+					[
+						{
+							title: "Create new playlist",
+						},
+						...playlists,
+						// Enclose array of playlists in an array since
+						// dropdown uses recursive .map function on items prop
+					],
+				],
+			},
+		],
+	};
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -9,21 +9,20 @@ export const REMOVE_PLAYLISTED = "REMOVE_PLAYLISTED";
 
 // Thunk Action creators
 export const createNewPlaylisted = (songId, playlistId) => (dispatch) => {
-    return postPlaylisted(songId, playlistId).then(
-        (respObj) => {
-            dispatch(fetchPlaylists());
-            return respObj.playlistId;
-        },
-        (err) => console.log(err)
-    );
+	return postPlaylisted(songId, playlistId).then(
+		(respObj) => {
+			return respObj.playlistId;
+		},
+		(err) => console.log(err)
+	);
 };
 
 export const removePlaylisted = (playlistedId) => (dispatch) => {
-    return deletePlaylisted(playlistedId).then(
-        (respObj) => {
-            dispatch(displayPlaylist(respObj.playlistId));
-            dispatch(fetchPlaylists());
-        },
-        (err) => dispatch(receivePlaylistErrors(err.responseJSON))
-    );
+	return deletePlaylisted(playlistedId).then(
+		(respObj) => {
+			dispatch(displayPlaylist(respObj.playlistId));
+			dispatch(fetchPlaylists());
+		},
+		(err) => dispatch(receivePlaylistErrors(err.responseJSON))
+	);
 };

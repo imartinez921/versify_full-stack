@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
 
 const AlbumNavSubmenu = ({
+	history,
 	songs,
 	playlists,
 	selectedSong,
@@ -17,15 +18,14 @@ const AlbumNavSubmenu = ({
 	createNewPlaylisted,
 	createPlaylist,
 	displayPlaylist,
+	fetchPlaylists,
 	toQueueView,
 }) => {
-	depthLevel += 1;
 	const dropdownClass = depthLevel > 0 ? "dropdown-submenu" : "";
 
 	const ref = useRef();
 
 	useEffect(() => {
-		console.log("submenuState", submenuState);
 		const whenMenuIsOpen = (event) => {
 			if (
 				submenuState.isOpen &&
@@ -57,11 +57,12 @@ const AlbumNavSubmenu = ({
 				return (
 					<SongCardDropdownItem // Else, create just a button
 						key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
+						history={history}
 						currentItem={currentItem}
-						playlists={playlists}
 						currentUser={currentUser}
+						playlists={playlists}
 						selectedIndex={index - 1} // Since the first item is "Create new playlist"
-						selectedSong={selectedSong}
+						selectedSong={songs}
 						updateSongCardDropdownState={
 							updateAlbumNavDropdownState
 						}
@@ -72,6 +73,7 @@ const AlbumNavSubmenu = ({
 						createNewPlaylisted={createNewPlaylisted}
 						createPlaylist={createPlaylist}
 						displayPlaylist={displayPlaylist}
+						fetchPlaylists={fetchPlaylists}
 						toQueueView={toQueueView}
 					/>
 				);
