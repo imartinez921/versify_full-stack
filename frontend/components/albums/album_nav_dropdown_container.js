@@ -7,6 +7,7 @@ import {
 import {
 	createPlaylist,
 	displayPlaylist,
+	fetchPlaylists,
 } from "../../actions/playlist_actions";
 import { toQueueView, toPlayAlbum } from "../../actions/now_playing_actions";
 import AlbumNavDropdown from "./album_nav_dropdown";
@@ -25,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 		albumNavDropdownState: ownProps.albumNavDropdownState,
 		updateAlbumNavDropdownState: ownProps.updateAlbumNavDropdownState,
 		items: ownProps.items,
-		depthLevel: ownProps.depthLevel,
+		depthLevel: 0,
 		submenuState: ownProps.submenuState,
 	};
 };
@@ -37,6 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(createNewPlaylisted(songId, playlistId)),
 	createPlaylist: (playlist) => dispatch(createPlaylist(playlist)),
 	displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
+	fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 	toQueueView: (objToQueue) => dispatch(toQueueView(objToQueue)),
 	toPlayAlbum: (objToQueue) => dispatch(toPlayAlbum(objToQueue)),
 });

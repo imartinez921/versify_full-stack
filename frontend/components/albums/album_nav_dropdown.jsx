@@ -22,6 +22,7 @@ const AlbumNavDropdown = forwardRef(
 			displayPlaylist,
 			toQueueView,
 			toPlayAlbum,
+            fetchPlaylists,
 		},
 		ref
 	) => {
@@ -56,9 +57,8 @@ const AlbumNavDropdown = forwardRef(
 		const toggleSubmenuAndPlaceDropdown = (e) => {
 			e.preventDefault();
 			setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
-			console.log("albumNavSubmenuState", albumNavSubmenuState);
 		};
-
+        
 		return (
 			<div
 				className={`album-nav-dropdown dropdown-submenu ${
@@ -96,7 +96,7 @@ const AlbumNavDropdown = forwardRef(
 								currentUser={currentUser}
 								submenu={item.submenu}
 								submenuState={albumNavSubmenuState}
-								depthLevel={depthLevel}
+								depthLevel={depthLevel+=1}
 								// dropdownPosition={dropdownPosition}
 								updateAlbumNavDropdownState={
 									updateAlbumNavDropdownState
@@ -108,6 +108,7 @@ const AlbumNavDropdown = forwardRef(
 								createNewPlaylisted={createNewPlaylisted}
 								createPlaylist={createPlaylist}
 								displayPlaylist={displayPlaylist}
+                                fetchPlaylists={fetchPlaylists}
 								toQueueView={toQueueView}
 							/>
 						</React.Fragment>
@@ -130,6 +131,7 @@ const AlbumNavDropdown = forwardRef(
 							createNewPlaylisted={createNewPlaylisted}
 							createPlaylist={createPlaylist}
 							displayPlaylist={displayPlaylist}
+                            fetchPlaylists={fetchPlaylists}
 							toQueueView={toQueueView}
 						/>
 					)

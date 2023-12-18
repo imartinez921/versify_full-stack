@@ -18,15 +18,15 @@ const AlbumNavSubmenu = ({
 	createNewPlaylisted,
 	createPlaylist,
 	displayPlaylist,
+	fetchPlaylists,
 	toQueueView,
 }) => {
-	depthLevel += 1;
+	console.log("DEPTH LEVEL", depthLevel);
 	const dropdownClass = depthLevel > 0 ? "dropdown-submenu" : "";
 
 	const ref = useRef();
 
 	useEffect(() => {
-		console.log("submenuState", submenuState);
 		const whenMenuIsOpen = (event) => {
 			if (
 				submenuState.isOpen &&
@@ -74,6 +74,7 @@ const AlbumNavSubmenu = ({
 						createNewPlaylisted={createNewPlaylisted}
 						createPlaylist={createPlaylist}
 						displayPlaylist={displayPlaylist}
+						fetchPlaylists={fetchPlaylists}
 						toQueueView={toQueueView}
 					/>
 				);

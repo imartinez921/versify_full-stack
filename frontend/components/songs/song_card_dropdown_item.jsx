@@ -12,9 +12,9 @@ const SongCardDropdownItem = ({
 	depthLevel,
 	removePlaylisted,
 	createNewPlaylisted,
-	fetchPlaylists,
 	createPlaylist,
 	displayPlaylist,
+    fetchPlaylists,
 	toQueueView,
 }) => {
 	let objToQueue;
@@ -78,6 +78,7 @@ const SongCardDropdownItem = ({
 				fetchPlaylists();
 			}, 0);
 		} else if (depthLevel === 1) {
+            debugger
 			updateSongCardDropdownState({ isOpen: false });
 			addToPlaylist(selectedSong);
 		}
