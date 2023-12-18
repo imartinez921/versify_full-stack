@@ -41,7 +41,6 @@ group :development, :test do
   gem 'annotate'
   gem 'pry-rails'
   gem 'binding_of_caller'
-  gem 'better_errors'
 end
 
 group :development do
