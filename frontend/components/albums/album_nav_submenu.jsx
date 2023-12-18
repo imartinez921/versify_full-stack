@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
 
 const AlbumNavSubmenu = ({
+	history,
 	songs,
 	playlists,
 	selectedSong,
@@ -57,11 +58,12 @@ const AlbumNavSubmenu = ({
 				return (
 					<SongCardDropdownItem // Else, create just a button
 						key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
+						history={history}
 						currentItem={currentItem}
 						playlists={playlists}
 						currentUser={currentUser}
 						selectedIndex={index - 1} // Since the first item is "Create new playlist"
-						selectedSong={selectedSong}
+						selectedSong={songs}
 						updateSongCardDropdownState={
 							updateAlbumNavDropdownState
 						}

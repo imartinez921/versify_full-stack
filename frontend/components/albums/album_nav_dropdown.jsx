@@ -6,6 +6,7 @@ import AlbumNavSubmenu from "./album_nav_submenu";
 const AlbumNavDropdown = forwardRef(
 	(
 		{
+			history,
 			songs,
 			playlists,
 			selectedSong,
@@ -87,6 +88,7 @@ const AlbumNavDropdown = forwardRef(
 								</span>
 							</button>
 							<AlbumNavSubmenu
+								history={history}
 								songs={songs}
 								playlists={playlists}
 								selectedSong={selectedSong}
@@ -112,6 +114,7 @@ const AlbumNavDropdown = forwardRef(
 					) : (
 						<SongCardDropdownItem // Else, create just a button
 							key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
+							history={history}
 							currentItem={currentItem}
 							playlists={playlists}
 							currentUser={currentUser}

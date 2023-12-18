@@ -56,6 +56,7 @@ const AlbumNav = ({ tracks, playlists, history }) => {
 			</div>
 			<AlbumNavDropdownContainer
 				ref={albumNavRef}
+				history={history}
 				albumNavDropdownState={albumNavDropdownState}
 				items={albumNavDropdownItems}
 				updateAlbumNavDropdownState={updateAlbumNavDropdownState}
