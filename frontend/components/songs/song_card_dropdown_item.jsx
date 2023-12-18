@@ -17,6 +17,7 @@ const SongCardDropdownItem = ({
     fetchPlaylists,
 	toQueueView,
 }) => {
+    console.log("currentUser", currentUser)
 	let objToQueue;
 	let selectedPlaylist = playlists[selectedIndex];
 	if (selectedSong.constructor !== Array) selectedSong = [selectedSong];

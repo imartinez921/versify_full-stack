@@ -34,6 +34,7 @@ const AlbumShow = ({
 			</div>
 			<div className="album-nav">
 				<AlbumNav
+					currentUser={currentUser}
 					tracks={tracks}
 					playlists={playlists}
 					history={history}

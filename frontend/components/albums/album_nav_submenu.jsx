@@ -21,7 +21,6 @@ const AlbumNavSubmenu = ({
 	fetchPlaylists,
 	toQueueView,
 }) => {
-	console.log("DEPTH LEVEL", depthLevel);
 	const dropdownClass = depthLevel > 0 ? "dropdown-submenu" : "";
 
 	const ref = useRef();
@@ -60,8 +59,8 @@ const AlbumNavSubmenu = ({
 						key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
 						history={history}
 						currentItem={currentItem}
-						playlists={playlists}
 						currentUser={currentUser}
+						playlists={playlists}
 						selectedIndex={index - 1} // Since the first item is "Create new playlist"
 						selectedSong={songs}
 						updateSongCardDropdownState={
