@@ -66,9 +66,7 @@ const ArtistPageMenuBar = ({
 		<>
 			<div id="artist-play-button" onClick={handleButtonClick}>
 				{isPlaying &&
-				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom &&
-				objToQueue.extractedUrlParams ===
-					currentQueueSource.extractedUrlParams ? (
+				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom ? (
 					<MdOutlinePauseCircleFilled />
 				) : (
 					<MdOutlinePlayCircleFilled />
