@@ -9,7 +9,6 @@ const AlbumNavDropdown = forwardRef(
 			history,
 			songs,
 			playlists,
-			selectedSong,
 			currentItem,
 			currentUser,
 			albumNavDropdownState,
@@ -58,7 +57,7 @@ const AlbumNavDropdown = forwardRef(
 			e.preventDefault();
 			setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
 		};
-        
+        debugger
 		return (
 			<div
 				className={`album-nav-dropdown dropdown-submenu ${
@@ -71,14 +70,15 @@ const AlbumNavDropdown = forwardRef(
 					item.submenu ? (
 						// If a submenu exists, create button for submenu title and pass submenu to AlbumNavSubmenu
 						<React.Fragment
-							key={`${selectedSong.playlistedId}+${depthLevel}+${item.title}+"w-submenu"`}
+							key={`
+                            "albumnav"+${depthLevel}+${item.id}+"w-submenu"`}
 						>
 							<button
 								className="song-card-dropdown-item"
 								onClick={toggleSubmenuAndPlaceDropdown}
 							>
 								{item.title}{" "}
-								<span key={`${selectedSong.playlistedId}`}>
+								<span key={`item.id+"w-submenu`}>
 									&raquo;
 								</span>
 							</button>
@@ -86,7 +86,6 @@ const AlbumNavDropdown = forwardRef(
 								history={history}
 								songs={songs}
 								playlists={playlists}
-								selectedSong={selectedSong}
 								currentItem={currentItem}
 								currentUser={currentUser}
 								submenu={item.submenu}
@@ -109,13 +108,13 @@ const AlbumNavDropdown = forwardRef(
 						</React.Fragment>
 					) : (
 						<SongCardDropdownItem // Else, create just a button
-							key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
+							key={`"albumnav-subm-button" + ${item.id}}`}
 							history={history}
 							currentItem={currentItem}
 							currentUser={currentUser}
 							playlists={playlists}
 							selectedIndex={index - 1} // Since the first item is "Create new playlist"
-							selectedSong={selectedSong}
+							selectedSong={songs}
 							updateSongCardDropdownState={
 								updateAlbumNavDropdownState
 							}
