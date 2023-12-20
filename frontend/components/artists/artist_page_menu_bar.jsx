@@ -77,11 +77,10 @@ const ArtistPageMenuBar = ({
 			</div>
 			{artistPageDropdownState.isOpen && (
 				<ArtistPageDropdownContainer
-					handleAddToQueue={handleAddToQueue}
 					history={history}
-					artistPageDropdownState={artistPageDropdownState}
+					albumNavDropdownState={artistPageDropdownState}
 					ref={dropdownRef}
-					toggleArtistPageDropdown={toggleArtistPageDropdown}
+					updateAlbumNavDropdownState={toggleArtistPageDropdown}
 				/>
 			)}
 		</>
