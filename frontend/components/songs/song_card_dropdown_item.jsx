@@ -24,7 +24,6 @@ const SongCardDropdownItem = ({
 
 	// Define all song actions
 	const addToQueue = (selectedSongArr) => {
-		debugger;
 		objToQueue = {
 			viewSongs: selectedSongArr,
 			sourcedFrom: history.location.pathname,
@@ -32,7 +31,6 @@ const SongCardDropdownItem = ({
 		return toQueueView(objToQueue);
 	};
 	const addToPlaylist = async (selectedSongArr) => {
-		debugger;
 		const promises = selectedSongArr.map((song) => {
 			return createNewPlaylisted(song.id, selectedPlaylist.id);
 		});
@@ -45,7 +43,6 @@ const SongCardDropdownItem = ({
 	};
 
 	const makeIntoPlaylist = async (selectedSongArr) => {
-		debugger;
 		let title =
 			selectedSongArr.length === 1
 				? selectedSongArr[0].title

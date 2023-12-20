@@ -23,6 +23,7 @@ const mapStateToProps = (
 		currentUser: currentUser,
 		source: "album",
 		songCardDropdownItems: [
+			{ title: "Play album" },
 			{ title: "Add to queue" },
 			{
 				title: "Add to playlist",

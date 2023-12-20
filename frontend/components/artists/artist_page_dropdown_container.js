@@ -13,19 +13,19 @@ const mapStateToProps = (state, ownProps) => {
 		ref: ownProps.ref,
 		toggleArtistPageDropdown: ownProps.toggleArtistPageDropdown,
 		items: [
-			// TODO: Implement adding artist songs to playlist
-			// {title: "Add to playlist",
-			// submenu: [
-			// 	[
-			// 		{
-			// 			title: "Create new playlist",
-			// 		},
-			// 		...playlists,
-			// 		// Enclose array of playlists in an array since
-			// 		// dropdown uses recursive .map function on items prop
-			// 	],
-			// ],
-			// },
+			{title: "Play artist"},
+			{title: "Add to playlist",
+			submenu: [
+				[
+					{
+						title: "Create new playlist",
+					},
+					...playlists,
+					// Enclose array of playlists in an array since
+					// dropdown uses recursive .map function on items prop
+				],
+			],
+			},
 			{
 				title: "Add to queue",
 				id: `${crypto.randomUUID()}`,
