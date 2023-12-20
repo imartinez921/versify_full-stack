@@ -66,11 +66,6 @@ const AlbumNavDropdown = forwardRef(
 				}`}
 				data-dropdown
 				ref={ref}
-				// style={{
-				// 	left: `${dropdownPosition.left}px`,
-				// 	top: `${dropdownPosition.top}px`,
-				// 	...depthStyling,
-				// }}
 			>
 				{items.map((item, index) =>
 					item.submenu ? (
