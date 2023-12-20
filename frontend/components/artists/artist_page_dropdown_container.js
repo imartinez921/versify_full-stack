@@ -1,28 +1,37 @@
 import { connect } from "react-redux";
-import { toQueueArtist } from "../../actions/now_playing_actions";
+
+import {
+	removePlaylisted,
+	createNewPlaylisted,
+} from "../../actions/playlisted_actions";
+import {
+	createPlaylist,
+	displayPlaylist,
+	fetchPlaylists,
+} from "../../actions/playlist_actions";
+import { toQueueView, toPlayArtist } from "../../actions/now_playing_actions";
 
 import ArtistPageDropdown from "./artist_page_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
-	debugger
 	return {
 		playlists: state.entities.playlists,
-		selectedSong: state.entities.songs.allSongs,
+		songs: state.entities.songs.allSongs,
 		currentItem: state.entities.currentItem,
-		currentUser: state.entities.users[state.session.id],
-		handleAddToQueue: ownProps.handleAddToQueue,
 		history: ownProps.history,
 		artistPageDropdownState: ownProps.artistPageDropdownState,
 		ref: ownProps.ref,
 		toggleArtistPageDropdown: ownProps.toggleArtistPageDropdown,
 		items: [
-			{ title: "Play artist" },
+			{ title: "Play artist", id: `${crypto.randomUUID()}` },
 			{
 				title: "Add to playlist",
+				id: `${crypto.randomUUID()}`,
 				submenu: [
 					[
 						{
 							title: "Create new playlist",
+							id: `${crypto.randomUUID()}`,
 						},
 						...state.entities.playlists,
 						// Enclose array of playlists in an array since
@@ -40,7 +49,15 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	toQueueArtist: (objToQueue) => dispatch(toQueueArtist(objToQueue)),
+	removePlaylisted: (playlistedId) =>
+		dispatch(removePlaylisted(playlistedId)),
+	createNewPlaylisted: (songId, playlistId) =>
+		dispatch(createNewPlaylisted(songId, playlistId)),
+	createPlaylist: (playlist) => dispatch(createPlaylist(playlist)),
+	displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
+	fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+	toQueueView: (objToQueue) => dispatch(toQueueView(objToQueue)),
+	toPlayArtist: (objToQueue) => dispatch(toPlayArtist(objToQueue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

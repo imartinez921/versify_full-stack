@@ -13,7 +13,6 @@ const ArtistShow = ({
 	isPlaying,
 	currentQueueSource,
 	urlParams,
-	currentUser,
 	history,
 	displayArtist,
 	displayAlbum,

@@ -11,13 +11,13 @@ import {
 const ArtistPageMenuBar = ({
 	artistShowRef,
 	allSongs,
+	history,
 	isPlaying,
 	currentQueueSource,
 	toTogglePlay,
 	toQueueArtist,
 	toPlayArtist,
 	toPushPlay,
-	history,
 }) => {
 	const [artistPageDropdownState, setArtistPageDropdownState] = useState({
 		isOpen: false,

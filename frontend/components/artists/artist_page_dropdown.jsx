@@ -10,7 +10,6 @@ const ArtistPageDropdown = forwardRef(
 			history,
 			songs,
 			playlists,
-			selectedSong,
 			currentItem,
 			currentUser,
 			albumNavDropdownState,
@@ -21,13 +20,12 @@ const ArtistPageDropdown = forwardRef(
 			createNewPlaylisted,
 			createPlaylist,
 			displayPlaylist,
-			toQueueView,
-			toPlayAlbum,
 			fetchPlaylists,
+			toQueueView,
+			toPlayArtist,
 		},
 		ref
 	) => {
-		console.log("SELECTED SONG", selectedSong)
 		// Set local state for albumNavSubmenu
 		const [albumNavSubmenuState, setAlbumNavSubmenuState] = useState({
 			isOpen: false,
@@ -73,14 +71,14 @@ const ArtistPageDropdown = forwardRef(
 					item.submenu ? (
 						// If a submenu exists, create button for submenu title and pass submenu to AlbumNavSubmenu
 						<React.Fragment
-							key={`${selectedSong.playlistedId}+${depthLevel}+${item.title}+"w-submenu"`}
+							key={`"artistdropdown"+${item.id}+"w-submenu"`}
 						>
 							<button
 								className="song-card-dropdown-item"
 								onClick={toggleSubmenuAndPlaceDropdown}
 							>
 								{item.title}{" "}
-								<span key={`${selectedSong.playlistedId}`}>
+								<span key={`"item.id"+"w-submenu"`}>
 									&raquo;
 								</span>
 							</button>
@@ -88,7 +86,6 @@ const ArtistPageDropdown = forwardRef(
 								history={history}
 								songs={songs}
 								playlists={playlists}
-								selectedSong={selectedSong}
 								currentItem={currentItem}
 								currentUser={currentUser}
 								submenu={item.submenu}
@@ -111,13 +108,13 @@ const ArtistPageDropdown = forwardRef(
 						</React.Fragment>
 					) : (
 						<SongCardDropdownItem // Else, create just a button
-							key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
+							key={`artistdropdown-subm-button" + ${item.id}`}
 							history={history}
 							currentItem={currentItem}
 							currentUser={currentUser}
 							playlists={playlists}
 							selectedIndex={index - 1} // Since the first item is "Create new playlist"
-							selectedSong={selectedSong}
+							selectedSong={songs}
 							updateSongCardDropdownState={
 								updateAlbumNavDropdownState
 							}
