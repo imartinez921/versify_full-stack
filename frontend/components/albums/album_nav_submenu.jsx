@@ -19,6 +19,7 @@ const AlbumNavSubmenu = ({
 	displayPlaylist,
 	fetchPlaylists,
 	toQueueView,
+	toPlayView,
 }) => {
 	const dropdownClass = depthLevel > 0 ? "dropdown-submenu" : "";
 
@@ -74,6 +75,7 @@ const AlbumNavSubmenu = ({
 						displayPlaylist={displayPlaylist}
 						fetchPlaylists={fetchPlaylists}
 						toQueueView={toQueueView}
+						toPlayView={toPlayView}
 					/>
 				);
 			})}

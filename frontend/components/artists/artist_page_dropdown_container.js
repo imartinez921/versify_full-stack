@@ -9,7 +9,11 @@ import {
 	displayPlaylist,
 	fetchPlaylists,
 } from "../../actions/playlist_actions";
-import { toQueueView, toPlayArtist } from "../../actions/now_playing_actions";
+import {
+	toQueueView,
+	toPlayArtist,
+	toPlayView,
+} from "../../actions/now_playing_actions";
 
 import ArtistPageDropdown from "./artist_page_dropdown";
 
@@ -58,7 +62,7 @@ const mapDispatchToProps = (dispatch) => ({
 	displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
 	fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 	toQueueView: (objToQueue) => dispatch(toQueueView(objToQueue)),
-	toPlayArtist: (objToQueue) => dispatch(toPlayArtist(objToQueue)),
+	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

@@ -20,7 +20,7 @@ const AlbumNavDropdown = forwardRef(
 			createPlaylist,
 			displayPlaylist,
 			toQueueView,
-			toPlayAlbum,
+			toPlayView,
             fetchPlaylists,
 		},
 		ref
@@ -77,9 +77,7 @@ const AlbumNavDropdown = forwardRef(
 								onClick={toggleSubmenuAndPlaceDropdown}
 							>
 								{item.title}{" "}
-								<span key={`item.id+"w-submenu`}>
-									&raquo;
-								</span>
+								<span key={`item.id+"w-submenu`}>&raquo;</span>
 							</button>
 							<AlbumNavSubmenu
 								history={history}
@@ -89,7 +87,7 @@ const AlbumNavDropdown = forwardRef(
 								currentUser={currentUser}
 								submenu={item.submenu}
 								submenuState={albumNavSubmenuState}
-								depthLevel={depthLevel+=1}
+								depthLevel={(depthLevel += 1)}
 								// dropdownPosition={dropdownPosition}
 								updateAlbumNavDropdownState={
 									updateAlbumNavDropdownState
@@ -101,8 +99,9 @@ const AlbumNavDropdown = forwardRef(
 								createNewPlaylisted={createNewPlaylisted}
 								createPlaylist={createPlaylist}
 								displayPlaylist={displayPlaylist}
-                                fetchPlaylists={fetchPlaylists}
+								fetchPlaylists={fetchPlaylists}
 								toQueueView={toQueueView}
+								toPlayView={toPlayView}
 							/>
 						</React.Fragment>
 					) : (
@@ -124,8 +123,9 @@ const AlbumNavDropdown = forwardRef(
 							createNewPlaylisted={createNewPlaylisted}
 							createPlaylist={createPlaylist}
 							displayPlaylist={displayPlaylist}
-                            fetchPlaylists={fetchPlaylists}
+							fetchPlaylists={fetchPlaylists}
 							toQueueView={toQueueView}
+							toPlayView={toPlayView}
 						/>
 					)
 				)}

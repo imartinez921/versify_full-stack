@@ -22,7 +22,7 @@ const ArtistPageDropdown = forwardRef(
 			displayPlaylist,
 			fetchPlaylists,
 			toQueueView,
-			toPlayArtist,
+			toPlayView,
 		},
 		ref
 	) => {
@@ -104,6 +104,7 @@ const ArtistPageDropdown = forwardRef(
 								displayPlaylist={displayPlaylist}
 								fetchPlaylists={fetchPlaylists}
 								toQueueView={toQueueView}
+								toPlayView={toPlayView}
 							/>
 						</React.Fragment>
 					) : (
@@ -127,6 +128,7 @@ const ArtistPageDropdown = forwardRef(
 							displayPlaylist={displayPlaylist}
 							fetchPlaylists={fetchPlaylists}
 							toQueueView={toQueueView}
+							toPlayView={toPlayView}
 						/>
 					)
 				)}

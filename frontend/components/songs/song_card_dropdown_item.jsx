@@ -14,8 +14,9 @@ const SongCardDropdownItem = ({
 	createNewPlaylisted,
 	createPlaylist,
 	displayPlaylist,
-    fetchPlaylists,
+	fetchPlaylists,
 	toQueueView,
+	toPlayView,
 }) => {
 	let objToQueue;
 	let selectedPlaylist = playlists[selectedIndex];
@@ -28,6 +29,13 @@ const SongCardDropdownItem = ({
 			sourcedFrom: history.location.pathname,
 		};
 		return toQueueView(objToQueue);
+	};
+	const playNow = (selectedSongArr) => {
+		objToQueue = {
+			viewSongs: selectedSongArr,
+			sourcedFrom: history.location.pathname,
+		};
+		return toPlayView(objToQueue);
 	};
 	const addToPlaylist = async (selectedSongArr) => {
 		const promises = selectedSongArr.map((song) => {
@@ -65,6 +73,13 @@ const SongCardDropdownItem = ({
 		if (e.target.innerText === "Add to queue") {
 			updateSongCardDropdownState({ isOpen: false });
 			return addToQueue(selectedSong);
+		} else if (
+			e.target.innerText === "Play album" ||
+			e.target.innerText === "Play playlist" ||
+			e.target.innerText === "Play artist"
+		) {
+			updateSongCardDropdownState({ isOpen: false });
+			return playNow(selectedSong);
 		} else if (e.target.innerText === "Remove from this playlist") {
 			updateSongCardDropdownState({ isOpen: false });
 			return removePlaylisted(selectedSong[0].playlistedId);

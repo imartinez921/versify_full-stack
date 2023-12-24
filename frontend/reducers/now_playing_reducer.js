@@ -55,6 +55,7 @@ const nowPlayingReducer = (
 					sourcedFrom: action.sourcedFrom,
 				});
 			}
+			newPlayState.isPlaying = true;
 			console.log("NEW QUEUE", newPlayState.queue);
 			return newPlayState;
 		default:
