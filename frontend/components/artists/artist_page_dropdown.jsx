@@ -1,28 +1,48 @@
-import React, { useEffect, forwardRef } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 
-import ArtistPageDropdownItem from "./artist_page_dropdown_item";
+import SongCardDropdownItem from "../songs/song_card_dropdown_item";
+import AlbumNavSubmenu from "../albums/album_nav_submenu";
+import AlbumNavDropdown from "../albums/album_nav_dropdown";
 
 const ArtistPageDropdown = forwardRef(
 	(
-		{ // unused props will be for submenu refactoring
-			playlists,
-			allSongs,
-			handleAddToQueue,
+		{
 			history,
-			artistPageDropdownState,
-			toggleArtistPageDropdown,
+			songs,
+			playlists,
+			currentItem,
+			currentUser,
+			albumNavDropdownState,
+			updateAlbumNavDropdownState,
 			items,
+			depthLevel,
+			removePlaylisted,
+			createNewPlaylisted,
+			createPlaylist,
+			displayPlaylist,
+			fetchPlaylists,
+			toQueueView,
+			toPlayView,
 		},
 		ref
 	) => {
+		// Set local state for albumNavSubmenu
+		const [albumNavSubmenuState, setAlbumNavSubmenuState] = useState({
+			isOpen: false,
+		});
+		const updateAlbumNavSubmenuState = (newState) => {
+			setAlbumNavSubmenuState(newState);
+		};
+
+		// Add event listeners when menu is open; remove when menu is closed
 		useEffect(() => {
 			const whenMenuIsOpen = (event) => {
 				if (
-					artistPageDropdownState.isOpen &&
+					albumNavDropdownState.isOpen &&
 					ref?.current &&
 					!ref?.current?.contains(event.target)
 				) {
-					toggleArtistPageDropdown();
+					updateAlbumNavDropdownState({ isOpen: false });
 				}
 			};
 			document.addEventListener("mousedown", whenMenuIsOpen);
@@ -32,38 +52,87 @@ const ArtistPageDropdown = forwardRef(
 				document.removeEventListener("mousedown", whenMenuIsOpen);
 				document.removeEventListener("touchstart", whenMenuIsOpen);
 			};
-		}, [artistPageDropdownState]);
+		}, [albumNavDropdownState]);
 
-		const keepDropdownOpen = (event) => {
-			event.stopPropagation();
-			// prevents re-rendering of parent and keeps menu open
-
-			switch (
-				event.target.innerText // TODO: Fill out dropdown actions
-			) {
-				default:
-					null;
-			}
+		const toggleSubmenuAndPlaceDropdown = (e) => {
+			e.preventDefault();
+			setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
 		};
 
 		return (
-			<>
-				<div className="dropdown-item artist-dropdown" ref={ref}>
-					{items.map((item, index) =>
-						item.submenu ? (
-							{
-								/* TODO: Implement submenu logic */
-							}
-						) : (
-							<ArtistPageDropdownItem
-								key={`${item.id} + ${index}`}
-								item={item}
-								handleAddToQueue={handleAddToQueue}
+			<div
+				className={`album-nav-dropdown dropdown-submenu ${
+					albumNavDropdownState.isOpen ? "show" : ""
+				}`}
+				data-dropdown
+				ref={ref}
+			>
+				{items.map((item, index) =>
+					item.submenu ? (
+						// If a submenu exists, create button for submenu title and pass submenu to AlbumNavSubmenu
+						<React.Fragment
+							key={`"artistdropdown"+${item.id}+"w-submenu"`}
+						>
+							<button
+								className="song-card-dropdown-item"
+								onClick={toggleSubmenuAndPlaceDropdown}
+							>
+								{item.title}{" "}
+								<span key={`"item.id"+"w-submenu"`}>
+									&raquo;
+								</span>
+							</button>
+							<AlbumNavSubmenu
+								history={history}
+								songs={songs}
+								playlists={playlists}
+								currentItem={currentItem}
+								currentUser={currentUser}
+								submenu={item.submenu}
+								submenuState={albumNavSubmenuState}
+								depthLevel={(depthLevel += 1)}
+								// dropdownPosition={dropdownPosition}
+								updateAlbumNavDropdownState={
+									updateAlbumNavDropdownState
+								}
+								updateAlbumNavSubmenuState={
+									updateAlbumNavSubmenuState
+								}
+								removePlaylisted={removePlaylisted}
+								createNewPlaylisted={createNewPlaylisted}
+								createPlaylist={createPlaylist}
+								displayPlaylist={displayPlaylist}
+								fetchPlaylists={fetchPlaylists}
+								toQueueView={toQueueView}
+								toPlayView={toPlayView}
 							/>
-						)
-					)}
-				</div>
-			</>
+						</React.Fragment>
+					) : (
+						<SongCardDropdownItem // Else, create just a button
+							key={`artistdropdown-subm-button" + ${item.id}`}
+							history={history}
+							currentItem={currentItem}
+							currentUser={currentUser}
+							playlists={playlists}
+							selectedIndex={index - 1} // Since the first item is "Create new playlist"
+							selectedSong={songs}
+							updateSongCardDropdownState={
+								updateAlbumNavDropdownState
+							}
+							item={item}
+							depthLevel={depthLevel}
+							// dropdownPosition={dropdownPosition}
+							removePlaylisted={removePlaylisted}
+							createNewPlaylisted={createNewPlaylisted}
+							createPlaylist={createPlaylist}
+							displayPlaylist={displayPlaylist}
+							fetchPlaylists={fetchPlaylists}
+							toQueueView={toQueueView}
+							toPlayView={toPlayView}
+						/>
+					)
+				)}
+			</div>
 		);
 	}
 );

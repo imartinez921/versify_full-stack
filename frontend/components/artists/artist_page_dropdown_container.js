@@ -1,31 +1,49 @@
 import { connect } from "react-redux";
-import { toQueueArtist } from "../../actions/now_playing_actions";
+
+import {
+	removePlaylisted,
+	createNewPlaylisted,
+} from "../../actions/playlisted_actions";
+import {
+	createPlaylist,
+	displayPlaylist,
+	fetchPlaylists,
+} from "../../actions/playlist_actions";
+import {
+	toQueueView,
+	toPlayArtist,
+	toPlayView,
+} from "../../actions/now_playing_actions";
 
 import ArtistPageDropdown from "./artist_page_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
+	;
 	return {
-		playlists: state.entities.playlists,
-		allSongs: state.entities.songs.allSongs,
-		handleAddToQueue: ownProps.handleAddToQueue,
-		history: ownProps.history,
-		artistPageDropdownState: ownProps.artistPageDropdownState,
 		ref: ownProps.ref,
+		history: ownProps.history,
+		songs: state.entities.songs.allSongs,
+		playlists: state.entities.playlists,
+		currentItem: state.entities.currentItem,
+		currentUser: state.entities.users[state.session.id],
+		artistPageDropdownState: ownProps.artistPageDropdownState,
 		toggleArtistPageDropdown: ownProps.toggleArtistPageDropdown,
+		depthLevel: 0,
 		items: [
-			// TODO: Implement adding artist songs to playlist
-			// {title: "Add to playlist",
-			// submenu: [
-			// 	[
-			// 		{
-			// 			title: "Create new playlist",
-			// 		},
-			// 		...playlists,
-			// 		// Enclose array of playlists in an array since
-			// 		// dropdown uses recursive .map function on items prop
-			// 	],
-			// ],
-			// },
+			{ title: "Play artist", id: `${crypto.randomUUID()}` },
+			{
+				title: "Add to playlist",
+				id: `${crypto.randomUUID()}`,
+				submenu: [
+					{
+						title: "Create new playlist",
+						id: `${crypto.randomUUID()}`,
+					},
+					...state.entities.playlists,
+					// Do not enclose array of playlists in an array since
+					// we are not using recursive function here
+				],
+			},
 			{
 				title: "Add to queue",
 				id: `${crypto.randomUUID()}`,
@@ -36,7 +54,15 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	toQueueArtist: (objToQueue) => dispatch(toQueueArtist(objToQueue)),
+	removePlaylisted: (playlistedId) =>
+		dispatch(removePlaylisted(playlistedId)),
+	createNewPlaylisted: (songId, playlistId) =>
+		dispatch(createNewPlaylisted(songId, playlistId)),
+	createPlaylist: (playlist) => dispatch(createPlaylist(playlist)),
+	displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
+	fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+	toQueueView: (objToQueue) => dispatch(toQueueView(objToQueue)),
+	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

@@ -14,25 +14,30 @@ const SongCardDropdownItem = ({
 	createNewPlaylisted,
 	createPlaylist,
 	displayPlaylist,
-    fetchPlaylists,
+	fetchPlaylists,
 	toQueueView,
+	toPlayView,
 }) => {
-    console.log("currentUser", currentUser)
 	let objToQueue;
 	let selectedPlaylist = playlists[selectedIndex];
 	if (selectedSong.constructor !== Array) selectedSong = [selectedSong];
 
 	// Define all song actions
 	const addToQueue = (selectedSongArr) => {
-		debugger;
 		objToQueue = {
 			viewSongs: selectedSongArr,
 			sourcedFrom: history.location.pathname,
 		};
 		return toQueueView(objToQueue);
 	};
+	const playNow = (selectedSongArr) => {
+		objToQueue = {
+			viewSongs: selectedSongArr,
+			sourcedFrom: history.location.pathname,
+		};
+		return toPlayView(objToQueue);
+	};
 	const addToPlaylist = async (selectedSongArr) => {
-		debugger;
 		const promises = selectedSongArr.map((song) => {
 			return createNewPlaylisted(song.id, selectedPlaylist.id);
 		});
@@ -45,11 +50,10 @@ const SongCardDropdownItem = ({
 	};
 
 	const makeIntoPlaylist = async (selectedSongArr) => {
-		debugger;
 		let title =
 			selectedSongArr.length === 1
 				? selectedSongArr[0].title
-				: currentItem.title;
+				: currentItem.title || currentItem.name;
 		const newPlaylist = {
 			title: title,
 			description: "Please add a description",
@@ -69,9 +73,16 @@ const SongCardDropdownItem = ({
 		if (e.target.innerText === "Add to queue") {
 			updateSongCardDropdownState({ isOpen: false });
 			return addToQueue(selectedSong);
+		} else if (
+			e.target.innerText === "Play album" ||
+			e.target.innerText === "Play playlist" ||
+			e.target.innerText === "Play artist"
+		) {
+			updateSongCardDropdownState({ isOpen: false });
+			return playNow(selectedSong);
 		} else if (e.target.innerText === "Remove from this playlist") {
 			updateSongCardDropdownState({ isOpen: false });
-			return removePlaylisted(selectedSong.playlistedId);
+			return removePlaylisted(selectedSong[0].playlistedId);
 		} else if (e.target.innerText === "Create new playlist") {
 			updateSongCardDropdownState({ isOpen: false });
 			makeIntoPlaylist(selectedSong);
@@ -79,7 +90,6 @@ const SongCardDropdownItem = ({
 				fetchPlaylists();
 			}, 0);
 		} else if (depthLevel === 1) {
-            debugger
 			updateSongCardDropdownState({ isOpen: false });
 			addToPlaylist(selectedSong);
 		}

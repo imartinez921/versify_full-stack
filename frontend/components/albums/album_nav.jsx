@@ -23,6 +23,7 @@ const AlbumNav = ({ tracks, playlists, history }) => {
 	};
 
 	const albumNavDropdownItems = [
+		{ title: "Play album", id: `${crypto.randomUUID()}` },
 		{
 			title: "Add to queue",
 		},

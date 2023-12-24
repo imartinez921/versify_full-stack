@@ -13,7 +13,6 @@ const ArtistShow = ({
 	isPlaying,
 	currentQueueSource,
 	urlParams,
-	currentUser,
 	history,
 	displayArtist,
 	displayAlbum,
@@ -51,13 +50,13 @@ const ArtistShow = ({
 						<ArtistPageMenuBar
 							artistShowRef={artistShowRef}
 							allSongs={allSongs}
+							history={history}
 							isPlaying={isPlaying}
 							currentQueueSource={currentQueueSource}
 							toTogglePlay={toTogglePlay}
 							toQueueArtist={toQueueArtist}
 							toPlayArtist={toPlayArtist}
 							toPushPlay={toPushPlay}
-							history={history}
 						/>
 					</div>
 					{albums?.length > 0 && (

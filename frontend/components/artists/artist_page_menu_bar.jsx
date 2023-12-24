@@ -11,13 +11,13 @@ import {
 const ArtistPageMenuBar = ({
 	artistShowRef,
 	allSongs,
+	history,
 	isPlaying,
 	currentQueueSource,
 	toTogglePlay,
 	toQueueArtist,
 	toPlayArtist,
 	toPushPlay,
-	history,
 }) => {
 	const [artistPageDropdownState, setArtistPageDropdownState] = useState({
 		isOpen: false,
@@ -66,9 +66,7 @@ const ArtistPageMenuBar = ({
 		<>
 			<div id="artist-play-button" onClick={handleButtonClick}>
 				{isPlaying &&
-				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom &&
-				objToQueue.extractedUrlParams ===
-					currentQueueSource.extractedUrlParams ? (
+				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom ? (
 					<MdOutlinePauseCircleFilled />
 				) : (
 					<MdOutlinePlayCircleFilled />
@@ -79,11 +77,10 @@ const ArtistPageMenuBar = ({
 			</div>
 			{artistPageDropdownState.isOpen && (
 				<ArtistPageDropdownContainer
-					handleAddToQueue={handleAddToQueue}
 					history={history}
-					artistPageDropdownState={artistPageDropdownState}
+					albumNavDropdownState={artistPageDropdownState}
 					ref={dropdownRef}
-					toggleArtistPageDropdown={toggleArtistPageDropdown}
+					updateAlbumNavDropdownState={toggleArtistPageDropdown}
 				/>
 			)}
 		</>

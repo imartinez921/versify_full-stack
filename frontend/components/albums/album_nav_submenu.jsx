@@ -6,7 +6,6 @@ const AlbumNavSubmenu = ({
 	history,
 	songs,
 	playlists,
-	selectedSong,
 	currentItem,
 	currentUser,
 	submenu,
@@ -20,6 +19,7 @@ const AlbumNavSubmenu = ({
 	displayPlaylist,
 	fetchPlaylists,
 	toQueueView,
+	toPlayView,
 }) => {
 	const dropdownClass = depthLevel > 0 ? "dropdown-submenu" : "";
 
@@ -56,7 +56,7 @@ const AlbumNavSubmenu = ({
 			{submenu.map((item, index) => {
 				return (
 					<SongCardDropdownItem // Else, create just a button
-						key={`${selectedSong.playlistedId}+${item.id}+${depthLevel}+"no-subm"`}
+						key={`"albumnav-submenu"+${depthLevel}+${item.id}`}
 						history={history}
 						currentItem={currentItem}
 						currentUser={currentUser}
@@ -75,6 +75,7 @@ const AlbumNavSubmenu = ({
 						displayPlaylist={displayPlaylist}
 						fetchPlaylists={fetchPlaylists}
 						toQueueView={toQueueView}
+						toPlayView={toPlayView}
 					/>
 				);
 			})}

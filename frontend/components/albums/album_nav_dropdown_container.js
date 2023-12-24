@@ -9,7 +9,7 @@ import {
 	displayPlaylist,
 	fetchPlaylists,
 } from "../../actions/playlist_actions";
-import { toQueueView, toPlayAlbum } from "../../actions/now_playing_actions";
+import { toQueueView, toPlayView } from "../../actions/now_playing_actions";
 import AlbumNavDropdown from "./album_nav_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,7 +18,6 @@ const mapStateToProps = (state, ownProps) => {
 		history: ownProps.history,
 		songs: state.entities.songs,
 		playlists: state.entities.playlists,
-		selectedSong: state.entities.songs,
 		currentItem: state.entities.currentItem,
 		currentUser: state.entities.users[state.session.id],
 		albumNavDropdownState: ownProps.albumNavDropdownState,
@@ -38,7 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 	displayPlaylist: (playlistId) => dispatch(displayPlaylist(playlistId)),
 	fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 	toQueueView: (objToQueue) => dispatch(toQueueView(objToQueue)),
-	toPlayAlbum: (objToQueue) => dispatch(toPlayAlbum(objToQueue)),
+	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
