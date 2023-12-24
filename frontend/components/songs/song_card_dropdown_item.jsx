@@ -53,7 +53,7 @@ const SongCardDropdownItem = ({
 		let title =
 			selectedSongArr.length === 1
 				? selectedSongArr[0].title
-				: currentItem.title;
+				: currentItem.title || currentItem.name;
 		const newPlaylist = {
 			title: title,
 			description: "Please add a description",
