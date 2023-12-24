@@ -14,29 +14,30 @@ import { toQueueView, toPlayArtist } from "../../actions/now_playing_actions";
 import ArtistPageDropdown from "./artist_page_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
+	;
 	return {
-		playlists: state.entities.playlists,
-		songs: state.entities.songs.allSongs,
-		currentItem: state.entities.currentItem,
-		history: ownProps.history,
-		artistPageDropdownState: ownProps.artistPageDropdownState,
 		ref: ownProps.ref,
+		history: ownProps.history,
+		songs: state.entities.songs,
+		playlists: state.entities.playlists,
+		currentItem: state.entities.currentItem,
+		currentUser: state.entities.users[state.session.id],
+		artistPageDropdownState: ownProps.artistPageDropdownState,
 		toggleArtistPageDropdown: ownProps.toggleArtistPageDropdown,
+		depthLevel: 0,
 		items: [
 			{ title: "Play artist", id: `${crypto.randomUUID()}` },
 			{
 				title: "Add to playlist",
 				id: `${crypto.randomUUID()}`,
 				submenu: [
-					[
-						{
-							title: "Create new playlist",
-							id: `${crypto.randomUUID()}`,
-						},
-						...state.entities.playlists,
-						// Enclose array of playlists in an array since
-						// dropdown uses recursive .map function on items prop
-					],
+					{
+						title: "Create new playlist",
+						id: `${crypto.randomUUID()}`,
+					},
+					...state.entities.playlists,
+					// Do not enclose array of playlists in an array since
+					// we are not using recursive function here
 				],
 			},
 			{

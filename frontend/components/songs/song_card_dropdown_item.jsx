@@ -17,7 +17,6 @@ const SongCardDropdownItem = ({
     fetchPlaylists,
 	toQueueView,
 }) => {
-    console.log("currentUser", currentUser)
 	let objToQueue;
 	let selectedPlaylist = playlists[selectedIndex];
 	if (selectedSong.constructor !== Array) selectedSong = [selectedSong];
@@ -76,7 +75,6 @@ const SongCardDropdownItem = ({
 				fetchPlaylists();
 			}, 0);
 		} else if (depthLevel === 1) {
-            debugger
 			updateSongCardDropdownState({ isOpen: false });
 			addToPlaylist(selectedSong);
 		}

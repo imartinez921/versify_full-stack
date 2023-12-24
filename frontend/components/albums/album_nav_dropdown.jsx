@@ -57,7 +57,6 @@ const AlbumNavDropdown = forwardRef(
 			e.preventDefault();
 			setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
 		};
-        debugger
 		return (
 			<div
 				className={`album-nav-dropdown dropdown-submenu ${
