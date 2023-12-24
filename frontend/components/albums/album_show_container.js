@@ -23,7 +23,6 @@ const mapStateToProps = (
 		currentUser: currentUser,
 		source: "album",
 		songCardDropdownItems: [
-			{ title: "Play album", id: `${crypto.randomUUID()}` },
 			{ title: "Add to queue", id: `${crypto.randomUUID()}` },
 			{
 				title: "Add to playlist", id: `${crypto.randomUUID()}` ,
