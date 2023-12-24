@@ -67,7 +67,7 @@ const SongCardDropdownItem = ({
 			return addToQueue(selectedSong);
 		} else if (e.target.innerText === "Remove from this playlist") {
 			updateSongCardDropdownState({ isOpen: false });
-			return removePlaylisted(selectedSong.playlistedId);
+			return removePlaylisted(selectedSong[0].playlistedId);
 		} else if (e.target.innerText === "Create new playlist") {
 			updateSongCardDropdownState({ isOpen: false });
 			makeIntoPlaylist(selectedSong);
