@@ -1,28 +1,28 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 
-import AlbumNavDropdownContainer from "./album_nav_dropdown_container";
+import AlbumDropdownContainer from "./album_dropdown_container";
 
 import { RxDotsHorizontal } from "react-icons/rx";
 import { GrPlayFill } from "react-icons/gr";
 
-const AlbumNav = ({ tracks, playlists, history }) => {
-	// Set local states for AlbumNavDropdownState
-	const [albumNavDropdownState, setAlbumNavDropdownState] = useState({
+const AlbumMenuBar = ({ tracks, playlists, history }) => {
+	// Set local states for AlbumDropdownState
+	const [albumDropdownState, setAlbumDropdownState] = useState({
 		isOpen: false,
 	});
 
 	// Updater functions for local states
-	const updateAlbumNavDropdownState = (newState) => {
-		setAlbumNavDropdownState(newState);
+	const updateAlbumDropdownState = (newState) => {
+		setAlbumDropdownState(newState);
 	};
 
-	const toggleAlbumNavDropdown = (e) => {
+	const toggleAlbumDropdown = (e) => {
 		e.preventDefault();
-		setAlbumNavDropdownState({ isOpen: !albumNavDropdownState.isOpen });
+		setAlbumDropdownState({ isOpen: !albumDropdownState.isOpen });
 	};
 
-	const albumNavDropdownItems = [
+	const albumDropdownItems = [
 		{ title: "Play album", id: `${crypto.randomUUID()}` },
 		{
 			title: "Add to queue",
@@ -45,25 +45,25 @@ const AlbumNav = ({ tracks, playlists, history }) => {
 		sourcedFrom: history.location.pathname,
 	}; // provides linkback to view currently playing
 
-	const albumNavRef = useRef();
+	const albumRef = useRef();
 
 	return (
 		<>
 			<div id="playlist-play-button">
 				<GrPlayFill />
 			</div>
-			<div id="playlist-dropdown-dots" onClick={toggleAlbumNavDropdown}>
+			<div id="playlist-dropdown-dots" onClick={toggleAlbumDropdown}>
 				<RxDotsHorizontal />
 			</div>
-			<AlbumNavDropdownContainer
-				ref={albumNavRef}
+			<AlbumDropdownContainer
+				ref={albumRef}
 				history={history}
-				albumNavDropdownState={albumNavDropdownState}
-				items={albumNavDropdownItems}
-				updateAlbumNavDropdownState={updateAlbumNavDropdownState}
+				albumDropdownState={albumDropdownState}
+				items={albumDropdownItems}
+				updateAlbumDropdownState={updateAlbumDropdownState}
 			/>
 		</>
 	);
 };
 
-export default AlbumNav;
+export default AlbumMenuBar;

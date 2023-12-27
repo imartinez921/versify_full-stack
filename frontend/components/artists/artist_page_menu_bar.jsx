@@ -78,9 +78,9 @@ const ArtistPageMenuBar = ({
 			{artistPageDropdownState.isOpen && (
 				<ArtistPageDropdownContainer
 					history={history}
-					albumNavDropdownState={artistPageDropdownState}
+					albumDropdownState={artistPageDropdownState}
 					ref={dropdownRef}
-					updateAlbumNavDropdownState={toggleArtistPageDropdown}
+					updateAlbumDropdownState={toggleArtistPageDropdown}
 				/>
 			)}
 		</>

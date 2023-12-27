@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 import AlbumHeader from "./album_header";
-import AlbumNav from "./album_nav";
+import AlbumMenuBar from "./album_menu_bar";
 import SongIndex from "../songs/song_index";
 
 const AlbumShow = ({
@@ -32,8 +32,8 @@ const AlbumShow = ({
 			<div className="album-header">
 				<AlbumHeader album={currentAlbum} history={history} />
 			</div>
-			<div className="album-nav">
-				<AlbumNav
+			<div className="album-menu">
+				<AlbumMenuBar
 					currentUser={currentUser}
 					tracks={tracks}
 					playlists={playlists}
