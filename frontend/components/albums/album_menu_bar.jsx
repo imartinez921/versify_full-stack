@@ -4,9 +4,23 @@ import { useState, useEffect, useRef } from "react";
 import AlbumDropdownContainer from "./album_dropdown_container";
 
 import { RxDotsHorizontal } from "react-icons/rx";
-import { GrPlayFill } from "react-icons/gr";
+import {
+	MdOutlinePlayCircleFilled,
+	MdOutlinePauseCircleFilled,
+} from "react-icons/md";
 
-const AlbumMenuBar = ({ tracks, playlists, history }) => {
+const AlbumMenuBar = ({
+	currentUser,
+	isPlaying,
+	currentQueueSource,
+	tracks,
+	playlists,
+	history,
+	toPlayAlbum,
+	toPushPlay,
+	toTogglePlay,
+}) => {
+	console.log(toPushPlay)
 	// Set local states for AlbumDropdownState
 	const [albumDropdownState, setAlbumDropdownState] = useState({
 		isOpen: false,
@@ -20,6 +34,24 @@ const AlbumMenuBar = ({ tracks, playlists, history }) => {
 	const toggleAlbumDropdown = (e) => {
 		e.preventDefault();
 		setAlbumDropdownState({ isOpen: !albumDropdownState.isOpen });
+	};
+
+	const objToQueue = {
+		albumSongs: tracks,
+		sourcedFrom: history.location.pathname,
+	}; // provides linkback to view currently playing
+
+	const handleButtonClick = (e) => {
+		e.preventDefault();
+		if (
+			!!currentQueueSource &&
+			objToQueue.sourcedFrom === currentQueueSource.sourcedFrom
+		) {
+			toTogglePlay();
+		} else {
+			toPlayAlbum(objToQueue);
+			toPushPlay();
+		}
 	};
 
 	const albumDropdownItems = [
@@ -40,17 +72,17 @@ const AlbumMenuBar = ({ tracks, playlists, history }) => {
 		},
 	];
 
-	const objToQueue = {
-		viewSongs: tracks,
-		sourcedFrom: history.location.pathname,
-	}; // provides linkback to view currently playing
-
 	const albumRef = useRef();
 
 	return (
 		<>
-			<div id="playlist-play-button">
-				<GrPlayFill />
+			<div id="artist-play-button" onClick={handleButtonClick}>
+				{isPlaying &&
+				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom ? (
+					<MdOutlinePauseCircleFilled />
+				) : (
+					<MdOutlinePlayCircleFilled />
+				)}
 			</div>
 			<div id="playlist-dropdown-dots" onClick={toggleAlbumDropdown}>
 				<RxDotsHorizontal />

@@ -4,6 +4,8 @@ import {
 	QUEUE_PLAYLIST,
 	QUEUE_VIEW,
 	PLAY_PLAYLIST,
+	QUEUE_ALBUM,
+	PLAY_ALBUM,
 	PUSH_PLAY,
 	PLAY_VIEW,
 } from "../actions/now_playing_actions";
@@ -47,6 +49,7 @@ const nowPlayingReducer = (
 			return newPlayState;
 		case PLAY_ARTIST:
 		case PLAY_PLAYLIST:
+		case PLAY_ALBUM:
 		case PLAY_VIEW:
 			newPlayState.queue = action.songs; // Replace the entire queue
 			newPlayState.queueSources = []; // Reset queueSources for new queue

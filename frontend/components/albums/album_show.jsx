@@ -11,9 +11,14 @@ const AlbumShow = ({
 	urlParams,
 	history,
 	currentUser,
+	isPlaying,
+	currentQueueSource,
 	source,
 	songCardDropdownItems,
 	displayAlbum,
+	toPlayAlbum,
+	toPushPlay,
+	toTogglePlay,
 	clearCurrent,
 }) => {
 	useEffect(() => {
@@ -35,9 +40,14 @@ const AlbumShow = ({
 			<div className="album-menu">
 				<AlbumMenuBar
 					currentUser={currentUser}
+					isPlaying={isPlaying}
+					currentQueueSource={currentQueueSource}
 					tracks={tracks}
 					playlists={playlists}
 					history={history}
+					toPlayAlbum={toPlayAlbum}
+					toPushPlay={toPushPlay}
+					toTogglePlay={toTogglePlay}
 				/>
 			</div>
 			<SongIndex

@@ -1,12 +1,16 @@
 import { connect } from "react-redux";
 import { clearCurrent } from "../../actions/playlist_actions";
 import { displayAlbum } from "../../actions/album_actions";
+import { toPlayAlbum,
+	toPushPlay,
+	toTogglePlay,
+} from "../../actions/now_playing_actions";
 
 import AlbumShow from "./album_show";
 
 const mapStateToProps = (
 	// from state
-	{ entities: { currentItem, songs, playlists } },
+	{ entities: { currentItem, songs, playlists, nowPlaying} },
 	// from ownProps
 	{ params, history, currentUser }
 ) => {
@@ -17,6 +21,8 @@ const mapStateToProps = (
 		urlParams: params,
 		history: history,
 		currentUser: currentUser,
+		isPlaying: nowPlaying.isPlaying,
+		currentQueueSource: nowPlaying.queueSources[0],
 		source: "album",
 		songCardDropdownItems: [
 			{ title: "Add to queue", id: `${crypto.randomUUID()}` },
@@ -38,6 +44,9 @@ const mapStateToProps = (
 
 const mapDispatchToProps = (dispatch) => ({
 	displayAlbum: (albumId) => dispatch(displayAlbum(albumId)),
+	toPlayAlbum: (objToQueue) => dispatch(toPlayAlbum(objToQueue)),
+	toPushPlay: () => dispatch(toPushPlay()),
+	toTogglePlay: () => dispatch(toTogglePlay()),
 	clearCurrent: () => dispatch(clearCurrent()),
 });
 

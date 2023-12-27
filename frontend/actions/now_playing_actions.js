@@ -60,7 +60,7 @@ const playPlaylist = (objToQueue) => ({
 });
 
 const playAlbum = (objToQueue) => ({
-	//{albumSongs:arr, sourcedFrom:str, extractedUrlParams:numStr}
+	//{albumSongs:arr, sourcedFrom:str}
 	type: PLAY_ALBUM,
 	songs: objToQueue.albumSongs,
 	sourcedFrom: objToQueue.sourcedFrom,
