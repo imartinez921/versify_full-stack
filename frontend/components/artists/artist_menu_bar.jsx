@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import ArtistPageDropdownContainer from "./artist_page_dropdown_container";
+import ArtistDropdownContainer from "./artist_dropdown_container";
 
 import { RxDotsHorizontal } from "react-icons/rx";
 import {
@@ -8,27 +8,31 @@ import {
 } from "react-icons/md";
 
 // Dropdown functionality using local states and useRefs
-const ArtistPageMenuBar = ({
+const ArtistMenuBar = ({
 	artistShowRef,
 	allSongs,
 	history,
 	isPlaying,
 	currentQueueSource,
 	toTogglePlay,
-	toQueueArtist,
 	toPlayArtist,
 	toPushPlay,
 }) => {
-	const [artistPageDropdownState, setArtistPageDropdownState] = useState({
+	const [artistDropdownState, setArtistDropdownState] = useState({
 		isOpen: false,
 	});
-	const toggleArtistPageDropdown = () => {
-		setArtistPageDropdownState({ isOpen: !artistPageDropdownState.isOpen });
+
+	// Updater functions for local states
+	const updateArtistDropdownState = (newState) => {
+		setArtistDropdownState(newState);
+	};
+	const toggleArtistDropdown = () => {
+		setArtistDropdownState({ isOpen: !artistDropdownState.isOpen });
 	};
 
 	// Prevent ArtistShow from scrolling when dropdown is open
 	if (artistShowRef && artistShowRef.current) {
-		if (artistPageDropdownState.isOpen) {
+		if (artistDropdownState.isOpen) {
 			artistShowRef.current.style.overflowY = "hidden";
 		} else {
 			artistShowRef.current.style.overflowY = "auto";
@@ -54,12 +58,6 @@ const ArtistPageMenuBar = ({
 		}
 	};
 
-	const handleAddToQueue = (e) => {
-		e.preventDefault();
-		toQueueArtist(objToQueue);
-		setArtistPageDropdownState({ isOpen: false });
-	};
-
 	// Create dropdown ref in parent component in order to wrap Redux container
 	const dropdownRef = useRef();
 	return (
@@ -73,18 +71,18 @@ const ArtistPageMenuBar = ({
 				)}
 			</div>
 			<div id="artist-dropdown-dots">
-				<RxDotsHorizontal onClick={toggleArtistPageDropdown} />
+				<RxDotsHorizontal onClick={toggleArtistDropdown} />
 			</div>
-			{artistPageDropdownState.isOpen && (
-				<ArtistPageDropdownContainer
+			{artistDropdownState.isOpen && (
+				<ArtistDropdownContainer
 					history={history}
-					albumNavDropdownState={artistPageDropdownState}
+					artistDropdownState={artistDropdownState}
 					ref={dropdownRef}
-					updateAlbumNavDropdownState={toggleArtistPageDropdown}
+					updateArtistDropdownState={updateArtistDropdownState}
 				/>
 			)}
 		</>
 	);
 };
 
-export default ArtistPageMenuBar;
+export default ArtistMenuBar;

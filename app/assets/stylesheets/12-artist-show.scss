@@ -46,8 +46,8 @@
     max-height: 105pt;
 }
 
-// ArtistPageMenuBar
-.artist-nav {
+// ArtistMenuBar
+.artist-menu {
     flex: 0 0 auto;
     display: flex;
     background: #1a1816e6;
@@ -58,10 +58,17 @@
 }
 
 .artist-dropdown {
-    left: 169px;
-    top: 386px;
-    align-items: flex-start;
-    min-width: 140px;
+    font-size: 15px;
+    z-index: 2;
+    width: 150px;
+    height: auto;
+    padding: 3px;
+    background-color: #282828;
+    position: absolute;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3), 0 6px 8px rgba(0, 0, 0, 0.2);
+    left: 165px;
 }
 
 #artist-play-button {

@@ -5,6 +5,7 @@ const PlaylistNavDropdown = ({
     objToQueue,
     history,
     currentPlaylist,
+	playlistSongs,
     playlistNavDropdownState,
     playlistEditModalState,
     closePlaylistNavDropdown,
@@ -14,6 +15,7 @@ const PlaylistNavDropdown = ({
     editPlaylist,
     destroyPlaylist,
     toQueuePlaylist,
+	toPlayView,
 }) => {
 	useEffect(() => {
 		// UseEffect takes 2 args, a callback function and an array of dependencies
@@ -39,12 +41,21 @@ const PlaylistNavDropdown = ({
 		};
 	}, []);
 
+	const playNow = (songsArr) => {
+		objToQueue = {
+			viewSongs: songsArr,
+			sourcedFrom: history.location.pathname,
+		};
+		return toPlayView(objToQueue);
+	};
 
 	const keepDropdownOpen = (event) => {
 		event.stopPropagation();
 		// prevents re-rendering of parent and keeps menu open
-
 		switch (event.target.innerText) {
+			case "Play playlist":
+				playNow(playlistSongs);
+				return closePlaylistNavDropdown();
 			case "Edit details":
 				openPlaylistEditModal();
 				return console.log("OPEN EDIT MODAL");
@@ -65,6 +76,9 @@ const PlaylistNavDropdown = ({
 				className="dropdown-item playlist-dropdown"
 				onClick={keepDropdownOpen}
 			>
+				<button className="playlist-dropdown-button">
+					Play playlist
+				</button>
 				<button className="playlist-dropdown-button">
 					Edit details
 				</button>

@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
 
-const AlbumNavSubmenu = ({
+const Submenu = ({
 	history,
 	songs,
 	playlists,
@@ -11,8 +11,8 @@ const AlbumNavSubmenu = ({
 	submenu,
 	submenuState,
 	depthLevel,
-	updateAlbumNavDropdownState,
-	updateAlbumNavSubmenuState,
+	updateDropdownState,
+	updateSubmenuState,
 	removePlaylisted,
 	createNewPlaylisted,
 	createPlaylist,
@@ -32,8 +32,8 @@ const AlbumNavSubmenu = ({
 				ref?.current &&
 				!ref?.current?.contains(event.target)
 			) {
-				updateAlbumNavDropdownState({ isOpen: false });
-				updateAlbumNavSubmenuState({ isOpen: false });
+				updateDropdownState({ isOpen: false });
+				updateSubmenuState({ isOpen: false });
 			}
 		};
 		document.addEventListener("mousedown", whenMenuIsOpen);
@@ -47,7 +47,7 @@ const AlbumNavSubmenu = ({
 
 	return (
 		<div
-			className={`song-card-dropdown album-nav-dropdown album-nav-submenu dropdown-submenu ${dropdownClass} ${
+			className={`song-card-dropdown album-dropdown album-submenu dropdown-submenu ${dropdownClass} ${
 				submenuState.isOpen ? "show" : ""
 			}`}
 			ref={ref}
@@ -56,16 +56,14 @@ const AlbumNavSubmenu = ({
 			{submenu.map((item, index) => {
 				return (
 					<SongCardDropdownItem // Else, create just a button
-						key={`"albumnav-submenu"+${depthLevel}+${item.id}`}
+						key={`"albummenu-submenu"+${depthLevel}+${item.id}`}
 						history={history}
 						currentItem={currentItem}
 						currentUser={currentUser}
 						playlists={playlists}
 						selectedIndex={index - 1} // Since the first item is "Create new playlist"
 						selectedSong={songs}
-						updateSongCardDropdownState={
-							updateAlbumNavDropdownState
-						}
+						updateSongCardDropdownState={updateDropdownState}
 						item={item}
 						depthLevel={depthLevel}
 						// dropdownPosition={dropdownPosition}
@@ -83,4 +81,4 @@ const AlbumNavSubmenu = ({
 	);
 };
 
-export default AlbumNavSubmenu;
+export default Submenu;

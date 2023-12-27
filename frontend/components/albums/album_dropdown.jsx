@@ -1,9 +1,9 @@
 import React, { useState, useEffect, forwardRef } from "react";
 
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
-import AlbumNavSubmenu from "./album_nav_submenu";
+import Submenu from "../shared/submenu";
 
-const AlbumNavDropdown = forwardRef(
+const AlbumDropdown = forwardRef(
 	(
 		{
 			history,
@@ -11,8 +11,8 @@ const AlbumNavDropdown = forwardRef(
 			playlists,
 			currentItem,
 			currentUser,
-			albumNavDropdownState,
-			updateAlbumNavDropdownState,
+			albumDropdownState,
+			updateAlbumDropdownState,
 			items,
 			depthLevel,
 			removePlaylisted,
@@ -21,27 +21,27 @@ const AlbumNavDropdown = forwardRef(
 			displayPlaylist,
 			toQueueView,
 			toPlayView,
-            fetchPlaylists,
+			fetchPlaylists,
 		},
 		ref
 	) => {
-		// Set local state for albumNavSubmenu
-		const [albumNavSubmenuState, setAlbumNavSubmenuState] = useState({
+		// Set local state for albumSubmenu
+		const [albumSubmenuState, setSubmenuState] = useState({
 			isOpen: false,
 		});
-		const updateAlbumNavSubmenuState = (newState) => {
-			setAlbumNavSubmenuState(newState);
+		const updateSubmenuState = (newState) => {
+			setSubmenuState(newState);
 		};
 
 		// Add event listeners when menu is open; remove when menu is closed
 		useEffect(() => {
 			const whenMenuIsOpen = (event) => {
 				if (
-					albumNavDropdownState.isOpen &&
+					albumDropdownState.isOpen &&
 					ref?.current &&
 					!ref?.current?.contains(event.target)
 				) {
-					updateAlbumNavDropdownState({ isOpen: false });
+					updateAlbumDropdownState({ isOpen: false });
 				}
 			};
 			document.addEventListener("mousedown", whenMenuIsOpen);
@@ -51,26 +51,28 @@ const AlbumNavDropdown = forwardRef(
 				document.removeEventListener("mousedown", whenMenuIsOpen);
 				document.removeEventListener("touchstart", whenMenuIsOpen);
 			};
-		}, [albumNavDropdownState]);
+		}, [albumDropdownState]);
 
 		const toggleSubmenuAndPlaceDropdown = (e) => {
 			e.preventDefault();
-			setAlbumNavSubmenuState({ isOpen: !albumNavSubmenuState.isOpen });
+			setSubmenuState({ isOpen: !albumSubmenuState.isOpen });
 		};
 		return (
 			<div
-				className={`album-nav-dropdown dropdown-submenu ${
-					albumNavDropdownState.isOpen ? "show" : ""
+				className={`${
+					history.location.pathname.split("/")[1]
+				}-dropdown dropdown-submenu ${
+					albumDropdownState.isOpen ? "show" : ""
 				}`}
 				data-dropdown
 				ref={ref}
 			>
 				{items.map((item, index) =>
 					item.submenu ? (
-						// If a submenu exists, create button for submenu title and pass submenu to AlbumNavSubmenu
+						// If a submenu exists, create button for submenu title and pass submenu to Submenu
 						<React.Fragment
 							key={`
-                            "albumnav"+${depthLevel}+${item.id}+"w-submenu"`}
+                            "albummenu"+${depthLevel}+${item.id}+"w-submenu"`}
 						>
 							<button
 								className="song-card-dropdown-item"
@@ -79,22 +81,20 @@ const AlbumNavDropdown = forwardRef(
 								{item.title}{" "}
 								<span key={`item.id+"w-submenu`}>&raquo;</span>
 							</button>
-							<AlbumNavSubmenu
+							<Submenu
 								history={history}
 								songs={songs}
 								playlists={playlists}
 								currentItem={currentItem}
 								currentUser={currentUser}
 								submenu={item.submenu}
-								submenuState={albumNavSubmenuState}
+								submenuState={albumSubmenuState}
 								depthLevel={(depthLevel += 1)}
 								// dropdownPosition={dropdownPosition}
-								updateAlbumNavDropdownState={
-									updateAlbumNavDropdownState
+								updateDropdownState={
+									updateAlbumDropdownState
 								}
-								updateAlbumNavSubmenuState={
-									updateAlbumNavSubmenuState
-								}
+								updateSubmenuState={updateSubmenuState}
 								removePlaylisted={removePlaylisted}
 								createNewPlaylisted={createNewPlaylisted}
 								createPlaylist={createPlaylist}
@@ -106,7 +106,7 @@ const AlbumNavDropdown = forwardRef(
 						</React.Fragment>
 					) : (
 						<SongCardDropdownItem // Else, create just a button
-							key={`"albumnav-subm-button" + ${item.id}}`}
+							key={`"albummenu-subm-button" + ${item.id}}`}
 							history={history}
 							currentItem={currentItem}
 							currentUser={currentUser}
@@ -114,7 +114,7 @@ const AlbumNavDropdown = forwardRef(
 							selectedIndex={index - 1} // Since the first item is "Create new playlist"
 							selectedSong={songs}
 							updateSongCardDropdownState={
-								updateAlbumNavDropdownState
+								updateAlbumDropdownState
 							}
 							item={item}
 							depthLevel={depthLevel}
@@ -134,4 +134,4 @@ const AlbumNavDropdown = forwardRef(
 	}
 );
 
-export default AlbumNavDropdown;
+export default AlbumDropdown;

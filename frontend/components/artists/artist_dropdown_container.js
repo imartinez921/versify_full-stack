@@ -15,10 +15,9 @@ import {
 	toPlayView,
 } from "../../actions/now_playing_actions";
 
-import ArtistPageDropdown from "./artist_page_dropdown";
+import ArtistDropdown from "./artist_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
-	;
 	return {
 		ref: ownProps.ref,
 		history: ownProps.history,
@@ -26,11 +25,16 @@ const mapStateToProps = (state, ownProps) => {
 		playlists: state.entities.playlists,
 		currentItem: state.entities.currentItem,
 		currentUser: state.entities.users[state.session.id],
-		artistPageDropdownState: ownProps.artistPageDropdownState,
-		toggleArtistPageDropdown: ownProps.toggleArtistPageDropdown,
+		artistDropdownState: ownProps.artistDropdownState,
+		updateArtistDropdownState: ownProps.updateArtistDropdownState,
 		depthLevel: 0,
 		items: [
 			{ title: "Play artist", id: `${crypto.randomUUID()}` },
+			{
+				title: "Add to queue",
+				id: `${crypto.randomUUID()}`,
+				// No access to any other unique props in ArtistDropdown items.map
+			},
 			{
 				title: "Add to playlist",
 				id: `${crypto.randomUUID()}`,
@@ -43,11 +47,6 @@ const mapStateToProps = (state, ownProps) => {
 					// Do not enclose array of playlists in an array since
 					// we are not using recursive function here
 				],
-			},
-			{
-				title: "Add to queue",
-				id: `${crypto.randomUUID()}`,
-				// No access to any other unique props in ArtistPageDropdown items.map
 			},
 		],
 	};
@@ -67,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
 	forwardRef: true,
-})(ArtistPageDropdown);
+})(ArtistDropdown);

@@ -48,7 +48,6 @@ const SongCardDropdownItem = ({
 		}
 		fetchPlaylists();
 	};
-
 	const makeIntoPlaylist = async (selectedSongArr) => {
 		let title =
 			selectedSongArr.length === 1

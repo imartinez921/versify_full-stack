@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import ArtistHeader from "./artist_header";
 import AlbumIndex from "../albums/album_index";
-import ArtistPageMenuBar from "./artist_page_menu_bar";
+import ArtistMenuBar from "./artist_menu_bar";
 import CollabSongIndex from "../songs/collab_song_index";
 
 const ArtistShow = ({
@@ -17,7 +17,6 @@ const ArtistShow = ({
 	displayArtist,
 	displayAlbum,
 	toTogglePlay,
-	toQueueArtist,
 	toPlayArtist,
 	toPushPlay,
 	clearCurrent,
@@ -46,15 +45,14 @@ const ArtistShow = ({
 					<div className="artist-header">
 						<ArtistHeader currentArtist={currentArtist} />
 					</div>
-					<div className="artist-nav">
-						<ArtistPageMenuBar
+					<div className="artist-menu">
+						<ArtistMenuBar
 							artistShowRef={artistShowRef}
 							allSongs={allSongs}
 							history={history}
 							isPlaying={isPlaying}
 							currentQueueSource={currentQueueSource}
 							toTogglePlay={toTogglePlay}
-							toQueueArtist={toQueueArtist}
 							toPlayArtist={toPlayArtist}
 							toPushPlay={toPushPlay}
 						/>
