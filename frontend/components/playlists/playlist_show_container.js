@@ -11,6 +11,7 @@ import {
 	toQueuePlaylist,
 	toPlayPlaylist,
 	toPushPlay,
+	toPlayView,
 } from "../../actions/now_playing_actions";
 import {
 	openPlaylistNavDropdown,
@@ -74,6 +75,7 @@ const mapDispatchToProps = (dispatch) => ({
 	toQueuePlaylist: (objToQueue) => dispatch(toQueuePlaylist(objToQueue)),
 	toPlayPlaylist: (objToQueue) => dispatch(toPlayPlaylist(objToQueue)),
 	toPushPlay: () => dispatch(toPushPlay()),
+	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
 	openPlaylistNavDropdown: () => dispatch(openPlaylistNavDropdown()),
 	closePlaylistNavDropdown: () => dispatch(closePlaylistNavDropdown()),
 	openPlaylistEditModal: () => dispatch(openPlaylistEditModal()),

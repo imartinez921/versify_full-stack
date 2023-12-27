@@ -13,7 +13,6 @@ const PlaylistNav = ({
 	playlistSongs,
 	isPlaying,
 	currentQueueSource,
-	urlParams,
 	history,
 	playlistNavDropdownState,
 	playlistEditModalState,
@@ -24,6 +23,7 @@ const PlaylistNav = ({
 	toQueuePlaylist,
 	toPlayPlaylist,
 	toPushPlay,
+	toPlayView,
 	openPlaylistNavDropdown,
 	closePlaylistNavDropdown,
 	openPlaylistEditModal,
@@ -49,8 +49,6 @@ const PlaylistNav = ({
 
 	const handleButtonClick = (e) => {
 		e.preventDefault();
-		console.log("CURRENT", currentQueueSource);
-		console.log("OBJ", objToQueue);
 		if (
 			!!currentQueueSource &&
 			objToQueue.sourcedFrom === currentQueueSource.sourcedFrom
@@ -83,6 +81,7 @@ const PlaylistNav = ({
 					objToQueue={objToQueue}
 					history={history}
 					currentPlaylist={currentPlaylist}
+					playlistSongs={playlistSongs}
 					playlistNavDropdownState={playlistNavDropdownState}
 					playlistEditModalState={playlistEditModalState}
 					closePlaylistNavDropdown={closePlaylistNavDropdown}
@@ -92,6 +91,7 @@ const PlaylistNav = ({
 					editPlaylist={editPlaylist}
 					destroyPlaylist={destroyPlaylist}
 					toQueuePlaylist={toQueuePlaylist}
+					toPlayView={toPlayView}
 				/>
 			) : null}
 		</>
