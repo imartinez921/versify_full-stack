@@ -1,7 +1,7 @@
 import React, { useState, useEffect, forwardRef } from "react";
 
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
-import AlbumSubmenu from "./album_submenu";
+import Submenu from "../shared/submenu";
 
 const AlbumDropdown = forwardRef(
 	(
@@ -26,11 +26,11 @@ const AlbumDropdown = forwardRef(
 		ref
 	) => {
 		// Set local state for albumSubmenu
-		const [albumSubmenuState, setAlbumSubmenuState] = useState({
+		const [albumSubmenuState, setSubmenuState] = useState({
 			isOpen: false,
 		});
-		const updateAlbumSubmenuState = (newState) => {
-			setAlbumSubmenuState(newState);
+		const updateSubmenuState = (newState) => {
+			setSubmenuState(newState);
 		};
 
 		// Add event listeners when menu is open; remove when menu is closed
@@ -55,7 +55,7 @@ const AlbumDropdown = forwardRef(
 
 		const toggleSubmenuAndPlaceDropdown = (e) => {
 			e.preventDefault();
-			setAlbumSubmenuState({ isOpen: !albumSubmenuState.isOpen });
+			setSubmenuState({ isOpen: !albumSubmenuState.isOpen });
 		};
 		return (
 			<div
@@ -69,7 +69,7 @@ const AlbumDropdown = forwardRef(
 			>
 				{items.map((item, index) =>
 					item.submenu ? (
-						// If a submenu exists, create button for submenu title and pass submenu to AlbumSubmenu
+						// If a submenu exists, create button for submenu title and pass submenu to Submenu
 						<React.Fragment
 							key={`
                             "albummenu"+${depthLevel}+${item.id}+"w-submenu"`}
@@ -81,7 +81,7 @@ const AlbumDropdown = forwardRef(
 								{item.title}{" "}
 								<span key={`item.id+"w-submenu`}>&raquo;</span>
 							</button>
-							<AlbumSubmenu
+							<Submenu
 								history={history}
 								songs={songs}
 								playlists={playlists}
@@ -91,12 +91,10 @@ const AlbumDropdown = forwardRef(
 								submenuState={albumSubmenuState}
 								depthLevel={(depthLevel += 1)}
 								// dropdownPosition={dropdownPosition}
-								updateAlbumDropdownState={
+								updateDropdownState={
 									updateAlbumDropdownState
 								}
-								updateAlbumSubmenuState={
-									updateAlbumSubmenuState
-								}
+								updateSubmenuState={updateSubmenuState}
 								removePlaylisted={removePlaylisted}
 								createNewPlaylisted={createNewPlaylisted}
 								createPlaylist={createPlaylist}

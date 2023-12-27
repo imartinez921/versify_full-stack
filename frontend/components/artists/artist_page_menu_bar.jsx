@@ -15,20 +15,24 @@ const ArtistPageMenuBar = ({
 	isPlaying,
 	currentQueueSource,
 	toTogglePlay,
-	toQueueArtist,
 	toPlayArtist,
 	toPushPlay,
 }) => {
-	const [artistPageDropdownState, setArtistPageDropdownState] = useState({
+	const [artistDropdownState, setArtistDropdownState] = useState({
 		isOpen: false,
 	});
-	const toggleArtistPageDropdown = () => {
-		setArtistPageDropdownState({ isOpen: !artistPageDropdownState.isOpen });
+
+	// Updater functions for local states
+	const updateArtistDropdownState = (newState) => {
+		setArtistDropdownState(newState);
+	};
+	const toggleArtistDropdown = () => {
+		setArtistDropdownState({ isOpen: !artistDropdownState.isOpen });
 	};
 
 	// Prevent ArtistShow from scrolling when dropdown is open
 	if (artistShowRef && artistShowRef.current) {
-		if (artistPageDropdownState.isOpen) {
+		if (artistDropdownState.isOpen) {
 			artistShowRef.current.style.overflowY = "hidden";
 		} else {
 			artistShowRef.current.style.overflowY = "auto";
@@ -54,12 +58,6 @@ const ArtistPageMenuBar = ({
 		}
 	};
 
-	const handleAddToQueue = (e) => {
-		e.preventDefault();
-		toQueueArtist(objToQueue);
-		setArtistPageDropdownState({ isOpen: false });
-	};
-
 	// Create dropdown ref in parent component in order to wrap Redux container
 	const dropdownRef = useRef();
 	return (
@@ -73,14 +71,14 @@ const ArtistPageMenuBar = ({
 				)}
 			</div>
 			<div id="artist-dropdown-dots">
-				<RxDotsHorizontal onClick={toggleArtistPageDropdown} />
+				<RxDotsHorizontal onClick={toggleArtistDropdown} />
 			</div>
-			{artistPageDropdownState.isOpen && (
+			{artistDropdownState.isOpen && (
 				<ArtistPageDropdownContainer
 					history={history}
-					albumDropdownState={artistPageDropdownState}
+					artistDropdownState={artistDropdownState}
 					ref={dropdownRef}
-					updateAlbumDropdownState={toggleArtistPageDropdown}
+					updateArtistDropdownState={updateArtistDropdownState}
 				/>
 			)}
 		</>

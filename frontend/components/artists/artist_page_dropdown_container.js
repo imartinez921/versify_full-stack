@@ -26,8 +26,8 @@ const mapStateToProps = (state, ownProps) => {
 		playlists: state.entities.playlists,
 		currentItem: state.entities.currentItem,
 		currentUser: state.entities.users[state.session.id],
-		artistPageDropdownState: ownProps.artistPageDropdownState,
-		toggleArtistPageDropdown: ownProps.toggleArtistPageDropdown,
+		artistDropdownState: ownProps.artistDropdownState,
+		updateArtistDropdownState: ownProps.updateArtistDropdownState,
 		depthLevel: 0,
 		items: [
 			{ title: "Play artist", id: `${crypto.randomUUID()}` },

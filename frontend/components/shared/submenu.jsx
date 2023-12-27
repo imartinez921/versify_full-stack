@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
 
-const AlbumSubmenu = ({
+const Submenu = ({
 	history,
 	songs,
 	playlists,
@@ -11,8 +11,8 @@ const AlbumSubmenu = ({
 	submenu,
 	submenuState,
 	depthLevel,
-	updateAlbumDropdownState,
-	updateAlbumSubmenuState,
+	updateDropdownState,
+	updateSubmenuState,
 	removePlaylisted,
 	createNewPlaylisted,
 	createPlaylist,
@@ -32,8 +32,8 @@ const AlbumSubmenu = ({
 				ref?.current &&
 				!ref?.current?.contains(event.target)
 			) {
-				updateAlbumDropdownState({ isOpen: false });
-				updateAlbumSubmenuState({ isOpen: false });
+				updateDropdownState({ isOpen: false });
+				updateSubmenuState({ isOpen: false });
 			}
 		};
 		document.addEventListener("mousedown", whenMenuIsOpen);
@@ -63,7 +63,7 @@ const AlbumSubmenu = ({
 						playlists={playlists}
 						selectedIndex={index - 1} // Since the first item is "Create new playlist"
 						selectedSong={songs}
-						updateSongCardDropdownState={updateAlbumDropdownState}
+						updateSongCardDropdownState={updateDropdownState}
 						item={item}
 						depthLevel={depthLevel}
 						// dropdownPosition={dropdownPosition}
@@ -81,4 +81,4 @@ const AlbumSubmenu = ({
 	);
 };
 
-export default AlbumSubmenu;
+export default Submenu;

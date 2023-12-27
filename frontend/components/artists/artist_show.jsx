@@ -17,7 +17,6 @@ const ArtistShow = ({
 	displayArtist,
 	displayAlbum,
 	toTogglePlay,
-	toQueueArtist,
 	toPlayArtist,
 	toPushPlay,
 	clearCurrent,
@@ -54,7 +53,6 @@ const ArtistShow = ({
 							isPlaying={isPlaying}
 							currentQueueSource={currentQueueSource}
 							toTogglePlay={toTogglePlay}
-							toQueueArtist={toQueueArtist}
 							toPlayArtist={toPlayArtist}
 							toPushPlay={toPushPlay}
 						/>

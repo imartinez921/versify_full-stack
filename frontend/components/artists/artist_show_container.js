@@ -3,7 +3,6 @@ import { displayArtist } from "../../actions/artist_actions";
 import { displayAlbum } from "../../actions/album_actions";
 import {
 	toTogglePlay,
-	toQueueArtist,
 	toPlayArtist,
 	toPushPlay,
 } from "../../actions/now_playing_actions";
@@ -30,7 +29,6 @@ const mapDispatchToProps = (dispatch) => ({
 	displayArtist: (artistId) => dispatch(displayArtist(artistId)),
 	displayAlbum: (albumId) => dispatch(displayAlbum(albumId)),
 	toTogglePlay: () => dispatch(toTogglePlay()),
-	toQueueArtist: (objToQueue) => dispatch(toQueueArtist(objToQueue)),
 	toPlayArtist: (objToQueue) => dispatch(toPlayArtist(objToQueue)),
 	toPushPlay: () => dispatch(toPushPlay()),
 	clearCurrent: () => dispatch(clearCurrent()),

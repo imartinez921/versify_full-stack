@@ -1,7 +1,7 @@
 import React, { useState, useEffect, forwardRef } from "react";
 
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
-import AlbumSubmenu from "../albums/album_submenu";
+import Submenu from "../shared/submenu";
 
 const ArtistPageDropdown = forwardRef(
 	(
@@ -11,8 +11,8 @@ const ArtistPageDropdown = forwardRef(
 			playlists,
 			currentItem,
 			currentUser,
-			albumDropdownState,
-			updateAlbumDropdownState,
+			artistDropdownState,
+			updateArtistDropdownState,
 			items,
 			depthLevel,
 			removePlaylisted,
@@ -25,23 +25,23 @@ const ArtistPageDropdown = forwardRef(
 		},
 		ref
 	) => {
-		// Set local state for albumSubmenu
-		const [albumSubmenuState, setAlbumSubmenuState] = useState({
+		// Set local state for artist Submenu
+		const [artistSubmenuState, setArtistSubmenuState] = useState({
 			isOpen: false,
 		});
-		const updateAlbumSubmenuState = (newState) => {
-			setAlbumSubmenuState(newState);
+		const updateArtistSubmenuState = (newState) => {
+			setArtistSubmenuState(newState);
 		};
 
 		// Add event listeners when menu is open; remove when menu is closed
 		useEffect(() => {
 			const whenMenuIsOpen = (event) => {
 				if (
-					albumDropdownState.isOpen &&
+					artistDropdownState.isOpen &&
 					ref?.current &&
 					!ref?.current?.contains(event.target)
 				) {
-					updateAlbumDropdownState({ isOpen: false });
+					updateArtistDropdownState({ isOpen: false });
 				}
 			};
 			document.addEventListener("mousedown", whenMenuIsOpen);
@@ -51,11 +51,11 @@ const ArtistPageDropdown = forwardRef(
 				document.removeEventListener("mousedown", whenMenuIsOpen);
 				document.removeEventListener("touchstart", whenMenuIsOpen);
 			};
-		}, [albumDropdownState]);
+		}, [artistDropdownState]);
 
 		const toggleSubmenuAndPlaceDropdown = (e) => {
 			e.preventDefault();
-			setAlbumSubmenuState({ isOpen: !albumSubmenuState.isOpen });
+			setArtistSubmenuState({ isOpen: !artistSubmenuState.isOpen });
 		};
 
 		return (
@@ -63,14 +63,14 @@ const ArtistPageDropdown = forwardRef(
 				className={`${
 					history.location.pathname.split("/")[1]
 				}-dropdown dropdown-submenu ${
-					albumDropdownState.isOpen ? "show" : ""
+					artistDropdownState.isOpen ? "show" : ""
 				}`}
 				data-dropdown
 				ref={ref}
 			>
 				{items.map((item, index) =>
 					item.submenu ? (
-						// If a submenu exists, create button for submenu title and pass submenu to AlbumSubmenu
+						// If a submenu exists, create button for submenu title and pass submenu to Submenu
 						<React.Fragment
 							key={`"artistdropdown"+${item.id}+"w-submenu"`}
 						>
@@ -83,21 +83,21 @@ const ArtistPageDropdown = forwardRef(
 									&raquo;
 								</span>
 							</button>
-							<AlbumSubmenu
+							<Submenu
 								history={history}
 								songs={songs}
 								playlists={playlists}
 								currentItem={currentItem}
 								currentUser={currentUser}
 								submenu={item.submenu}
-								submenuState={albumSubmenuState}
+								submenuState={artistSubmenuState}
 								depthLevel={(depthLevel += 1)}
 								// dropdownPosition={dropdownPosition}
-								updateAlbumDropdownState={
-									updateAlbumDropdownState
+								updateDropdownState={
+									updateArtistDropdownState
 								}
-								updateAlbumSubmenuState={
-									updateAlbumSubmenuState
+								updateSubmenuState={
+									updateArtistSubmenuState
 								}
 								removePlaylisted={removePlaylisted}
 								createNewPlaylisted={createNewPlaylisted}
@@ -118,11 +118,10 @@ const ArtistPageDropdown = forwardRef(
 							selectedIndex={index - 1} // Since the first item is "Create new playlist"
 							selectedSong={songs}
 							updateSongCardDropdownState={
-								updateAlbumDropdownState
+								updateArtistDropdownState
 							}
 							item={item}
 							depthLevel={depthLevel}
-							// dropdownPosition={dropdownPosition}
 							removePlaylisted={removePlaylisted}
 							createNewPlaylisted={createNewPlaylisted}
 							createPlaylist={createPlaylist}
