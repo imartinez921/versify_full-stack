@@ -75,8 +75,9 @@ const SongCardDropdown = forwardRef(
 					...depthStyling,
 				}}
 			>
-				{items.map((item, index) =>
-					item.submenu ? (
+				{items.map((item, index) =>{
+					item.key = crypto.randomUUID();
+					return item.submenu ? (
 						// If a submenu exists, create button for submenu title and pass submenu to SongCardSubmenu
 						<React.Fragment
 							key={`${selectedSong.playlistedId}+${depthLevel}+${item.title}+"w-submenu"`}
@@ -106,7 +107,7 @@ const SongCardDropdown = forwardRef(
 						</React.Fragment>
 					) : (
 						<SongCardDropdownItem // Else, create just a button
-							key={`${selectedSong.playlistedId}+${item.title}+${depthLevel}+"no-subm"`}
+							key={`${item.key}+"no-subm"`}
 							history={history}
 							currentItem={currentItem}
 							playlists={playlists}
@@ -126,7 +127,7 @@ const SongCardDropdown = forwardRef(
 							displayPlaylist={displayPlaylist}
 							toQueueView={toQueueView}
 						/>
-					)
+					);}
 				)}
 			</div>
 		);
