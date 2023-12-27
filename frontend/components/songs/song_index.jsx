@@ -5,7 +5,6 @@ import SongCardDropdownContainer from "./song_card_dropdown_container";
 
 const SongIndex = ({
     currentUser,
-    playlists,
     songs,
     history,
     params,
