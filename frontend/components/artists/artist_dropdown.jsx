@@ -3,7 +3,7 @@ import React, { useState, useEffect, forwardRef } from "react";
 import SongCardDropdownItem from "../songs/song_card_dropdown_item";
 import Submenu from "../shared/submenu";
 
-const ArtistPageDropdown = forwardRef(
+const ArtistDropdown = forwardRef(
 	(
 		{
 			history,
@@ -137,4 +137,4 @@ const ArtistPageDropdown = forwardRef(
 	}
 );
 
-export default ArtistPageDropdown;
+export default ArtistDropdown;

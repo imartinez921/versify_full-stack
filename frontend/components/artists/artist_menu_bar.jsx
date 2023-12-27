@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import ArtistPageDropdownContainer from "./artist_page_dropdown_container";
+import ArtistDropdownContainer from "./artist_dropdown_container";
 
 import { RxDotsHorizontal } from "react-icons/rx";
 import {
@@ -8,7 +8,7 @@ import {
 } from "react-icons/md";
 
 // Dropdown functionality using local states and useRefs
-const ArtistPageMenuBar = ({
+const ArtistMenuBar = ({
 	artistShowRef,
 	allSongs,
 	history,
@@ -74,7 +74,7 @@ const ArtistPageMenuBar = ({
 				<RxDotsHorizontal onClick={toggleArtistDropdown} />
 			</div>
 			{artistDropdownState.isOpen && (
-				<ArtistPageDropdownContainer
+				<ArtistDropdownContainer
 					history={history}
 					artistDropdownState={artistDropdownState}
 					ref={dropdownRef}
@@ -85,4 +85,4 @@ const ArtistPageMenuBar = ({
 	);
 };
 
-export default ArtistPageMenuBar;
+export default ArtistMenuBar;

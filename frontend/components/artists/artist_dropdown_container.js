@@ -15,10 +15,9 @@ import {
 	toPlayView,
 } from "../../actions/now_playing_actions";
 
-import ArtistPageDropdown from "./artist_page_dropdown";
+import ArtistDropdown from "./artist_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
-	;
 	return {
 		ref: ownProps.ref,
 		history: ownProps.history,
@@ -34,7 +33,7 @@ const mapStateToProps = (state, ownProps) => {
 			{
 				title: "Add to queue",
 				id: `${crypto.randomUUID()}`,
-				// No access to any other unique props in ArtistPageDropdown items.map
+				// No access to any other unique props in ArtistDropdown items.map
 			},
 			{
 				title: "Add to playlist",
@@ -67,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
 	forwardRef: true,
-})(ArtistPageDropdown);
+})(ArtistDropdown);
