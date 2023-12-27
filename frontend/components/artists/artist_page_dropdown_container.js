@@ -32,6 +32,11 @@ const mapStateToProps = (state, ownProps) => {
 		items: [
 			{ title: "Play artist", id: `${crypto.randomUUID()}` },
 			{
+				title: "Add to queue",
+				id: `${crypto.randomUUID()}`,
+				// No access to any other unique props in ArtistPageDropdown items.map
+			},
+			{
 				title: "Add to playlist",
 				id: `${crypto.randomUUID()}`,
 				submenu: [
@@ -43,11 +48,6 @@ const mapStateToProps = (state, ownProps) => {
 					// Do not enclose array of playlists in an array since
 					// we are not using recursive function here
 				],
-			},
-			{
-				title: "Add to queue",
-				id: `${crypto.randomUUID()}`,
-				// No access to any other unique props in ArtistPageDropdown items.map
 			},
 		],
 	};

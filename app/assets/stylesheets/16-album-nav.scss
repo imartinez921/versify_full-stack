@@ -1,5 +1,4 @@
-.album-nav-dropdown {
-    align-items: flex-start;
+.album-dropdown {
     font-size: 15px;
     z-index: 2;
     width: 150px;
@@ -11,13 +10,14 @@
     border-radius: 4px;
     box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3), 0 6px 8px rgba(0, 0, 0, 0.2);
     left: 440px;
-    top: 365px;
+    top: 350px;
 }
 
 .album-nav-submenu {
-    left: calc(440px + 160px);
-    top: 404px;
     max-height: 250px;
     overflow-y: scroll;
     width: 250px;
+    position: absolute;
+    left: 160px;
+    top: 65%;
 }

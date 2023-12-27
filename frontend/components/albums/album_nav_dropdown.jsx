@@ -59,7 +59,7 @@ const AlbumNavDropdown = forwardRef(
 		};
 		return (
 			<div
-				className={`album-nav-dropdown dropdown-submenu ${
+				className={`${history.location.pathname.split("/")[1]}-dropdown dropdown-submenu ${
 					albumNavDropdownState.isOpen ? "show" : ""
 				}`}
 				data-dropdown
