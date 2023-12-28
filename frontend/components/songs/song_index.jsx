@@ -10,7 +10,6 @@ const SongIndex = ({
     source,
     songCardDropdownItems,
     currentViewRef,
-    toPlayView,
 }) => {
     // Set local states for SongCardDropdownState and selectedSong
     const [songCardDropdownState, setSongCardDropdownState] = useState({
