@@ -30,10 +30,13 @@ const Player = ({
 	useEffect(() => {
 		audioSrc = currentTrack ? currentTrack.audioUrl : "";
 		audioRef.current.src = audioSrc;
+
+		return () => {
+			audioRef.current?.pause();
+		}
 	}, [currentTrack]);
 
 	// Safely play audio only when it is loaded
-
 	const tryPlay = () => {
 		if (audioRef.current.readyState === 4) {
 			audioRef.current.play();
@@ -56,7 +59,18 @@ const Player = ({
 		};
 	}, [isPlaying]);
 
-	// Set up behavior when changing tracks
+	// Behavior when track ends
+	audioRef.current?.addEventListener(
+		"ended",
+		() => {
+			if (tracks.length > 1) {
+				setTrackIndex(trackIndex + 1);
+			}
+		},
+		false
+	);
+
+	// Behavior when changing tracks
 	const afterFirstRender = useRef(false); // prevent auto-play
 	useEffect(() => {
 		if (isPlaying && afterFirstRender.current) {
@@ -69,6 +83,11 @@ const Player = ({
 		}
 		if (!afterFirstRender) afterFirstRender.current = true;
 	}, [trackIndex]);
+
+	// Behavior when user leaves the window
+	window.addEventListener("unload", () => {
+		audioElement.pause();
+	});
 
 	// Create PlayingControls functions
 	const toPrevTrack = () => {
