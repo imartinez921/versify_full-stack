@@ -3,28 +3,29 @@ import { withRouter } from "react-router-dom";
 
 const AlbumLink = ({
     album,
-    currentAlbum,
     history,
 }) => {
+	const { id, name } = album;
 
-    const { id,
-        name,
-    } = album;
+	const currentView = {
+		source: history.location.pathname.split("/")[1],
+		id: parseInt(history.location.pathname.split("/")[2]),
+	};
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        return history.push(`/album/${id}`);
-    }
+	const handleClick = (e) => {
+		e.preventDefault();
+		return history.push(`/album/${id}`);
+	};
 
-    if (currentAlbum === null) {
-        return <a onClick={handleClick} className="artist-link">{name}</a>
-    } else {
-        if (name === currentAlbum.name) {
-            return <span>{name}</span>
-        } else {
-            return <a onClick={handleClick} className="artist-link">{name}</a>
-        }
-    }
+	if (currentView.source === "album" && currentView.id === id) {
+		return <span>{name}</span>;
+	} else {
+		return (
+			<a onClick={handleClick} className="artist-link">
+				{name}
+			</a>
+		);
+	}
 }
 
 export default withRouter(AlbumLink);

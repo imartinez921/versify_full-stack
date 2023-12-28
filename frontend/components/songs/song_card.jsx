@@ -96,7 +96,6 @@ const SongCard = ({
                             id: albumId,
                             name: album,
                         }}
-                        currentAlbum={null}
                     />
                     : null}
             </div>

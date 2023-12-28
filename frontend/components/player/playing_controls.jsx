@@ -26,8 +26,10 @@ const PlayingControls = ({
 			objToQueue.viewSongs = objToQueue.viewSongs.allSongs;
 		}
 		if (!hasQueue) {
-			toPlayView(objToQueue);
-			toPushPlay();
+			if (objToQueue?.viewSongs?.length > 0) {
+				toPlayView(objToQueue);
+				toPushPlay();
+			}
 		} else {
 			togglePlay();
 		}

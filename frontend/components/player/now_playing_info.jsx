@@ -20,6 +20,7 @@ const NowPlayingInfo = ({
 		};
 	}
 	const { title, albumId, albumImageUrl, songArtist } = track;
+
 	useEffect(() => {
 		updateTrackProgress(audioRef.current.currentTime);
 	}, [isPlaying]);
@@ -40,8 +41,6 @@ const NowPlayingInfo = ({
 									id: track.albumId,
 									name: title ,
 								}}
-								currentAlbum={null}
-								history={history}
 							/>
 						</div>
 						<div className="now-playing-artist">
