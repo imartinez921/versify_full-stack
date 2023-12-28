@@ -6,7 +6,6 @@ import CurrentViewContainer from "./current_view_container";
 import PlayerContainer from "../player/player_container";
 
 const Page = ({
-	history,
 	params,
 	path,
 	currentUser,
@@ -15,11 +14,9 @@ const Page = ({
 }) => {
 	return (
 		<div className="page-container">
-			<NavBarMainContainer history={history} />
+			<NavBarMainContainer />
 			<div className="page-body">
 				<SidebarContainer
-					history={history}
-					path={path}
 					currentUser={currentUser}
 					errors={errors}
 				/>
@@ -28,14 +25,10 @@ const Page = ({
 						currentUser={currentUser}
 						params={params}
 						path={path}
-						history={history}
 					/>
 				</div>
 			</div>
 			<PlayerContainer
-				params={params}
-				path={path}
-				history={history}
 			/>
 		</div>
 	);

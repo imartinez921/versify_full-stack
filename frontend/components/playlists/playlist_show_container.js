@@ -26,7 +26,7 @@ const mapStateToProps = (
 	// from state
 	{ ux, entities: { currentItem, playlists, songs, nowPlaying } },
 	// from ownProps
-	{ params, history, currentUser }
+	{ currentUser, params }
 ) => {
 	return {
 		currentPlaylist: currentItem,
@@ -36,9 +36,8 @@ const mapStateToProps = (
 		currentQueueSource: nowPlaying.queueSources[0],
 		playlistNavDropdownState: ux.playlistNavDropdown,
 		playlistEditModalState: ux.playlistEditModal,
-		urlParams: params,
 		currentUser: currentUser,
-		history: history,
+		urlParams: params,
 		source: "playlist",
 		songCardDropdownItems: [
 			{
