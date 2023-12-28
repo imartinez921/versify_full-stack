@@ -19,6 +19,8 @@ const songIndexReducer = (songsState = [], action) => {
 			};
         case RECEIVE_CURRENT_ALBUM:
             return action.songs;
+        case RESET_CURRENT:
+            return [];
         default:
             return songsState;
     }
