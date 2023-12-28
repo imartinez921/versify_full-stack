@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const AlbumLink = ({
     album,
@@ -26,4 +27,4 @@ const AlbumLink = ({
     }
 }
 
-export default AlbumLink;
+export default withRouter(AlbumLink);

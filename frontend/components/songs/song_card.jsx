@@ -7,7 +7,6 @@ import AlbumLinkContainer from "../albums/album_link_container";
 const SongCard = ({
     source,
     song,
-    history,
     index,
     songCardDropdownState,
     dropdownMenuPointer,
@@ -41,7 +40,6 @@ const SongCard = ({
             <ArtistLinkContainer
                 artist={artist}
                 currentArtist={null}
-                history={history}
             />
             ,&nbsp;
         </div>
@@ -55,7 +53,6 @@ const SongCard = ({
             <ArtistLinkContainer
                 artist={songArtist}
                 currentArtist={null}
-                history={history}
             />
         </div>
     );
@@ -100,7 +97,6 @@ const SongCard = ({
                             name: album,
                         }}
                         currentAlbum={null}
-                        history={history}
                     />
                     : null}
             </div>
