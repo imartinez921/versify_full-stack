@@ -24,6 +24,7 @@ const mapStateToProps = (
 		urlParams: params,
 		source: "album",
 		songCardDropdownItems: [
+			{ title: "Play song", id: `${crypto.randomUUID()}` },
 			{ title: "Add to queue", id: `${crypto.randomUUID()}` },
 			{
 				title: "Add to playlist", id: `${crypto.randomUUID()}` ,
