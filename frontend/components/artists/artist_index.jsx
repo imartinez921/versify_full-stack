@@ -3,9 +3,6 @@ import ArtistCard from "./artist_card";
 
 const ArtistIndex = ({
     artists,
-    params,
-    history,
-    path,
     fetchArtists,
     displayArtist,
 }) => {
@@ -18,8 +15,6 @@ const ArtistIndex = ({
               <ArtistCard
                   key={`${artist.name + "ind"}`}
                   artist={artist}
-                  urlParams={params}
-                  history={history}
                   displayArtist={displayArtist}
               />
           ))
