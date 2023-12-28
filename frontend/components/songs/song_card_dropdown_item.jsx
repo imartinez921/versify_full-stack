@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const SongCardDropdownItem = ({
 	history,
@@ -24,19 +25,25 @@ const SongCardDropdownItem = ({
 
 	// Define all song actions
 	const addToQueue = (selectedSongArr) => {
-		objToQueue = {
-			viewSongs: selectedSongArr,
-			sourcedFrom: history.location.pathname,
-		};
-		return toQueueView(objToQueue);
+		if (selectedSongArr?.length > 0) {
+			objToQueue = {
+				viewSongs: selectedSongArr,
+				sourcedFrom: history.location.pathname,
+			};
+			return toQueueView(objToQueue);
+		}
 	};
+
 	const playNow = (selectedSongArr) => {
-		objToQueue = {
-			viewSongs: selectedSongArr,
-			sourcedFrom: history.location.pathname,
-		};
-		return toPlayView(objToQueue);
+		if (selectedSongArr?.length > 0) {
+			objToQueue = {
+				viewSongs: selectedSongArr,
+				sourcedFrom: history.location.pathname,
+			};
+			return toPlayView(objToQueue);
+		}
 	};
+
 	const addToPlaylist = async (selectedSongArr) => {
 		const promises = selectedSongArr.map((song) => {
 			return createNewPlaylisted(song.id, selectedPlaylist.id);
@@ -63,8 +70,10 @@ const SongCardDropdownItem = ({
 			promises = selectedSongArr.map((song) => {
 				return createNewPlaylisted(song.id, playlistId);
 			});
+			Promise.all(promises).then((playlistId) =>
+				history.push(`/playlist/${playlistId}`)
+			);
 		});
-		await Promise.all(promises);
 		fetchPlaylists();
 	};
 
@@ -73,6 +82,7 @@ const SongCardDropdownItem = ({
 			updateSongCardDropdownState({ isOpen: false });
 			return addToQueue(selectedSong);
 		} else if (
+			e.target.innerText === "Play song" ||
 			e.target.innerText === "Play album" ||
 			e.target.innerText === "Play playlist" ||
 			e.target.innerText === "Play artist"
@@ -106,4 +116,4 @@ const SongCardDropdownItem = ({
 	);
 };
 
-export default SongCardDropdownItem;
+export default withRouter(SongCardDropdownItem);

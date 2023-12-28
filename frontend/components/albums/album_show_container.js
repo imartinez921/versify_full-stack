@@ -12,19 +12,19 @@ const mapStateToProps = (
 	// from state
 	{ entities: { currentItem, songs, playlists, nowPlaying} },
 	// from ownProps
-	{ params, history, currentUser }
+	{ currentUser, params }
 ) => {
 	return {
 		currentAlbum: currentItem,
 		tracks: songs,
 		playlists: playlists,
-		urlParams: params,
-		history: history,
 		currentUser: currentUser,
 		isPlaying: nowPlaying.isPlaying,
 		currentQueueSource: nowPlaying.queueSources[0],
+		urlParams: params,
 		source: "album",
 		songCardDropdownItems: [
+			{ title: "Play song", id: `${crypto.randomUUID()}` },
 			{ title: "Add to queue", id: `${crypto.randomUUID()}` },
 			{
 				title: "Add to playlist", id: `${crypto.randomUUID()}` ,

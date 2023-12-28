@@ -13,7 +13,6 @@ const ArtistShow = ({
 	isPlaying,
 	currentQueueSource,
 	urlParams,
-	history,
 	displayArtist,
 	displayAlbum,
 	toTogglePlay,
@@ -31,6 +30,7 @@ const ArtistShow = ({
 			clearCurrent();
 		};
 	}, [urlParams]); // Will run whenever urlParams.id changes, otherwise ArtistShow doesn't re-render
+	// Passing this down from currentView bc wrapping withRouter doesn't always trigger useEffect
 
 	const artistShowRef = useRef();
 	const artistShow = (
@@ -49,7 +49,6 @@ const ArtistShow = ({
 						<ArtistMenuBar
 							artistShowRef={artistShowRef}
 							allSongs={allSongs}
-							history={history}
 							isPlaying={isPlaying}
 							currentQueueSource={currentQueueSource}
 							toTogglePlay={toTogglePlay}
@@ -60,14 +59,12 @@ const ArtistShow = ({
 					{albums?.length > 0 && (
 						<AlbumIndex
 							albums={albums}
-							history={history}
 							displayAlbum={displayAlbum}
 						/>
 					)}
 					{collabSongs?.length > 0 && (
 						<CollabSongIndex
 							songs={collabSongs}
-							history={history}
 							displayAlbum={displayAlbum}
 							currentArtist={currentArtist}
 						/>

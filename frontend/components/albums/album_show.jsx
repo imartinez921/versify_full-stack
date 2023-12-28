@@ -8,9 +8,8 @@ const AlbumShow = ({
 	currentAlbum,
 	tracks,
 	playlists,
-	urlParams,
-	history,
 	currentUser,
+	urlParams,
 	isPlaying,
 	currentQueueSource,
 	source,
@@ -28,14 +27,15 @@ const AlbumShow = ({
 		rendered ? rendered.scrollTo(0, 0) : null;
 
 		return () => clearCurrent();
-	}, [urlParams]); // Will run whenever urlParams.id changes, otherwise ArtistShow doesn't re-render
+	}, [urlParams]); // Will run whenever urlParams.id changes, otherwise AlbumShow doesn't re-render
+	// Passing this down from currentView bc wrapping withRouter doesn't always trigger useEffect
 
 	const albumShowRef = useRef();
 
 	const albumShow = (
 		<div className="album-show" ref={albumShowRef}>
 			<div className="album-header">
-				<AlbumHeader album={currentAlbum} history={history} />
+				<AlbumHeader album={currentAlbum} />
 			</div>
 			<div className="album-menu">
 				<AlbumMenuBar
@@ -44,7 +44,6 @@ const AlbumShow = ({
 					currentQueueSource={currentQueueSource}
 					tracks={tracks}
 					playlists={playlists}
-					history={history}
 					toPlayAlbum={toPlayAlbum}
 					toPushPlay={toPushPlay}
 					toTogglePlay={toTogglePlay}
@@ -53,7 +52,6 @@ const AlbumShow = ({
 			<SongIndex
 				currentUser={currentUser}
 				songs={tracks}
-				history={history}
 				source={source}
 				songCardDropdownItems={songCardDropdownItems}
 				currentViewRef={albumShowRef}

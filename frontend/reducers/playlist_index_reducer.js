@@ -1,5 +1,7 @@
 import { RECEIVE_ALL_PLAYLISTS,
 } from "../actions/playlist_actions";
+import { LOGOUT_CURRENT_USER,
+} from "../actions/session_actions";
 
 
 const playlistIndexReducer = (playlistsState = [], action) => {
@@ -7,6 +9,8 @@ const playlistIndexReducer = (playlistsState = [], action) => {
     switch (action.type) {
         case RECEIVE_ALL_PLAYLISTS:
             return action.playlists;
+        case LOGOUT_CURRENT_USER:
+            return [];
         default:
             return playlistsState;
     }

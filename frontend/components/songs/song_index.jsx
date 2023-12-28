@@ -6,7 +6,6 @@ import SongCardDropdownContainer from "./song_card_dropdown_container";
 const SongIndex = ({
     currentUser,
     songs,
-    history,
     params,
     source,
     songCardDropdownItems,
@@ -93,7 +92,6 @@ const SongIndex = ({
                               key={`${source} + ${song.id} + ${index}`}
                               source={source}
                               song={song}
-                              history={history}
                               index={index}
                               songCardDropdownState={songCardDropdownState}
                               placeSongCardDropdown={placeSongCardDropdown}
@@ -122,7 +120,6 @@ const SongIndex = ({
                 <SongCardDropdownContainer
                     ref={dropdownRef}
                     currentUser={currentUser}
-                    history={history}
                     selectedSong={selectedSong}
                     songCardDropdownState={songCardDropdownState}
                     updateSongCardDropdownState={updateSongCardDropdownState}

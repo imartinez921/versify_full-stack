@@ -27,7 +27,8 @@ const PlaylistEditForm = ({ currentPlaylist, editPlaylist }) => {
     return (
         <>
             <form className="edit-playlist-form">
-                <div className="playlist-art-edit"></div>
+                {/* <div className="playlist-art-edit"></div> */}
+                {/* TODO: Enable uploading and storing user's images for playlist */}
                 <div className="edit-content">
                     <label htmlFor="title">
                         <input type="text" 
@@ -49,14 +50,14 @@ const PlaylistEditForm = ({ currentPlaylist, editPlaylist }) => {
                     </label>
                     <br />
                 </div>
+                <button className="save-button" onClick={handleSubmit}>
+                    Save
+                </button>
             </form>
-            <button className="save-button" onClick={handleSubmit}>
-                Save
-            </button>
-            <div className="edit-footer">
+            {/* <div className="edit-footer">
                 By proceeding, you agree to give this Spotify clone access to the 
                 image you choose to upload. Please make sure you have the right to upload the image.
-            </div>
+            </div> */}
         </>
     )
 }

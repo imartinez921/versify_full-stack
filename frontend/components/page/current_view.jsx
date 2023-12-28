@@ -7,47 +7,38 @@ import AlbumShowContainer from "../albums/album_show_container.js";
 
 const CurrentView = (props) => {
     const currentViewType = () => {
-        const { path, params, currentUser, history } = props;
+        const { path, params, currentUser } = props;
 
         switch (path) {
             case "/home":
                 return (
                     <HomeContainer
-                        params={params}
-                        history={history}
-                        path={path}
                     />
                 );
             case "/playlist/:id":
                 return (
-                    <PlaylistShowContainer
-                        params={params}
-                        currentUser={currentUser}
-                        history={history}
-                    />
-                );
+					<PlaylistShowContainer
+						currentUser={currentUser}
+						params={params}
+					/>
+				);
             case "/artist/:id":
                 return (
                     <ArtistShowContainer
-                        params={params}
                         currentUser={currentUser}
-                        history={history}
+                        params={params}
                     />
                 );
             case "/album/:id":
                 return (
-                    <AlbumShowContainer
-                        params={params}
-                        currentUser={currentUser}
-                        history={history}
-                    />
-                );
+					<AlbumShowContainer
+						currentUser={currentUser}
+						params={params}
+					/>
+				);
             default:
                 return (
                     <HomeContainer
-                        params={params}
-                        history={history}
-                        path={path}
                     />
                 );
         }

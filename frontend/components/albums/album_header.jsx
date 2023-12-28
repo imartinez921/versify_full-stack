@@ -3,7 +3,6 @@ import React from 'react';
 import ArtistLink from '../artists/artist_link';
 
 const AlbumHeader = ({ album,
-  history,
 }) => {
 
   const { id,
@@ -32,8 +31,7 @@ const AlbumHeader = ({ album,
       </div>
       <div className="album-description">
         <h3>
-          <ArtistLink artist={albumArtist} currentArtist={null} 
-            history={history}/>
+          <ArtistLink artist={albumArtist} currentArtist={null} />
           &nbsp;• {genre} • {year} • {number} {songWord}, {hours} {mins} min
         </h3>
       </div>

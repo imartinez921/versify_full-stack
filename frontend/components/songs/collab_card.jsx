@@ -1,7 +1,8 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import ArtistLinkContainer from "../artists/artist_link_container";
 
-const CollabSongCard = ({
+const CollabCard = ({
     song,
     history,
     displayAlbum,
@@ -17,10 +18,10 @@ const CollabSongCard = ({
     } =  song;
 
     const collabArtistNames = collabArtists.map(artist => {
-        return <div className="artist-name" key={`${artist.name}+"collab"+${artist.id}`}><ArtistLinkContainer artist={artist} currentArtist={currentArtist} history={history}/>, </div>
+        return <div className="artist-name" key={`${artist.name}+"collab"+${artist.id}`}><ArtistLinkContainer artist={artist}/>, </div>
     })
 
-    const songArtistName = <ArtistLinkContainer artist={songArtist} currentArtist={currentArtist} history={history}/>
+    const songArtistName = <ArtistLinkContainer artist={songArtist} currentArtist={currentArtist}/>
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -47,4 +48,4 @@ const CollabSongCard = ({
     )
 }
 
-export default CollabSongCard;
+export default withRouter(CollabCard);

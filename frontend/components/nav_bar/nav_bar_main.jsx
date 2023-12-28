@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 import SearchBar from "./searchbar";
@@ -68,4 +69,4 @@ class NavBarMain extends React.Component {
 	}
 }
 
-export default NavBarMain;
+export default withRouter(NavBarMain);

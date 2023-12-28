@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { withRouter } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineAddBox } from "react-icons/md";
@@ -12,7 +12,6 @@ const Sidebar = (props) => {
         createPlaylist,
         fetchPlaylists,
         playlists,
-        path,
         history,
         currentUser,
         errors,
@@ -24,7 +23,6 @@ const Sidebar = (props) => {
     // )
 
     // const handleDropdown = useMemo( () => <playlistNavDropdown
-    // playlistNavDropdown={playlistNavDropdown} />, [playlistNavDropdown] )
 
     const handleSubmitCreate = (e) => {
         e.preventDefault();
@@ -68,12 +66,9 @@ const Sidebar = (props) => {
 
             <div className="line"></div>
             <PlaylistIndexContainer currentUser={currentUser} 
-                history={history} path={path}/>
-            {/* {playlistIndexRender} */}
-                {/* Only re-render Playlist#Index of the playlists slice of state changes */}
-                {/* pass currentUser through as props to keep on refresh */}
+                history={history}/>
         </section>
     );
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);

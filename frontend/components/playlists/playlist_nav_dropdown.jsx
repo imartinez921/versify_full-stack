@@ -41,12 +41,24 @@ const PlaylistNavDropdown = ({
 		};
 	}, []);
 
-	const playNow = (songsArr) => {
-		objToQueue = {
-			viewSongs: songsArr,
-			sourcedFrom: history.location.pathname,
-		};
-		return toPlayView(objToQueue);
+	const addToQueue = (selectedSongArr) => {
+		if (selectedSongArr?.length > 0) {
+			objToQueue = {
+				viewSongs: selectedSongArr,
+				sourcedFrom: history.location.pathname,
+			};
+			return toQueueView(objToQueue);
+		}
+	};
+
+	const playNow = (selectedSongArr) => {
+		if (selectedSongArr?.length > 0) {
+			objToQueue = {
+				viewSongs: selectedSongArr,
+				sourcedFrom: history.location.pathname,
+			};
+			return toPlayView(objToQueue);
+		}
 	};
 
 	const keepDropdownOpen = (event) => {
@@ -60,10 +72,10 @@ const PlaylistNavDropdown = ({
 				openPlaylistEditModal();
 				return console.log("OPEN EDIT MODAL");
 			case "Delete":
-				destroyPlaylist(currentPlaylist.id).then(fetchPlaylists());
+				destroyPlaylist(currentPlaylist.id);
 				return history.push("/home");
 			case "Add to queue":
-				toQueuePlaylist(objToQueue);
+				addToQueue(objToQueue);
                 return closePlaylistNavDropdown();
 			default:
 				null;

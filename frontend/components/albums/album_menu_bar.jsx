@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom"; 
 import { useState, useEffect, useRef } from "react";
 
 import AlbumDropdownContainer from "./album_dropdown_container";
@@ -98,4 +99,4 @@ const AlbumMenuBar = ({
 	);
 };
 
-export default AlbumMenuBar;
+export default withRouter(AlbumMenuBar);

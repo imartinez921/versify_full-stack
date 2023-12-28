@@ -1,9 +1,8 @@
 import React from "react";
-
+import { withRouter } from "react-router-dom";
 
 const ArtistCard = ({
     artist,
-    urlParams,
     history,
     displayArtist,
 }) => {
@@ -31,4 +30,4 @@ const ArtistCard = ({
     )
 }
 
-export default ArtistCard;
+export default withRouter(ArtistCard);

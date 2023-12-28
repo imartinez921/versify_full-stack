@@ -8,6 +8,9 @@ import { RECEIVE_CURRENT_ARTIST,
 import { RECEIVE_CURRENT_ALBUM,
 } from "../actions/album_actions";
 
+import { LOGOUT_CURRENT_USER,
+} from "../actions/session_actions";
+
 // used for Playlist#show & Album#show
 const currentItemReducer = (currItemState = {}, action) => {
     Object.freeze(currItemState) // currItemState is an object
@@ -24,6 +27,7 @@ const currentItemReducer = (currItemState = {}, action) => {
             let currAlbum = action.album;
             currAlbum['source'] = "album";
             return currAlbum;
+        case LOGOUT_CURRENT_USER:
         case RESET_CURRENT:
             return {};
         default:

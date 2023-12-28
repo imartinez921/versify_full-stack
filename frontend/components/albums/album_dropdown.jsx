@@ -6,11 +6,11 @@ import Submenu from "../shared/submenu";
 const AlbumDropdown = forwardRef(
 	(
 		{
-			history,
 			songs,
 			playlists,
 			currentItem,
 			currentUser,
+			history,
 			albumDropdownState,
 			updateAlbumDropdownState,
 			items,

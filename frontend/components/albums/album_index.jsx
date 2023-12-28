@@ -3,7 +3,6 @@ import AlbumCard from "./album_card";
 
 
 const AlbumIndex = ({ albums,
-    history,
     displayAlbum,
 }) => {
     
@@ -17,7 +16,6 @@ const AlbumIndex = ({ albums,
                 {albums.map( album => (
                     <AlbumCard key={`${album.id}+${album.title}`} 
                         album={album} 
-                        history={history}
                         displayAlbum={displayAlbum}
                     />
                 ))}

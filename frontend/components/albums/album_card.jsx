@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const AlbumCard = ({ album, 
     history,
@@ -32,4 +33,4 @@ const AlbumCard = ({ album,
     )
 }
 
-export default AlbumCard;
+export default withRouter(AlbumCard);

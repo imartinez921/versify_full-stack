@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import ArtistDropdownContainer from "./artist_dropdown_container";
 
 import { RxDotsHorizontal } from "react-icons/rx";
@@ -75,8 +76,8 @@ const ArtistMenuBar = ({
 			</div>
 			{artistDropdownState.isOpen && (
 				<ArtistDropdownContainer
-					history={history}
 					artistDropdownState={artistDropdownState}
+					history={history}
 					ref={dropdownRef}
 					updateArtistDropdownState={updateArtistDropdownState}
 				/>
@@ -85,4 +86,4 @@ const ArtistMenuBar = ({
 	);
 };
 
-export default ArtistMenuBar;
+export default withRouter(ArtistMenuBar);
