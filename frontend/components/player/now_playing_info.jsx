@@ -46,8 +46,6 @@ const NowPlayingInfo = ({
 						<div className="now-playing-artist">
 							<ArtistLinkContainer
 								artist={songArtist}
-								currentArtist={null}
-								history={history}
 							/>
 						</div>
 					</div>
