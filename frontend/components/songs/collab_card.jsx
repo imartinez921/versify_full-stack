@@ -48,4 +48,4 @@ const CollabCard = ({
     )
 }
 
-export default withRouter(CollabSongCard);
+export default withRouter(CollabCard);
