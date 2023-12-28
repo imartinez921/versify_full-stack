@@ -56,8 +56,10 @@ const PlaylistNav = ({
 		) {
 			toTogglePlay();
 		} else {
-			toPlayPlaylist(objToQueue);
-			toPushPlay();
+			if (objToQueue.playlistSongs?.length > 0) {
+				toPlayPlaylist(objToQueue);
+				toPushPlay();
+			}
 		}
 	};
 
@@ -65,7 +67,7 @@ const PlaylistNav = ({
 		<>
 			<div id="artist-play-button" onClick={handleButtonClick}>
 				{isPlaying &&
-				objToQueue.sourcedFrom === currentQueueSource.sourcedFrom ? (
+				objToQueue.sourcedFrom === currentQueueSource?.sourcedFrom ? (
 					<MdOutlinePauseCircleFilled />
 				) : (
 					<MdOutlinePlayCircleFilled />
