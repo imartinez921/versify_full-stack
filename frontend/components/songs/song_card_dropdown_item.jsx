@@ -63,8 +63,10 @@ const SongCardDropdownItem = ({
 			promises = selectedSongArr.map((song) => {
 				return createNewPlaylisted(song.id, playlistId);
 			});
+			Promise.all(promises).then((playlistId) =>
+				history.push(`/playlist/${playlistId}`)
+			);
 		});
-		await Promise.all(promises);
 		fetchPlaylists();
 	};
 
