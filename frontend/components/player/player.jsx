@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { withRouter } from "react-router-dom";
 import NowPlayingInfo from "./now_playing_info";
 import PlayingControls from "./playing_controls";
 
@@ -126,4 +127,4 @@ const Player = ({
 	);
 };
 
-export default Player;
+export default withRouter(Player);
