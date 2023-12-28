@@ -6,13 +6,18 @@
 }
 
 .edit-playlist-form {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
     font-size: 1.5rem;
     font-weight: 700;
     font-family: Trebuchet MS;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-content {
+    width: 100%;
 }
 
 .edit-content input, .edit-content textarea {
@@ -26,17 +31,16 @@
     height: 40px;
     margin: 0px 5px 15px 5px;
     padding: 0 12px;
-    width: calc(475px - 180px - 24px - 22px);
+    width: 98%;
 }
 
 .edit-content textarea {
     padding: 12px 12px;
-    height: calc(180px - 82px);
-    margin-bottom: 0px;
+    height: 180px;
+    margin-bottom: 10px;
 }
 
 .save-button {
-    display: inline-block;
     font-size: 16px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 700;
@@ -48,22 +52,7 @@
     padding: 13px 31px;
     border-radius: 24px;
     border: 0px;
-    margin-top: 5px;
-    display: inline-block;
-    font-size: 16px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 700;
-    color: black;
-    text-decoration: none;
-    background-color: #ffffff;
-    width: 100px;
-    text-align: center;
-    padding: 13px 31px;
-    border-radius: 24px;
-    border: 0px;
-    margin-top: 5px;
-    margin-left: calc(100% - 100px - 5.5px); // Div width minus width of the button minus half of the left padding
-    // Padding is within the border, so need to use margin to space it out
+    align-self: center;
 }
 
 .edit-footer {
