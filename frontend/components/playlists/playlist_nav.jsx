@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { withRouter } from "react-router-dom";
 import PlaylistNavDropdown from "./playlist_nav_dropdown";
 
 import { RxDotsHorizontal } from "react-icons/rx";
@@ -98,4 +99,4 @@ const PlaylistNav = ({
 	);
 };
 
-export default PlaylistNav;
+export default withRouter(PlaylistNav);

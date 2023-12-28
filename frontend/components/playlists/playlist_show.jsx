@@ -11,7 +11,6 @@ const PlaylistShow = ({
 	playlistSongs,
 	urlParams,
 	currentUser,
-	history,
 	source,
 	songCardDropdownItems,
 	displayPlaylist,
@@ -45,8 +44,6 @@ const PlaylistShow = ({
 				<PlaylistNav
 					currentPlaylist={currentPlaylist}
 					playlistSongs={playlistSongs}
-					urlParams={urlParams}
-					history={history}
 					{...props}
 				/>
 			</div>
@@ -54,7 +51,6 @@ const PlaylistShow = ({
 				currentUser={currentUser}
 				playlists={playlists}
 				songs={playlistSongs}
-				history={history}
 				source={source}
 				songCardDropdownItems={songCardDropdownItems}
 				currentViewRef={playlistShowRef}
