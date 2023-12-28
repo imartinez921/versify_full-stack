@@ -82,6 +82,7 @@ const SongCardDropdownItem = ({
 			updateSongCardDropdownState({ isOpen: false });
 			return addToQueue(selectedSong);
 		} else if (
+			e.target.innerText === "Play song" ||
 			e.target.innerText === "Play album" ||
 			e.target.innerText === "Play playlist" ||
 			e.target.innerText === "Play artist"

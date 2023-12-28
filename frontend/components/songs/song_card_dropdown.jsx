@@ -23,6 +23,7 @@ const SongCardDropdown = forwardRef(
 			createPlaylist,
 			displayPlaylist,
 			toQueueView,
+			toPlayView,
 		},
 		ref
 	) => {
@@ -145,6 +146,7 @@ const SongCardDropdown = forwardRef(
 							createPlaylist={createPlaylist}
 							displayPlaylist={displayPlaylist}
 							toQueueView={toQueueView}
+							toPlayView={toPlayView}
 						/>
 					);
 				})}
