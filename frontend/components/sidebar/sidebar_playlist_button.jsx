@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const SidebarPlaylistButton = (props) => {
     const { title, playlistId, history, displayPlaylist } = props;
@@ -15,4 +16,4 @@ const SidebarPlaylistButton = (props) => {
     );
 };
 
-export default SidebarPlaylistButton;
+export default withRouter(SidebarPlaylistButton);

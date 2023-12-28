@@ -8,8 +8,6 @@ import { fetchPlaylists,
 const mapStateToProps = (state, ownProps) => ({
     playlists: state.entities.playlists,
     currentUser: ownProps.currentUser,     // pass this through as props to keep on refresh
-    path: ownProps.path,
-    history: ownProps.history,
 })
 
 const mapDispatchToProps = (dispatch) => ({
