@@ -75,7 +75,6 @@ const ArtistMenuBar = ({
 			</div>
 			{artistDropdownState.isOpen && (
 				<ArtistDropdownContainer
-					history={history}
 					artistDropdownState={artistDropdownState}
 					ref={dropdownRef}
 					updateArtistDropdownState={updateArtistDropdownState}

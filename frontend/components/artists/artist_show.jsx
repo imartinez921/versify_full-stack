@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { withRouter } from "react-router-dom";
 
 import ArtistHeader from "./artist_header";
 import AlbumIndex from "../albums/album_index";
@@ -13,7 +14,7 @@ const ArtistShow = ({
 	isPlaying,
 	currentQueueSource,
 	urlParams,
-	history,
+	history, // prop object from withRouter
 	displayArtist,
 	displayAlbum,
 	toTogglePlay,
@@ -31,6 +32,7 @@ const ArtistShow = ({
 			clearCurrent();
 		};
 	}, [urlParams]); // Will run whenever urlParams.id changes, otherwise ArtistShow doesn't re-render
+	// Passing this down from currentView bc wrapping withRouter doesn't always trigger useEffect
 
 	const artistShowRef = useRef();
 	const artistShow = (
@@ -49,9 +51,9 @@ const ArtistShow = ({
 						<ArtistMenuBar
 							artistShowRef={artistShowRef}
 							allSongs={allSongs}
-							history={history}
 							isPlaying={isPlaying}
 							currentQueueSource={currentQueueSource}
+							history={history}
 							toTogglePlay={toTogglePlay}
 							toPlayArtist={toPlayArtist}
 							toPushPlay={toPushPlay}
@@ -60,14 +62,12 @@ const ArtistShow = ({
 					{albums?.length > 0 && (
 						<AlbumIndex
 							albums={albums}
-							history={history}
 							displayAlbum={displayAlbum}
 						/>
 					)}
 					{collabSongs?.length > 0 && (
 						<CollabSongIndex
 							songs={collabSongs}
-							history={history}
 							displayAlbum={displayAlbum}
 							currentArtist={currentArtist}
 						/>
@@ -80,4 +80,4 @@ const ArtistShow = ({
 	return currentArtist.photoUrl && artistShow;
 };
 
-export default ArtistShow;
+export default withRouter(ArtistShow);
