@@ -10,6 +10,7 @@ import {
 	PLAY_VIEW,
 } from "../actions/now_playing_actions";
 import { TOGGLE_PLAY } from "../actions/now_playing_actions";
+import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const nowPlayingReducer = (
 	playState = {
@@ -60,6 +61,11 @@ const nowPlayingReducer = (
 			}
 			newPlayState.isPlaying = true;
 			console.log("NEW QUEUE", newPlayState.queue);
+			return newPlayState;
+		case LOGOUT_CURRENT_USER:
+			newPlayState.isPlaying = false;
+			newPlayState.queue = [];
+			newPlayState.queueSources = [];
 			return newPlayState;
 		default:
 			return playState;

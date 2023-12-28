@@ -20,8 +20,8 @@ const songIndexReducer = (songsState = [], action) => {
 				collabSongs: action.collabSongs,
 			};
         case RECEIVE_CURRENT_ALBUM:
-        case LOGOUT_CURRENT_USER:
             return action.songs;
+        case LOGOUT_CURRENT_USER:
         case RESET_CURRENT:
             return [];
         default:
