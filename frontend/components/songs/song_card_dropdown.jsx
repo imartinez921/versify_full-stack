@@ -10,7 +10,6 @@ const SongCardDropdown = forwardRef(
 		{
 			currentItem,
 			playlists,
-			history,
 			currentUser,
 			selectedSong,
 			songCardDropdownState,
@@ -114,7 +113,6 @@ const SongCardDropdown = forwardRef(
 								</span>
 							</button>
 							<SongCardSubmenu
-								history={history}
 								currentUser={currentUser}
 								selectedSong={selectedSong}
 								songCardDropdownState={songCardDropdownState}
@@ -130,7 +128,6 @@ const SongCardDropdown = forwardRef(
 					) : (
 						<SongCardDropdownItem // Else, create just a button
 							key={`${item.key}+"no-subm"`}
-							history={history}
 							currentItem={currentItem}
 							playlists={playlists}
 							currentUser={currentUser}

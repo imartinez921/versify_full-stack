@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const SongCardDropdownItem = ({
 	history,
@@ -24,19 +25,25 @@ const SongCardDropdownItem = ({
 
 	// Define all song actions
 	const addToQueue = (selectedSongArr) => {
-		objToQueue = {
-			viewSongs: selectedSongArr,
-			sourcedFrom: history.location.pathname,
-		};
-		return toQueueView(objToQueue);
+		if (selectedSongArr?.length > 0) {
+			objToQueue = {
+				viewSongs: selectedSongArr,
+				sourcedFrom: history.location.pathname,
+			};
+			return toQueueView(objToQueue);
+		}
 	};
+
 	const playNow = (selectedSongArr) => {
-		objToQueue = {
-			viewSongs: selectedSongArr,
-			sourcedFrom: history.location.pathname,
-		};
-		return toPlayView(objToQueue);
+		if (selectedSongArr?.length > 0) {
+			objToQueue = {
+				viewSongs: selectedSongArr,
+				sourcedFrom: history.location.pathname,
+			};
+			return toPlayView(objToQueue);
+		}
 	};
+
 	const addToPlaylist = async (selectedSongArr) => {
 		const promises = selectedSongArr.map((song) => {
 			return createNewPlaylisted(song.id, selectedPlaylist.id);
@@ -108,4 +115,4 @@ const SongCardDropdownItem = ({
 	);
 };
 
-export default SongCardDropdownItem;
+export default withRouter(SongCardDropdownItem);
