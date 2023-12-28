@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const ArtistLink = ({
     artist,
@@ -26,4 +27,4 @@ const ArtistLink = ({
     }
 }
 
-export default ArtistLink;
+export default withRouter(ArtistLink);
