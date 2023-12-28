@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { withRouter } from "react-router-dom";
 
 import ArtistHeader from "./artist_header";
 import AlbumIndex from "../albums/album_index";
@@ -14,7 +13,6 @@ const ArtistShow = ({
 	isPlaying,
 	currentQueueSource,
 	urlParams,
-	history, // prop object from withRouter
 	displayArtist,
 	displayAlbum,
 	toTogglePlay,
@@ -53,7 +51,6 @@ const ArtistShow = ({
 							allSongs={allSongs}
 							isPlaying={isPlaying}
 							currentQueueSource={currentQueueSource}
-							history={history}
 							toTogglePlay={toTogglePlay}
 							toPlayArtist={toPlayArtist}
 							toPushPlay={toPushPlay}
@@ -80,4 +77,4 @@ const ArtistShow = ({
 	return currentArtist.photoUrl && artistShow;
 };
 
-export default withRouter(ArtistShow);
+export default ArtistShow;
