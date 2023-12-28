@@ -18,7 +18,7 @@ const CollabCard = ({
     } =  song;
 
     const collabArtistNames = collabArtists.map(artist => {
-        return <div className="artist-name" key={`${artist.name}+"collab"+${artist.id}`}><ArtistLinkContainer artist={artist} currentArtist={currentArtist}/>, </div>
+        return <div className="artist-name" key={`${artist.name}+"collab"+${artist.id}`}><ArtistLinkContainer artist={artist}/>, </div>
     })
 
     const songArtistName = <ArtistLinkContainer artist={songArtist} currentArtist={currentArtist}/>

@@ -5,7 +5,6 @@ const ArtistLink = ({
     artist,
     history,
 }) => {
-
     const { id,
         name,
     } = artist;

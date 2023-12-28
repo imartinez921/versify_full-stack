@@ -37,7 +37,7 @@ const SongCard = ({
             className="artist-name"
             key={`${artist.name}+"collab"+${artist.id}`}
         >
-            <ArtistLinkContainer
+            <ArtistLinkContainer artist={songArtist}
             />
             ,&nbsp;
         </div>
@@ -48,7 +48,7 @@ const SongCard = ({
             className="artist-name"
             key={`${songArtist.name}+"track"+${songArtist.id}+${tracknum}`}
         >
-            <ArtistLinkContainer
+            <ArtistLinkContainer artist={songArtist}
             />
         </div>
     );
