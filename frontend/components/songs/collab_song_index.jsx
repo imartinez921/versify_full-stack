@@ -3,7 +3,6 @@ import CollabCard from "./collab_card";
 
 const CollabSongIndex = ({
     songs,
-    history,
     displayAlbum,
     currentArtist,
 }) => {
@@ -19,7 +18,6 @@ const CollabSongIndex = ({
             <CollabCard
                 key={`${song.id}+${song.title}`}
                 song={song}
-                history={history}
                 displayAlbum={displayAlbum}
                 currentArtist={currentArtist}
             />
