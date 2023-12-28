@@ -14,12 +14,12 @@ import AlbumDropdown from "./album_dropdown";
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		ref: ownProps.ref,
-		history: ownProps.history,
 		songs: state.entities.songs,
 		playlists: state.entities.playlists,
 		currentItem: state.entities.currentItem,
 		currentUser: state.entities.users[state.session.id],
+		ref: ownProps.ref,
+		history: ownProps.history,
 		albumDropdownState: ownProps.albumDropdownState,
 		updateAlbumDropdownState: ownProps.updateAlbumDropdownState,
 		items: ownProps.items,
