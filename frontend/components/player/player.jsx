@@ -26,9 +26,11 @@ const Player = ({
 
 	// Set current track
 	let audioRef = useRef(new Audio()); // creates empty HTMLAudioElement
+	audioRef.current.addEventListener("error", errorCatch, true);
 	let audioSrc;
 
 	useEffect(() => {
+		audioSrc = "";
 		audioSrc = currentTrack?.audioUrl || "";
 		audioRef.current.src = audioSrc;
 		audioRef.current.currentTime = trackProgress;
@@ -41,6 +43,33 @@ const Player = ({
 			audioRef.current.removeEventListener("ended", whenTrackEnds);
 		};
 	}, [currentTrack, trackIndex]); // on first song + in case same song is queued twice
+
+	// Catch audio errors
+	const errorCatch = (e) => {
+		switch (e.target.error.code) {
+			case e.target.error.MEDIA_ERR_ABORTED:
+				console.log("You aborted the video playback.");
+				break;
+			case e.target.error.MEDIA_ERR_NETWORK:
+				console.log(
+					"A network error caused the audio download to fail."
+				);
+				break;
+			case e.target.error.MEDIA_ERR_DECODE:
+				console.log(
+					"The audio playback was aborted due to a corruption problem or because the video used features your browser did not support."
+				);
+				break;
+			case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+				console.log(
+					"The video audio not be loaded, either because the server or network failed or because the format is not supported."
+				);
+				break;
+			default:
+				console.log("An unknown error occurred.");
+				break;
+		}
+	};
 
 	// Safely play audio only when it is loaded
 	const tryPlay = () => {
@@ -63,7 +92,7 @@ const Player = ({
 		return () => {
 			audioRef.current.removeEventListener("loadeddata", tryPlay);
 		};
-	}, [isPlaying]);
+	}, [currentTrack, trackIndex, isPlaying]);
 
 	// Behavior when changing tracks
 	const afterFirstRender = useRef(false); // prevent auto-play
