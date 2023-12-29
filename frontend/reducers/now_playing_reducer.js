@@ -78,6 +78,7 @@ const nowPlayingReducer = (
 				});
 			}
 			newPlayState.isPlaying = true;
+			newPlayState.trackIndex = 0;
 			console.log("NEW QUEUE", newPlayState.queue);
 			return newPlayState;
 		case LOGOUT_CURRENT_USER:
