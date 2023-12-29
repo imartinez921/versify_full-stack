@@ -79,8 +79,8 @@ const SongCardDropdown = forwardRef(
 			depthStyling = {
 				maxHeight: "250px",
 				overflowY: "scroll",
-				width: "250px",
-				paddingBottom: "50px",
+				width: "190px",
+				paddingBottom: "15px",
 				// top: `${dropdownPosition.top-100}px`,
 				// top: `${newTop}px`,
 			};

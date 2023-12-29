@@ -19,8 +19,8 @@ const mapStateToProps = (state, ownProps) => {
 	// Relocate each instance of recursive SongCardDrodpown
 	const { left, top } = ownProps.dropdownPosition;
 	let nextLeft = left - 165; // Width needed to clear first div and appear to the left
-	if (ownProps.depthLevel === 1) nextLeft -= 100; //submenu div is wider
-	const nextTop = top - 50; // Offset height for staggered display
+	if (ownProps.depthLevel === 1) nextLeft -= 30; //submenu div is wider
+	const nextTop = top - 100; // Offset height for staggered display
 	return {
 		currentItem: state.entities.currentItem,
 		playlists: state.entities.playlists,
