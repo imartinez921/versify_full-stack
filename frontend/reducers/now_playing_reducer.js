@@ -4,12 +4,12 @@ import {
 	QUEUE_PLAYLIST,
 	QUEUE_VIEW,
 	PLAY_PLAYLIST,
-	QUEUE_ALBUM,
 	PLAY_ALBUM,
 	PUSH_PLAY,
 	PLAY_VIEW,
 	NEXT_TRACK,
 	PREV_TRACK,
+	CLEAR_QUEUE,
 } from "../actions/now_playing_actions";
 import { TOGGLE_PLAY } from "../actions/now_playing_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
@@ -34,16 +34,18 @@ const nowPlayingReducer = (
 		case NEXT_TRACK:
 			newPlayState.trackIndex++;
 			if (newPlayState.trackIndex >= newPlayState.queue.length) {
-				newPlayState.trackIndex = 0;
+				newPlayState.trackIndex = null;
+				newPlayState.isPlaying = false;
+				newPlayState.queue = [];
 			}
-			newPlayState.isPlaying = true;
 			return newPlayState;
 		case PREV_TRACK:
 			newPlayState.trackIndex--;
 			if (newPlayState.trackIndex < 0) {
-				newPlayState.trackIndex = newPlayState.queue.length - 1;
+				newPlayState.trackIndex = null;
+				newPlayState.isPlaying = false;
+				newPlayState.queue = [];
 			}
-			newPlayState.isPlaying = true;
 			return newPlayState;
 		case TOGGLE_PLAY:
 			if (newPlayState.queue?.length > 0)
@@ -80,6 +82,11 @@ const nowPlayingReducer = (
 			newPlayState.isPlaying = true;
 			newPlayState.trackIndex = 0;
 			console.log("NEW QUEUE", newPlayState.queue);
+			return newPlayState;
+		case CLEAR_QUEUE:
+			newPlayState.queue = [];
+			newPlayState.queueSources = [];
+			newPlayState.trackIndex = null;
 			return newPlayState;
 		case LOGOUT_CURRENT_USER:
 			newPlayState.isPlaying = false;
