@@ -4,41 +4,76 @@ import NowPlayingInfo from "./now_playing_info";
 import PlayingControls from "./playing_controls";
 
 const Player = ({
-	tracks,
-	songs,
-	history,
 	isPlaying,
+	currentTrack,
+	trackIndex,
+	songs, // songs of the current view
 	hasQueue,
+	history,
+	toNextTrack,
+	toPrevTrack,
 	toPlayView,
 	toTogglePlay,
 	toPushPlay,
 }) => {
 	// Set local states
-	const [trackIndex, setTrackIndex] = useState(0);
 	const [trackProgress, setTrackProgress] = useState(0); // progress bar
-	const [isShuffling, setIsShuffling] = useState(false);
+	// const [isShuffling, setIsShuffling] = useState(false);
 
 	const updateTrackProgress = (time) => {
 		return setTrackProgress(time);
 	};
 
 	// Set current track
-	let currentTrack = tracks ? tracks[trackIndex] : null;
 	let audioRef = useRef(new Audio()); // creates empty HTMLAudioElement
+	audioRef.current.addEventListener("error", errorCatch, true);
 	let audioSrc;
 
 	useEffect(() => {
-		audioSrc = currentTrack ? currentTrack.audioUrl : "";
+		audioSrc = "";
+		audioSrc = currentTrack?.audioUrl || "";
 		audioRef.current.src = audioSrc;
+		audioRef.current.currentTime = trackProgress;
+		tryPlayListener();
+		audioRef.current?.addEventListener("ended", whenTrackEnds);
 
 		return () => {
 			audioRef.current?.pause();
+			audioRef.current.removeEventListener("loadeddata", tryPlay);
+			audioRef.current.removeEventListener("ended", whenTrackEnds);
+		};
+	}, [currentTrack, trackIndex]); // on first song + in case same song is queued twice
+
+	// Catch audio errors
+	const errorCatch = (e) => {
+		switch (e.target.error.code) {
+			case e.target.error.MEDIA_ERR_ABORTED:
+				console.log("You aborted the video playback.");
+				break;
+			case e.target.error.MEDIA_ERR_NETWORK:
+				console.log(
+					"A network error caused the audio download to fail."
+				);
+				break;
+			case e.target.error.MEDIA_ERR_DECODE:
+				console.log(
+					"The audio playback was aborted due to a corruption problem or because the video used features your browser did not support."
+				);
+				break;
+			case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+				console.log(
+					"The video audio not be loaded, either because the server or network failed or because the format is not supported."
+				);
+				break;
+			default:
+				console.log("An unknown error occurred.");
+				break;
 		}
-	}, [currentTrack]);
+	};
 
 	// Safely play audio only when it is loaded
 	const tryPlay = () => {
-		if (audioRef.current.readyState === 4) {
+		if (audioRef.current.readyState === 3) {
 			audioRef.current.play();
 		}
 	};
@@ -57,18 +92,7 @@ const Player = ({
 		return () => {
 			audioRef.current.removeEventListener("loadeddata", tryPlay);
 		};
-	}, [isPlaying]);
-
-	// Behavior when track ends
-	audioRef.current?.addEventListener(
-		"ended",
-		() => {
-			if (tracks.length > 1) {
-				setTrackIndex(trackIndex + 1);
-			}
-		},
-		false
-	);
+	}, [currentTrack, trackIndex, isPlaying]);
 
 	// Behavior when changing tracks
 	const afterFirstRender = useRef(false); // prevent auto-play
@@ -84,36 +108,35 @@ const Player = ({
 		if (!afterFirstRender) afterFirstRender.current = true;
 	}, [trackIndex]);
 
+	// Behavior when track ends
+	const whenTrackEnds = () => {
+		audioRef.current?.pause();
+		hitNext();
+	};
+
 	// Behavior when user leaves the window
 	window.addEventListener("unload", () => {
 		audioElement.pause();
 	});
 
 	// Create PlayingControls functions
-	const toPrevTrack = () => {
+	const hitPrev = () => {
 		if (isPlaying) audioRef.current.pause();
-		if (trackIndex - 1 < 0) {
-			setTrackIndex(tracks.length - 1);
-		} else {
-			setTrackIndex(trackIndex - 1);
-		}
+		toPrevTrack();
 	};
-	const toNextTrack = () => {
+	const hitNext = () => {
 		if (isPlaying) audioRef.current.pause();
-		if (trackIndex < tracks.length - 1) {
-			setTrackIndex(trackIndex + 1);
-		} else {
-			setTrackIndex(0);
-		}
+		toNextTrack();
 	};
-	const toggleShuffle = () => {
-		// TODO: Re-work this logic
-		if (isShuffling) return setIsShuffling(false);
-		if (tracks.length > 1) {
-			setIsShuffling(true);
-			setTrackIndex(Math.floor(Math.random() * tracks.length));
-		}
-	};
+
+	// const toggleShuffle = () => {
+	// 	// TODO: Re-work this logic in NowPlayingReducer
+	// 	if (isShuffling) return setIsShuffling(false);
+	// 	if (tracks.length > 1) {
+	// 		setIsShuffling(true);
+	// 		setTrackIndex(Math.floor(Math.random() * tracks.length));
+	// 	}
+	// };
 
 	const objToQueue = {
 		viewSongs: songs,
@@ -128,7 +151,6 @@ const Player = ({
 				trackProgress={trackProgress}
 				history={history}
 				isPlaying={isPlaying}
-				updateTrackProgress={updateTrackProgress}
 			/>
 			<PlayingControls
 				hasQueue={hasQueue}
@@ -137,9 +159,10 @@ const Player = ({
 				toPlayView={toPlayView}
 				togglePlay={toTogglePlay}
 				toPushPlay={toPushPlay}
-				toPrevTrack={toPrevTrack}
-				toNextTrack={toNextTrack}
-				toggleShuffle={toggleShuffle}
+				hitPrev={hitPrev}
+				hitNext={hitNext}
+				updateTrackProgress={updateTrackProgress}
+				// toggleShuffle={toggleShuffle}
 			/>
 			<div className="player-right"></div>
 		</div>

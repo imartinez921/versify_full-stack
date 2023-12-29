@@ -20,7 +20,7 @@ const mapStateToProps = (
 		playlists: playlists,
 		currentUser: currentUser,
 		isPlaying: nowPlaying.isPlaying,
-		currentQueueSource: nowPlaying.queueSources[0],
+		currentQueueSource: nowPlaying.queueSources[nowPlaying.trackIndex],
 		urlParams: params,
 		source: "album",
 		songCardDropdownItems: [

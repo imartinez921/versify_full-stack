@@ -4,10 +4,16 @@ export const QUEUE_ARTIST = "QUEUE_ARTIST";
 export const PLAY_ARTIST = "PLAY_ARTIST";
 export const QUEUE_PLAYLIST = "QUEUE_PLAYLIST";
 export const PLAY_PLAYLIST = "PLAY_PLAYLIST";
-export const QUEUE_ALBUM = "QUEUE_ALBUM";
 export const PLAY_ALBUM = "PLAY_ALBUM";
 export const PLAY_VIEW = "PLAY_VIEW";
 export const QUEUE_VIEW = "QUEUE_VIEW";
+export const NEXT_TRACK = "NEXT_TRACK";
+export const PREV_TRACK = "PREV_TRACK";
+export const CLEAR_QUEUE = "CLEAR_QUEUE";
+
+const clearQueue = () => ({
+	type: CLEAR_QUEUE,
+});
 
 const togglePlay = () => ({
 	type: TOGGLE_PLAY,
@@ -15,6 +21,14 @@ const togglePlay = () => ({
 
 const pushPlay = () => ({
 	type: PUSH_PLAY,
+});
+
+const nextTrack = () => ({
+	type: NEXT_TRACK,
+});
+
+const prevTrack = () => ({
+	type: PREV_TRACK,
 });
 
 const queueArtist = (objToQueue) => ({
@@ -74,7 +88,13 @@ const playView = (objToQueue) => {
 	sourcedFrom: objToQueue.sourcedFrom,
 }};
 
+export const toClearQueue = () => (dispatch) => dispatch(clearQueue());
+
 export const toTogglePlay = () => (dispatch) => dispatch(togglePlay());
+
+export const toNextTrack = () => (dispatch) => dispatch(nextTrack());
+
+export const toPrevTrack = () => (dispatch) => dispatch(prevTrack());
 
 export const toQueueArtist = (objToQueue) => (dispatch) => {
 	return dispatch(queueArtist(objToQueue));
@@ -90,10 +110,6 @@ export const toPlayPlaylist = (objToQueue) => (dispatch) => {
 
 export const toQueuePlaylist = (objToQueue) => (dispatch) => {
 	return dispatch(queuePlaylist(objToQueue));
-};
-
-export const toQueueAlbum = (objToQueue) => (dispatch) => {
-	return dispatch(queueAlbum(objToQueue));
 };
 
 export const toPlayAlbum = (objToQueue) => (dispatch) => {
