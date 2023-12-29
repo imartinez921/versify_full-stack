@@ -1,9 +1,9 @@
 # <img width="49" alt="image" src="https://user-images.githubusercontent.com/102888592/187043189-5d690638-97ce-4580-a360-7c34b6282f56.png"> Versify
 
-## [Versify](https://versify-idm-402fcc1678c6.herokuapp.com/#/) is a clone of the Spotify web client but with a darker and starry undertone.
+## [Versify](https://versify-idm-402fcc1678c6.herokuapp.com/) is a clone of the Spotify web client but with a darker and starry undertone.
 ### Versify provides a very similar user experience to Spotify online, with a focus on Afropop and R&B genres. 
 (Note: All music is for non-commercial use as this is a private project.)
-## Live Demo [here.](https://versify-idm-402fcc1678c6.herokuapp.com/#/)
+## Live Demo [here.](https://versify-idm-402fcc1678c6.herokuapp.com/)
 
 #### Versify is built with a Ruby on Rails back-end, a PostgreSQL database, and React-Redux on the front-end.
 
