@@ -7,6 +7,7 @@ import {
 	toPushPlay,
 	toNextTrack,
 	toPrevTrack,
+	toClearQueue,
 } from "../../actions/now_playing_actions";
 
 const mapStateToProps = (state, ownProps) => {
@@ -27,6 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
 	toTogglePlay: () => dispatch(toTogglePlay()),
 	toPushPlay: () => dispatch(toPushPlay()),
+	toClearQueue: () => dispatch(toClearQueue()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

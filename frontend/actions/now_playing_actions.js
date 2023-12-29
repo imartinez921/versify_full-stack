@@ -9,6 +9,11 @@ export const PLAY_VIEW = "PLAY_VIEW";
 export const QUEUE_VIEW = "QUEUE_VIEW";
 export const NEXT_TRACK = "NEXT_TRACK";
 export const PREV_TRACK = "PREV_TRACK";
+export const CLEAR_QUEUE = "CLEAR_QUEUE";
+
+const clearQueue = () => ({
+	type: CLEAR_QUEUE,
+});
 
 const togglePlay = () => ({
 	type: TOGGLE_PLAY,
@@ -82,6 +87,8 @@ const playView = (objToQueue) => {
 	songs: objToQueue.viewSongs,
 	sourcedFrom: objToQueue.sourcedFrom,
 }};
+
+export const toClearQueue = () => (dispatch) => dispatch(clearQueue());
 
 export const toTogglePlay = () => (dispatch) => dispatch(togglePlay());
 
