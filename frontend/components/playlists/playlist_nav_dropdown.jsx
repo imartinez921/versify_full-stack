@@ -15,7 +15,7 @@ const PlaylistNavDropdown = ({
     editPlaylist,
     destroyPlaylist,
     toQueuePlaylist,
-	toPlayView,
+	toPlayPlaylist,
 }) => {
 	useEffect(() => {
 		// UseEffect takes 2 args, a callback function and an array of dependencies
@@ -41,23 +41,15 @@ const PlaylistNavDropdown = ({
 		};
 	}, []);
 
-	const addToQueue = (selectedSongArr) => {
-		if (selectedSongArr?.length > 0) {
-			objToQueue = {
-				viewSongs: selectedSongArr,
-				sourcedFrom: history.location.pathname,
-			};
-			return toQueueView(objToQueue);
+	const addToQueue = (objToQueue) => {
+		if (playlistSongs?.length > 0) {
+			return toQueuePlaylist(objToQueue);
 		}
 	};
 
-	const playNow = (selectedSongArr) => {
-		if (selectedSongArr?.length > 0) {
-			objToQueue = {
-				viewSongs: selectedSongArr,
-				sourcedFrom: history.location.pathname,
-			};
-			return toPlayView(objToQueue);
+	const playNow = (objToQueue) => {
+		if (playlistSongs?.length > 0) {
+			return toPlayPlaylist(objToQueue);
 		}
 	};
 
@@ -66,7 +58,7 @@ const PlaylistNavDropdown = ({
 		// prevents re-rendering of parent and keeps menu open
 		switch (event.target.innerText) {
 			case "Play playlist":
-				playNow(playlistSongs);
+				playNow(objToQueue);
 				return closePlaylistNavDropdown();
 			case "Edit details":
 				openPlaylistEditModal();
