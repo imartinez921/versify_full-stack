@@ -87,8 +87,6 @@
     object-fit: contain;
 }
 
-
-// PlaylistNav
 .playlist-nav, .album-nav {
     display: flex;
     background: #23201be6;
@@ -142,8 +140,6 @@ button.playlist-dropdown-button:hover {
     transition: .2s;
 }
 
-
-// PlaylistSongIndex
 .song-index {
     padding: 24px;
     flex: 1 0 auto;
