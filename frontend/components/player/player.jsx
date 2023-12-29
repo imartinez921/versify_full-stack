@@ -44,7 +44,7 @@ const Player = ({
 
 	// Safely play audio only when it is loaded
 	const tryPlay = () => {
-		if (audioRef.current.readyState === 4) {
+		if (audioRef.current.readyState === 3) {
 			audioRef.current.play();
 		}
 	};
