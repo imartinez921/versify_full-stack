@@ -24,7 +24,6 @@ const PlaylistNav = ({
 	toQueuePlaylist,
 	toPlayPlaylist,
 	toPushPlay,
-	toPlayView,
 	openPlaylistNavDropdown,
 	closePlaylistNavDropdown,
 	openPlaylistEditModal,
@@ -94,7 +93,7 @@ const PlaylistNav = ({
 					editPlaylist={editPlaylist}
 					destroyPlaylist={destroyPlaylist}
 					toQueuePlaylist={toQueuePlaylist}
-					toPlayView={toPlayView}
+					toPlayPlaylist={toPlayPlaylist}
 				/>
 			) : null}
 		</>
