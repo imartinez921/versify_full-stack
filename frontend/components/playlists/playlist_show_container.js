@@ -33,7 +33,7 @@ const mapStateToProps = (
 		playlists: playlists,
 		playlistSongs: songs,
 		isPlaying: nowPlaying.isPlaying,
-		currentQueueSource: nowPlaying.queueSources[0],
+		currentQueueSource: nowPlaying.queueSources[nowPlaying.trackIndex],
 		playlistNavDropdownState: ux.playlistNavDropdown,
 		playlistEditModalState: ux.playlistEditModal,
 		currentUser: currentUser,
