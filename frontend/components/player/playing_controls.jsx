@@ -14,10 +14,15 @@ const PlayingControls = ({
 	toPlayView,
 	togglePlay,
 	toPushPlay,
-	toPrevTrack,
-	toNextTrack,
-	toggleShuffle,
+	hitPrev,
+	hitNext,
+	updateTrackProgress,
+	// toggleShuffle,
 }) => {
+	// TODO: Create track progress bar and scrubber
+	// useEffect(() => {
+	// 	updateTrackProgress(audioRef.current.currentTime);
+	// }, [isPlaying]);
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -46,7 +51,7 @@ const PlayingControls = ({
 			<BiSkipPrevious
 				className="player__grey-icon"
 				aria-label="Previous"
-				onClick={toPrevTrack}
+				onClick={hitPrev}
 			/>
 			{isPlaying ? (
 				<MdOutlinePauseCircleFilled
@@ -64,7 +69,7 @@ const PlayingControls = ({
 			<BiSkipNext
 				className="player__grey-icon"
 				aria-label="Next"
-				onClick={toNextTrack}
+				onClick={hitNext}
 			/>
 			{/* <BsRepeat // TODO: implement repeat functionality */}
 			<div

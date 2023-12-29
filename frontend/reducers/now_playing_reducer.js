@@ -8,6 +8,8 @@ import {
 	PLAY_ALBUM,
 	PUSH_PLAY,
 	PLAY_VIEW,
+	NEXT_TRACK,
+	PREV_TRACK,
 } from "../actions/now_playing_actions";
 import { TOGGLE_PLAY } from "../actions/now_playing_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
@@ -15,6 +17,7 @@ import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 const nowPlayingReducer = (
 	playState = {
 		isPlaying: false,
+		trackIndex: 0,
 		queue: [],
 		queueSources: [],
 	},
@@ -28,8 +31,23 @@ const nowPlayingReducer = (
 	};
 	// Above rectifies issues with shallow copies where nested objs kept the same refs
 	switch (action.type) {
+		case NEXT_TRACK:
+			newPlayState.trackIndex++;
+			if (newPlayState.trackIndex >= newPlayState.queue.length) {
+				newPlayState.trackIndex = 0;
+			}
+			newPlayState.isPlaying = true;
+			return newPlayState;
+		case PREV_TRACK:
+			newPlayState.trackIndex--;
+			if (newPlayState.trackIndex < 0) {
+				newPlayState.trackIndex = newPlayState.queue.length - 1;
+			}
+			newPlayState.isPlaying = true;
+			return newPlayState;
 		case TOGGLE_PLAY:
 			if (newPlayState.queue?.length > 0)
+
 				newPlayState.isPlaying = !newPlayState.isPlaying;
 			return newPlayState;
 		case PUSH_PLAY:

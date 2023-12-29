@@ -3,13 +3,8 @@ import AlbumLinkContainer from "../albums/album_link_container";
 import ArtistLinkContainer from "../artists/artist_link_container";
 
 const NowPlayingInfo = ({
-	audioRef,
 	track,
-	trackProgress,
-	history,
-	length, // Refreshes component whenever queue changes
-	isPlaying,
-	updateTrackProgress,
+
 }) => {
 	if (!track) {
 		track = {
@@ -21,9 +16,6 @@ const NowPlayingInfo = ({
 	}
 	const { title, albumId, albumImageUrl, songArtist } = track;
 
-	useEffect(() => {
-		updateTrackProgress(audioRef.current.currentTime);
-	}, [isPlaying]);
 	return (
 		<div className="now-playing">
 			{!!track.title ? (
@@ -39,7 +31,7 @@ const NowPlayingInfo = ({
 							<AlbumLinkContainer
 								album={{
 									id: track.albumId,
-									name: title ,
+									name: title,
 								}}
 							/>
 						</div>
