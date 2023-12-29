@@ -46,7 +46,7 @@ const PlayingControls = ({
 			<div
 				className="player__grey-icon repeat-shuffle-icon"
 				aria-label="Shuffle"
-				onClick={toggleShuffle}
+				// onClick={toggleShuffle}
 			/>
 			<BiSkipPrevious
 				className="player__grey-icon"
