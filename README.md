@@ -5,7 +5,7 @@
 (Note: All music is for non-commercial use as this is a private project.)
 ## Live Demo [here.](https://versify-idm-402fcc1678c6.herokuapp.com/)
 
-#### Versify is built with a Ruby on Rails back-end, a PostgreSQL database, and React-Redux on the front-end.
+#### Versify is built with a Ruby on Rails back-end, a PostgreSQL database, and React-Redux on the front-end. <br>It also utilizes AWS S3 for the storage of audio and image files.
 
 ## Users can:
 * register for a new account or log in as the demo user.
