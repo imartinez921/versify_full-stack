@@ -17,7 +17,7 @@
 
 ### Future features:
 * Users can view and manipulate their queue.
-* Users can drag-and-drop the order of their playlists.
+* Users can drag-and-drop to re-order songs in their playlists.
 * Users can search for songs, artists, and albums.
 * Users can add Liked songs to their library.
 * Users can view lyrics of the song currently playing. (Hence, "Versify")
