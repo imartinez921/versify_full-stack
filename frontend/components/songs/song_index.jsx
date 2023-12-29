@@ -81,7 +81,7 @@ const SongIndex = ({
                 <div className="song-index-heading-album">
                     {source === "playlist" ? "Album" : null}
                 </div>
-                <div className="song-index-heading-liked">&#128153;</div>
+                {/* <div className="song-index-heading-liked">&#128153;</div> */}
                 <div className="song-index-heading-duration">&#9201;</div>
                 <div className="song-index-heading-menu"></div>
             </div>

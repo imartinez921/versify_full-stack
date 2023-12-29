@@ -95,7 +95,7 @@ const SongCard = ({
                     />
                     : null}
             </div>
-            <div className="song-card-liked">&hearts;</div>
+            {/* <div className="song-card-liked">&hearts;</div> */}
             <div className="song-card-duration">
                 {mins}:{secs}
             </div>
