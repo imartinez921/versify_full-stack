@@ -13,7 +13,7 @@
 * view Artist, Playlist, and Album pages.
 * create, edit, and delete playlists.
 * add songs to playlists.
-* add songs to queue.
+* add songs to the play queue.
 * play songs.
 
 ### Future features:
@@ -21,4 +21,4 @@
 * Users can drag-and-drop to re-order songs in their playlists.
 * Users can search for songs, artists, and albums.
 * Users can add Liked songs to their library.
-* Users can view lyrics of the song currently playing. (Hence, "Versify")
+* Users can view lyrics of the song currently playing. (Hence, "VERSE-ify")
