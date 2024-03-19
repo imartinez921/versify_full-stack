@@ -14,6 +14,7 @@ const PlaylistShow = ({
 	source,
 	songCardDropdownItems,
 	displayPlaylist,
+	toPlayView,
 	clearCurrent,
 	...props
 }) => {
@@ -54,6 +55,7 @@ const PlaylistShow = ({
 				source={source}
 				songCardDropdownItems={songCardDropdownItems}
 				currentViewRef={playlistShowRef}
+				toPlayView={toPlayView}
 			/>
 		</div>
 	) : null;

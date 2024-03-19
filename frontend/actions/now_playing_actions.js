@@ -11,6 +11,7 @@ export const NEXT_TRACK = "NEXT_TRACK";
 export const PREV_TRACK = "PREV_TRACK";
 export const CLEAR_QUEUE = "CLEAR_QUEUE";
 
+// regular Redux action creators
 const clearQueue = () => ({
 	type: CLEAR_QUEUE,
 });
@@ -88,6 +89,8 @@ const playView = (objToQueue) => {
 	sourcedFrom: objToQueue.sourcedFrom,
 }};
 
+
+// Thunk action creators
 export const toClearQueue = () => (dispatch) => dispatch(clearQueue());
 
 export const toTogglePlay = () => (dispatch) => dispatch(togglePlay());
