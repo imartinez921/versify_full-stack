@@ -4,6 +4,7 @@ import { displayAlbum } from "../../actions/album_actions";
 import { toPlayAlbum,
 	toPushPlay,
 	toTogglePlay,
+	toPlayView,
 } from "../../actions/now_playing_actions";
 
 import AlbumShow from "./album_show";
@@ -47,6 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
 	toPlayAlbum: (objToQueue) => dispatch(toPlayAlbum(objToQueue)),
 	toPushPlay: () => dispatch(toPushPlay()),
 	toTogglePlay: () => dispatch(toTogglePlay()),
+	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
 	clearCurrent: () => dispatch(clearCurrent()),
 });
 

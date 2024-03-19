@@ -18,6 +18,7 @@ const AlbumShow = ({
 	toPlayAlbum,
 	toPushPlay,
 	toTogglePlay,
+	toPlayView,
 	clearCurrent,
 }) => {
 	useEffect(() => {
@@ -55,6 +56,7 @@ const AlbumShow = ({
 				source={source}
 				songCardDropdownItems={songCardDropdownItems}
 				currentViewRef={albumShowRef}
+				toPlayView={toPlayView}
 			/>
 		</div>
 	);
