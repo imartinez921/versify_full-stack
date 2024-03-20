@@ -25,9 +25,20 @@ const PlaylistShow = ({
 	useEffect(() => {
 		displayPlaylist(urlParams.id);
 		// Maybe there's a way to check whether the urlParams.id has changed from the previous and then trigger re-render
-
-		return () => clearCurrent();
 	}, [urlParams]);
+	// Passing this down from currentView bc wrapping withRouter doesn't always trigger useEffect
+
+	useEffect(() => {
+		if (playlistShowRef.current) {
+			playlistShowRef.current.scrollTo({ top: 0 });
+		}
+	}, [playlistSongs]);
+
+	useEffect(() => {
+		if (playlistShowRef.current) {
+			playlistShowRef.current.scrollTo({ top: 0 });
+		}
+	}, [playlistSongs]);
 
 	const playlistShowRef = useRef();
 
