@@ -49,7 +49,6 @@ const mapDispatchToProps = (dispatch) => ({
 	toPushPlay: () => dispatch(toPushPlay()),
 	toTogglePlay: () => dispatch(toTogglePlay()),
 	toPlayView: (objToQueue) => dispatch(toPlayView(objToQueue)),
-	clearCurrent: () => dispatch(clearCurrent()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlbumShow);

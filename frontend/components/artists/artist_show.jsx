@@ -18,21 +18,20 @@ const ArtistShow = ({
 	toTogglePlay,
 	toPlayArtist,
 	toPushPlay,
-	clearCurrent,
 }) => {
 	useEffect(() => {
-		displayArtist(urlParams.id);
-
-		const rendered = document.getElementById("artist-show");
-		rendered ? rendered.scrollTo(0, 0) : null;
-
-		return () => {
-			clearCurrent();
-		};
+		displayArtist(urlParams.id)
 	}, [urlParams]); // Will run whenever urlParams.id changes, otherwise ArtistShow doesn't re-render
 	// Passing this down from currentView bc wrapping withRouter doesn't always trigger useEffect
 
+	useEffect(() => {
+		if (artistShowRef.current) {
+			artistShowRef.current.scrollTo({ top: 0 });
+		}
+	}, [allSongs]);
+	
 	const artistShowRef = useRef();
+	
 	const artistShow = (
 		<>
 			<div

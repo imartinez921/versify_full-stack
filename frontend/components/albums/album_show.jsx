@@ -19,17 +19,17 @@ const AlbumShow = ({
 	toPushPlay,
 	toTogglePlay,
 	toPlayView,
-	clearCurrent,
 }) => {
 	useEffect(() => {
 		displayAlbum(urlParams.id);
-
-		const rendered = document.getElementById("album-show");
-		rendered ? rendered.scrollTo(0, 0) : null;
-
-		return () => clearCurrent();
 	}, [urlParams]); // Will run whenever urlParams.id changes, otherwise AlbumShow doesn't re-render
 	// Passing this down from currentView bc wrapping withRouter doesn't always trigger useEffect
+
+	useEffect(() => {
+		if (albumShowRef.current) {
+			albumShowRef.current.scrollTo({ top: 0 });
+		}
+	}, [tracks]);
 
 	const albumShowRef = useRef();
 
