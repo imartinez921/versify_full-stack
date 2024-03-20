@@ -19,7 +19,6 @@ const AlbumShow = ({
 	toPushPlay,
 	toTogglePlay,
 	toPlayView,
-	clearCurrent,
 }) => {
 	useEffect(() => {
 		displayAlbum(urlParams.id);
