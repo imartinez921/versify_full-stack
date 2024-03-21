@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 		isPlaying: state.entities.nowPlaying.isPlaying,
 		currentTrack: state.entities.nowPlaying.queue[state.entities.nowPlaying.trackIndex],
 		trackIndex: state.entities.nowPlaying.trackIndex,
+		queueSources: state.entities.nowPlaying.queueSources,
 		songs: state.entities.songs, // songs of the current view
 		hasQueue: state.entities.nowPlaying.queue.length > 0,
 	};
