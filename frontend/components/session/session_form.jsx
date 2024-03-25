@@ -42,7 +42,6 @@ class SessionForm extends React.Component {
             username: 'userdemo',
             password: 'userdemo',
         }
-        console.log(formUser)
         this.props.createSession(formUser)
             .then ( () => this.props.history.push('/home'));
         ;
