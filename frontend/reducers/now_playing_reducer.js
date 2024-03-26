@@ -37,6 +37,7 @@ const nowPlayingReducer = (
 				newPlayState.trackIndex = null;
 				newPlayState.isPlaying = false;
 				newPlayState.queue = [];
+				newPlayState.queueSources = [];
 			}
 			return newPlayState;
 		case PREV_TRACK:
@@ -45,6 +46,7 @@ const nowPlayingReducer = (
 				newPlayState.trackIndex = null;
 				newPlayState.isPlaying = false;
 				newPlayState.queue = [];
+				newPlayState.queueSources = [];
 			}
 			return newPlayState;
 		case TOGGLE_PLAY:
