@@ -94,6 +94,7 @@ const nowPlayingReducer = (
 			newPlayState.isPlaying = false;
 			newPlayState.queue = [];
 			newPlayState.queueSources = [];
+			newPlayState.trackIndex = null;
 			return newPlayState;
 		default:
 			return playState;
