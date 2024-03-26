@@ -39,7 +39,8 @@ export const displayPlaylist = (playlistId) => (dispatch) => {
     return showPlaylist(playlistId).then(
         (playlist) => dispatch(receiveCurrentPlaylist(playlist)),
         // (err) => dispatch(receivePlaylistErrors(err.responseJSON))
-        (err) => console.log(err))
+        (err) => console.log(err)) 
+        // TODO: NOT FOUND page for if a playlist queueSource no longer exists
     // err => (console.log(err)) )
 };
 
