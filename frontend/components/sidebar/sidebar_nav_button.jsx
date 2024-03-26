@@ -4,8 +4,6 @@ const SidebarNavButton = (props) => {
     // eg. Home button, Search button
     const { text, icon, url, history } = props;
 
-    console.log("SidebarNAVButtonPROPS", props);
-
     const clickToNavigate = (e) => {
         e.preventDefault();
         history.push(`/${url}`);

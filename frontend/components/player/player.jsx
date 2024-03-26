@@ -7,7 +7,8 @@ const Player = ({
 	isPlaying,
 	currentTrack,
 	trackIndex,
-	songs, // songs of the current view
+	queueSources,
+	songs, // songs of the current view if we initiate playback on a page with songs
 	hasQueue,
 	history,
 	toNextTrack,
@@ -48,7 +49,7 @@ const Player = ({
 	const errorCatch = (e) => {
 		switch (e.target.error.code) {
 			case e.target.error.MEDIA_ERR_ABORTED:
-				console.log("You aborted the video playback.");
+				console.log("You aborted the audio playback.");
 				break;
 			case e.target.error.MEDIA_ERR_NETWORK:
 				console.log(
@@ -57,12 +58,12 @@ const Player = ({
 				break;
 			case e.target.error.MEDIA_ERR_DECODE:
 				console.log(
-					"The audio playback was aborted due to a corruption problem or because the video used features your browser did not support."
+					"The audio playback was aborted due to a corruption problem or because the audio used features your browser did not support."
 				);
 				break;
 			case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
 				console.log(
-					"The video audio not be loaded, either because the server or network failed or because the format is not supported."
+					"The audio not be loaded, either because the server or network failed or because the format is not supported."
 				);
 				break;
 			default:
@@ -145,9 +146,11 @@ const Player = ({
 
 	return (
 		<div className="player-container">
-			<NowPlayingInfo
+			<NowPlayingInfo // TODO: Clean up what we actually need for NowPlayingInfo
 				audioRef={audioRef}
 				track={currentTrack}
+				trackIndex={trackIndex}
+				queueSources={queueSources}
 				trackProgress={trackProgress}
 				history={history}
 				isPlaying={isPlaying}

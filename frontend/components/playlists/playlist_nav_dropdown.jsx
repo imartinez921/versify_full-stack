@@ -61,8 +61,7 @@ const PlaylistNavDropdown = ({
 				playNow(objToQueue);
 				return closePlaylistNavDropdown();
 			case "Edit details":
-				openPlaylistEditModal();
-				return console.log("OPEN EDIT MODAL");
+				return openPlaylistEditModal();
 			case "Delete":
 				destroyPlaylist(currentPlaylist.id);
 				return history.push("/home");

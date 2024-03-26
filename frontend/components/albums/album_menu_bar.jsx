@@ -21,7 +21,6 @@ const AlbumMenuBar = ({
 	toPushPlay,
 	toTogglePlay,
 }) => {
-	console.log(toPushPlay)
 	// Set local states for AlbumDropdownState
 	const [albumDropdownState, setAlbumDropdownState] = useState({
 		isOpen: false,

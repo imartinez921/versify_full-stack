@@ -83,8 +83,6 @@ const SongCard = ({
 
 	const handleDoubleClick = (e) => {
 		e.preventDefault();
-		console.log("double clicked song card");
-		console.log(objToQueue);
 		toPlayView(objToQueue);
 	};
 
