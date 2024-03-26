@@ -6,7 +6,7 @@ import PlayingControls from "./playing_controls";
 const Player = ({
 	isPlaying,
 	currentTrack,
-	trackIndex,
+	playIdx,
 	queueSources,
 	songs, // songs of the current view if we initiate playback on a page with songs
 	hasQueue,
@@ -43,7 +43,7 @@ const Player = ({
 			audioRef.current.removeEventListener("loadeddata", tryPlay);
 			audioRef.current.removeEventListener("ended", whenTrackEnds);
 		};
-	}, [currentTrack, trackIndex]); // on first song + in case same song is queued twice
+	}, [currentTrack, playIdx]); // on first song + in case same song is queued twice
 
 	// Catch audio errors
 	const errorCatch = (e) => {
@@ -93,7 +93,7 @@ const Player = ({
 		return () => {
 			audioRef.current.removeEventListener("loadeddata", tryPlay);
 		};
-	}, [currentTrack, trackIndex, isPlaying]);
+	}, [currentTrack, playIdx, isPlaying]);
 
 	// Behavior when changing tracks
 	const afterFirstRender = useRef(false); // prevent auto-play
@@ -107,7 +107,7 @@ const Player = ({
 			audioRef.current.play();
 		}
 		if (!afterFirstRender) afterFirstRender.current = true;
-	}, [trackIndex]);
+	}, [playIdx]);
 
 	// Behavior when track ends
 	const whenTrackEnds = () => {
@@ -149,7 +149,7 @@ const Player = ({
 			<NowPlayingInfo // TODO: Clean up what we actually need for NowPlayingInfo
 				audioRef={audioRef}
 				track={currentTrack}
-				trackIndex={trackIndex}
+				playIdx={playIdx}
 				queueSources={queueSources}
 				trackProgress={trackProgress}
 				history={history}
