@@ -2,7 +2,7 @@
 
 ## [Versify](https://versify-idm-402fcc1678c6.herokuapp.com/) is a clone of the Spotify web client but with a darker and starry undertone.
 ### Versify provides a very similar user experience to Spotify online, with a focus on Afropop and R&B genres. 
-(Note: All music is for non-commercial use as this is a private project.)
+(Note: All music is for non-commercial use as this is a private project and, though hosted, receives no external traffic.)
 ## To play: [Live Demo](https://versify-idm-402fcc1678c6.herokuapp.com/)
 ## To read: [Versify Wiki](https://github.com/imartinez921/versify_full-stack/wiki)
 
@@ -22,3 +22,20 @@
 * Users can search for songs, artists, and albums.
 * Users can add Liked songs to their library.
 * Users can view lyrics of the song currently playing. (Hence, "VERSE-ify")
+
+<hr>
+
+## Installation
+To install Node packages:
+```
+npm install
+```
+To start webpack (development):
+```
+npm run watch
+```
+To start Rails server:
+```
+rails s
+```
+Follow the path designated by the Rails server to view the app on your localhost.
