@@ -11,7 +11,6 @@ const PlaylistNavDropdown = ({
     closePlaylistNavDropdown,
     openPlaylistEditModal,
     closePlaylistEditModal,
-    fetchPlaylists,
     editPlaylist,
     destroyPlaylist,
     toQueuePlaylist,

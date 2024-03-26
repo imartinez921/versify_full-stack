@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PlaylistNavDropdown from "./playlist_nav_dropdown";
 
@@ -17,7 +17,6 @@ const PlaylistNav = ({
 	history,
 	playlistNavDropdownState,
 	playlistEditModalState,
-	fetchPlaylists,
 	editPlaylist,
 	destroyPlaylist,
 	toTogglePlay,
@@ -89,7 +88,6 @@ const PlaylistNav = ({
 					closePlaylistNavDropdown={closePlaylistNavDropdown}
 					openPlaylistEditModal={openPlaylistEditModal}
 					closePlaylistEditModal={closePlaylistEditModal}
-					fetchPlaylists={fetchPlaylists}
 					editPlaylist={editPlaylist}
 					destroyPlaylist={destroyPlaylist}
 					toQueuePlaylist={toQueuePlaylist}

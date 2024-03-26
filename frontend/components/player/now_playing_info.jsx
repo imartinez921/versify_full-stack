@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import AlbumLinkContainer from "../albums/album_link_container";
 import ArtistLinkContainer from "../artists/artist_link_container";
 
 const NowPlayingInfo = ({
 	track,
-	trackIndex,
+	playIdx,
 	queueSources,
 	history,
 }) => {
@@ -19,11 +18,11 @@ const NowPlayingInfo = ({
 	const { title, albumId, albumImageUrl, songArtist } = track;
 
 	const handleOnClickSongName = () => {
-		let currSource = queueSources[trackIndex];
-		if (history.location.pathname !== currSource) history.push(`${queueSources[trackIndex].sourcedFrom}`);
+		let currSource = queueSources[playIdx];
+		if (history.location.pathname !== currSource) history.push(`${queueSources[playIdx].sourcedFrom}`);
 	}
 	const handleOnClickAlbumArt = () => {
-		let currSource = queueSources[trackIndex];	
+		let currSource = queueSources[playIdx];	
 		if (history.location.pathname!== currSource) history.push(`/album/${albumId}`);
 	}
 

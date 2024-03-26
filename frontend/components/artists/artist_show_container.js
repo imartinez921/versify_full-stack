@@ -18,7 +18,10 @@ const mapStateToProps = (state, ownProps) => {
 		allSongs: state.entities.songs.allSongs,
 		collabSongs: state.entities.songs.collabSongs,
 		isPlaying: state.entities.nowPlaying.isPlaying,
-		currentQueueSource: state.entities.nowPlaying.queueSources[state.entities.nowPlaying.trackIndex],
+		currentQueueSource:
+			state.entities.nowPlaying.queueSources[
+				state.entities.nowPlaying.playIdx
+			],
 		currentUser: ownProps.currentUser,
 		urlParams: ownProps.params,
 	};

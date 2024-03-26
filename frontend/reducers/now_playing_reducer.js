@@ -17,7 +17,7 @@ import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 const nowPlayingReducer = (
 	playState = {
 		isPlaying: false,
-		trackIndex: 0,
+		playIdx: 0,
 		queue: [],
 		queueSources: [],
 	},
@@ -32,19 +32,21 @@ const nowPlayingReducer = (
 	// Above rectifies issues with shallow copies where nested objs kept the same refs
 	switch (action.type) {
 		case NEXT_TRACK:
-			newPlayState.trackIndex++;
-			if (newPlayState.trackIndex >= newPlayState.queue.length) {
-				newPlayState.trackIndex = null;
+			newPlayState.playIdx++;
+			if (newPlayState.playIdx >= newPlayState.queue.length) {
+				newPlayState.playIdx = null;
 				newPlayState.isPlaying = false;
 				newPlayState.queue = [];
+				newPlayState.queueSources = [];
 			}
 			return newPlayState;
 		case PREV_TRACK:
-			newPlayState.trackIndex--;
-			if (newPlayState.trackIndex < 0) {
-				newPlayState.trackIndex = null;
+			newPlayState.playIdx--;
+			if (newPlayState.playIdx < 0) {
+				newPlayState.playIdx = null;
 				newPlayState.isPlaying = false;
 				newPlayState.queue = [];
+				newPlayState.queueSources = [];
 			}
 			return newPlayState;
 		case TOGGLE_PLAY:
@@ -80,18 +82,19 @@ const nowPlayingReducer = (
 				});
 			}
 			newPlayState.isPlaying = true;
-			newPlayState.trackIndex = 0;
+			newPlayState.playIdx = 0;
 			console.log("NEW QUEUE", newPlayState.queue);
 			return newPlayState;
 		case CLEAR_QUEUE:
 			newPlayState.queue = [];
 			newPlayState.queueSources = [];
-			newPlayState.trackIndex = null;
+			newPlayState.playIdx = null;
 			return newPlayState;
 		case LOGOUT_CURRENT_USER:
 			newPlayState.isPlaying = false;
 			newPlayState.queue = [];
 			newPlayState.queueSources = [];
+			newPlayState.playIdx = null;
 			return newPlayState;
 		default:
 			return playState;

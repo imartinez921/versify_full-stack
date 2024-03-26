@@ -33,7 +33,7 @@ const mapStateToProps = (
 		playlists: playlists,
 		playlistSongs: songs,
 		isPlaying: nowPlaying.isPlaying,
-		currentQueueSource: nowPlaying.queueSources[nowPlaying.trackIndex],
+		currentQueueSource: nowPlaying.queueSources[nowPlaying.playIdx],
 		playlistNavDropdownState: ux.playlistNavDropdown,
 		playlistEditModalState: ux.playlistEditModal,
 		currentUser: currentUser,
@@ -41,7 +41,7 @@ const mapStateToProps = (
 		source: "playlist",
 		songCardDropdownItems: [
 			{
-				title: "Play song"
+				title: "Play song",
 			},
 			{
 				title: "Add to queue",
