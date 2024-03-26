@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import AlbumLinkContainer from "../albums/album_link_container";
 import ArtistLinkContainer from "../artists/artist_link_container";
 
 const NowPlayingInfo = ({
